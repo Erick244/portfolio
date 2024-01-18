@@ -1,6 +1,7 @@
 import { NavMobileMenu } from "@/components/menus/NavMobileMenu";
 import { ModeToggle } from "@/components/shadcn-ui/mode-toggle";
 import { Logo } from "@/components/utils/Logo";
+import { Github } from "lucide-react";
 import { Footer } from "../templates/footer";
 import { Header } from "../templates/header";
 
@@ -11,7 +12,7 @@ interface HomeLayoutProps {
 export function HomeLayout({ children }: HomeLayoutProps) {
     return (
         <div className="h-screen w-screen flex flex-col max-w-3xl m-auto md:px-0 px-5">
-            <Header.Root className="flex justify-between">
+            <Header.Root className="flex justify-between items-center sticky top-0">
                 <Logo href="/" />
                 <nav className="hidden md:flex items-center gap-3">
                     <Header.Link href="#">projects</Header.Link>
@@ -25,7 +26,16 @@ export function HomeLayout({ children }: HomeLayoutProps) {
                 </div>
             </Header.Root>
             <main className="grow">{children}</main>
-            <Footer.Root>FOOTER</Footer.Root>
+
+            <Footer.Root className="flex justify-between items-center">
+                <Logo href="/" />
+                <Footer.Link
+                    href={"https://github.com/Erick244/portfolio"}
+                    target="_blank"
+                >
+                    <Github />
+                </Footer.Link>
+            </Footer.Root>
         </div>
     );
 }

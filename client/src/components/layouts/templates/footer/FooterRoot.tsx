@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
 interface FooterRootProps extends HTMLAttributes<HTMLElement> {
@@ -5,5 +6,9 @@ interface FooterRootProps extends HTMLAttributes<HTMLElement> {
 }
 
 export function FooterRoot({ children, ...props }: FooterRootProps) {
-    return <footer {...props}>{children}</footer>;
+    return (
+        <footer {...props} className={cn("p-5 border-t", props.className)}>
+            {children}
+        </footer>
+    );
 }

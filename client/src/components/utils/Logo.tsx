@@ -7,14 +7,16 @@ export function Logo(props: ComponentProps<typeof Link>) {
         <Link
             {...props}
             href="/"
-            className={cn("flex gap-1 font-mono h-7", props.className)}
+            className={cn(
+                "flex gap-1 font-mono h-7 select-none",
+                props.className
+            )}
         >
             <div className="text-xl space-x-1">
-                <span>&#123;</span>
-                <span>ERICK</span>
-                <span>&#125;</span>
+                <span>&lt;</span>
+                <span>ErickHenrique</span>
+                <span>/&gt;</span>
             </div>
-            <div className="self-end text-sm">HENRIQUE</div>
         </Link>
     );
 }
