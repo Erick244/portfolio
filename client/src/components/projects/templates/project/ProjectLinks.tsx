@@ -10,7 +10,7 @@ export function ProjectLinks({ children, ...props }: ProjectLinksProps) {
         <div
             {...props}
             className={cn(
-                "shadow-lg shadow-black/30 self-stretch p-2 flex flex-col justify-between items-center",
+                "shadow-lg shadow-black/30 self-stretch p-2 flex sm:flex-col flex-row sm:justify-between sm:gap-0 gap-2 items-center border-t-2 border-border sm:border-none justify-start",
                 props.className
             )}
         >

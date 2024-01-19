@@ -11,7 +11,7 @@ export function ProjectImage({ imageUrl, ...props }: ProjectImageProps) {
         <div
             {...props}
             className={cn(
-                "w-1/2 rounded-md overflow-hidden shadow-lg shadow-black/30 flex justify-center items-center",
+                "sm:w-1/2 w-4/5 rounded-md overflow-hidden shadow-lg shadow-black/30 flex justify-center items-center",
                 props.className
             )}
         >

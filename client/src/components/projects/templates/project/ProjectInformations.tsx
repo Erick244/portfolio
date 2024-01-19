@@ -14,9 +14,15 @@ export function ProjectInformations({
     ...props
 }: ProjectInformationsProps) {
     return (
-        <div {...props} className={cn("w-1/2 p-5", props.className)}>
-            <H2>{title}</H2>
-            <P className="sm:text-base text-sm sm:text-left text-pretty">
+        <div
+            {...props}
+            className={cn(
+                "sm:w-1/2 w-full p-5 sm:self-center self-stretch",
+                props.className
+            )}
+        >
+            <H2 className="sm:text-left text-center">{title}</H2>
+            <P className="sm:text-base  text-sm sm:text-left text-center">
                 {description}
             </P>
         </div>
