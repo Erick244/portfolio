@@ -4,6 +4,7 @@ import { Logo } from "@/components/utils/Logo";
 import { Github } from "lucide-react";
 import { Footer } from "../templates/footer";
 import { Header } from "../templates/header";
+import { NavItems } from "../ui/NavItems";
 
 interface HomeLayoutProps {
     children: React.ReactNode;
@@ -15,9 +16,7 @@ export function HomeLayout({ children }: HomeLayoutProps) {
             <Header.Root className="flex justify-between items-center sticky top-0">
                 <Logo href="/" />
                 <nav className="hidden md:flex items-center gap-3">
-                    <Header.Link href="#">projects</Header.Link>
-                    <Header.Link href="#">about</Header.Link>
-                    <Header.Link href="#">contact</Header.Link>
+                    <NavItems />
                     <ModeToggle className="lg:hidden" />
                 </nav>
                 <div className="md:hidden flex items-center gap-3">

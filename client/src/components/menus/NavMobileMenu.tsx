@@ -6,7 +6,7 @@ import {
     SheetTrigger,
 } from "@/components/shadcn-ui/sheet";
 import { Menu } from "lucide-react";
-import { Header } from "../layouts/templates/header";
+import { NavItems } from "../layouts/ui/NavItems";
 import { Button, ButtonProps } from "../shadcn-ui/button";
 
 export function NavMobileMenu(props: ButtonProps) {
@@ -21,24 +21,7 @@ export function NavMobileMenu(props: ButtonProps) {
                 <SheetTitle>Menu</SheetTitle>
 
                 <SheetHeader className="pt-10">
-                    <Header.Link
-                        href="#"
-                        className="border border-border rounded py-2"
-                    >
-                        projects
-                    </Header.Link>
-                    <Header.Link
-                        href="#"
-                        className="border border-border rounded py-2"
-                    >
-                        about
-                    </Header.Link>
-                    <Header.Link
-                        href="#"
-                        className="border border-border rounded py-2"
-                    >
-                        contact
-                    </Header.Link>
+                    <NavItems />
                 </SheetHeader>
             </SheetContent>
         </Sheet>
