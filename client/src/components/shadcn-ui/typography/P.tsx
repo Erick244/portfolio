@@ -10,7 +10,7 @@ export function P({ children, ...props }: PProps) {
         <p
             {...props}
             className={cn(
-                "leading-7 [&:not(:first-child)]:mt-6 font-mono",
+                "leading-7 [&:not(:first-child)]:mt-6 font-mono animate-text-focus-in",
                 props.className
             )}
         >

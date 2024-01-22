@@ -21,7 +21,7 @@ export function TechnologieCarousel({ children }: TechnologieCarouselProps) {
             plugins={[plugin.current]}
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
-            className="w-full max-w-sm sm:max-w-lg md:max-w-xl lg:max-w-2xl"
+            className="w-full  sm:max-w-lg md:max-w-xl lg:max-w-2xl"
             opts={{
                 align: "center",
                 loop: true,

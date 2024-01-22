@@ -10,7 +10,7 @@ export function H4({ children, ...props }: H4Props) {
         <h4
             {...props}
             className={cn(
-                "scroll-m-20 text-lg font-mono font-semibold tracking-tight",
+                "scroll-m-20 text-lg font-mono font-semibold tracking-tight ",
                 props.className
             )}
         >

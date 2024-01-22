@@ -67,10 +67,51 @@ const config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                jorney: {
+                    from: { width: "0%" },
+                    to: { width: "50%" },
+                },
+                "tracking-in-expand": {
+                    "0%": { letterSpacing: "-0.5em", opacity: "0" },
+                    "40%": { opacity: "0.6" },
+                    "100%": { opacity: "1" },
+                },
+                "tracking-in-contract": {
+                    "0%": { letterSpacing: "1em", opacity: "0" },
+                    "40%": { opacity: "0.6" },
+                    "100%": { opacity: "1" },
+                },
+                "text-focus-in": {
+                    "0%": { fitler: "blur(12px)", opacity: "0" },
+                    "100%": { filter: "blur(based)", opacity: "1" },
+                },
+                "slide-in-blurred-right": {
+                    "0%": {
+                        transform: "translateX(1000px) scaleX(2.5) scaleY(0.2)",
+                        transformOrigin: "0% 50%",
+                        filter: "blur(40px)",
+                        opacity: "0",
+                    },
+                    "100%": {
+                        transform: "translateX(0) scaleX(1) scaleY(1)",
+                        transformOrigin: "50% 50%",
+                        filter: "blur(based)",
+                        opacity: "1",
+                    },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                jorney: "jorney 1s ease",
+                "tracking-in-expand":
+                    "tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both",
+                "text-focus-in":
+                    "text-focus-in 1s cubic-bezier(0.550, 0.085, 0.680, 0.530) both",
+                "tracking-in-contract":
+                    "tracking-in-contract 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both",
+                "slide-in-blurred-right":
+                    "slide-in-blurred-right 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both",
             },
         },
     },

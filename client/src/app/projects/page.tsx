@@ -3,10 +3,10 @@ import { ProjectsIntroduction } from "@/components/projects/components/ProjectsI
 
 export default function Page() {
     return (
-        <div>
-            <ProjectsIntroduction className="my-10" />
+        <div className="my-10 space-y-10">
+            <ProjectsIntroduction />
             <hr />
-            <Projects className="my-10" />
+            <Projects />
         </div>
     );
 }

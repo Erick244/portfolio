@@ -10,7 +10,7 @@ export function HeaderRoot({ children, ...props }: HeaderRootProps) {
         <header
             {...props}
             className={cn(
-                "backdrop-blur-sm bg-background/30 py-10",
+                "backdrop-blur-sm bg-background/30 py-10 z-10",
                 props.className
             )}
         >
