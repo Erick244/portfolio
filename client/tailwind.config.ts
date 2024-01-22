@@ -99,6 +99,35 @@ const config = {
                         opacity: "1",
                     },
                 },
+                "slide-in-blurred-left": {
+                    "0%": {
+                        transform:
+                            "translateX(-1000px) scaleX(2.5) scaleY(0.2)",
+                        transformOrigin: "100% 50%",
+                        filter: "blur(40px)",
+                        opacity: "0",
+                    },
+                    "100%": {
+                        transform: "translateX(0) scaleX(1) scaleY(1)",
+                        transformOrigin: "50% 50%",
+                        filter: "blur(based)",
+                        opacity: "1",
+                    },
+                },
+                "slide-in-blurred-bottom": {
+                    "0%": {
+                        transform: "translateY(1000px) scaleY(2.5) scaleX(0.2)",
+                        transformOrigin: "50% 100%",
+                        filter: "blur(40px)",
+                        opacity: "0",
+                    },
+                    "100%": {
+                        transform: "translateX(0) scaleX(1) scaleY(1)",
+                        transformOrigin: "50% 50%",
+                        filter: "blur(based)",
+                        opacity: "1",
+                    },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -112,6 +141,10 @@ const config = {
                     "tracking-in-contract 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both",
                 "slide-in-blurred-right":
                     "slide-in-blurred-right 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both",
+                "slide-in-blurred-left":
+                    "slide-in-blurred-left 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both",
+                "slide-in-blurred-bottom":
+                    "slide-in-blurred-bottom 1s cubic-bezier(0.230, 1.000, 0.320, 1.000) both",
             },
         },
     },
