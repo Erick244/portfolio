@@ -15,8 +15,8 @@ interface AdminLayoutProps {
 export function AdminLayout({ children, title }: AdminLayoutProps) {
     return (
         <div className="h-screen w-screen flex">
-            <SideBar.Root>
-                <Logo href="/" className="py-8" />
+            <SideBar.Root className="items-center">
+                <Logo href="/" className="pb-12 pt-8" />
                 <SideBarItems />
             </SideBar.Root>
 

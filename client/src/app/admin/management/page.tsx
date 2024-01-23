@@ -1,3 +1,9 @@
+import { ManagementTabs } from "@/components/admin/management/components/ManagementTabs";
+
 export default function Page() {
-    return <div>ADMIN</div>;
+    return (
+        <div className="h-full w-full flex justify-center items-center">
+            <ManagementTabs />
+        </div>
+    );
 }
