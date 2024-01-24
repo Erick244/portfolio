@@ -21,6 +21,7 @@ import {
     TableRow,
 } from "@/components/shadcn-ui/table";
 import { useState } from "react";
+import { AddDataDialog } from "../admin/ui/AddDataDialog";
 import { Button } from "./button";
 import { TableFilter } from "./table-filter";
 
@@ -28,12 +29,14 @@ interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
     filterField: string;
+    addFormData: JSX.Element;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     filterField,
     data,
+    addFormData,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -55,7 +58,14 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <TableFilter filterField={filterField} table={table} />
+            <div className="flex items-center justify-between">
+                <TableFilter
+                    className="w-1/2"
+                    filterField={filterField}
+                    table={table}
+                />
+                <AddDataDialog>{addFormData}</AddDataDialog>
+            </div>
             <div className="rounded-md border">
                 <Table>
                     <TableHeader>

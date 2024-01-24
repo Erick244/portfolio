@@ -5,37 +5,27 @@ import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-de
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Technology = {
+export type Achievement = {
     id: number;
-    name: string;
-    experience: string;
-    category: "FRONTEND" | "BACKEND";
-    about: string;
-    imageUrl: string;
+    title: string;
+    dateFormated: string;
     twColorClasses: string;
 };
 
-export const TechnologiesTableColumns: ColumnDef<Technology>[] = [
+export const JorneyTableColumns: ColumnDef<Achievement>[] = [
     {
         accessorKey: "id",
         header: ({ column }) => <SortingButton column={column} label="ID" />,
     },
     {
-        accessorKey: "name",
-        header: ({ column }) => <SortingButton column={column} label="Name" />,
+        accessorKey: "title",
+        header: ({ column }) => <SortingButton column={column} label="Title" />,
     },
     {
-        accessorKey: "experience",
-        header: ({ column }) => (
-            <SortingButton column={column} label="Experience" />
-        ),
+        accessorKey: "dateFormated",
+        header: ({ column }) => <SortingButton column={column} label="Date" />, // TODO: Create a date filter for this
     },
-    {
-        accessorKey: "category",
-        header: ({ column }) => (
-            <SortingButton column={column} label="Category" />
-        ),
-    },
+
     {
         id: "twColorClasses",
         header: "Colors",
@@ -50,10 +40,10 @@ export const TechnologiesTableColumns: ColumnDef<Technology>[] = [
         header: "Actions",
 
         cell: ({ row }) => {
-            const technology = row.original;
+            const achievement = row.original;
 
             return (
-                <ActionsTableDropDown title={`Actions - ${technology.id}`} />
+                <ActionsTableDropDown title={`Actions - ${achievement.id}`} />
             );
         },
     },

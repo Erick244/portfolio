@@ -2,10 +2,15 @@ import { Column } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import { Button } from "./button";
 
-export function SortingButton<TData, TValue>(
-    column: Column<TData, TValue>,
-    label: string
-) {
+interface SortingButtonProps<TData, TValue> {
+    column: Column<TData, TValue>;
+    label: string;
+}
+
+export function SortingButton<TData, TValue>({
+    column,
+    label,
+}: SortingButtonProps<TData, TValue>) {
     return (
         <Button
             variant="ghost"
