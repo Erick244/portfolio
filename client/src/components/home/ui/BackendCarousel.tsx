@@ -1,37 +1,66 @@
+import { Technologie } from "@/components/admin/management/technologies/table/TechnologiesTableColumns";
 import { CarouselItem } from "@/components/shadcn-ui/carousel";
-import { TechnologieCard } from "./TechnologieCard";
+import { Blockquote } from "@/components/shadcn-ui/typography/Blockquote";
+import { H3 } from "@/components/shadcn-ui/typography/H3";
+import { TechnologieCard } from "../templates/technologie-card";
 import { TechnologieCarousel } from "./TechnologieCarousel";
+
+const backendTechnologiesTemp: Technologie[] = [
+    {
+        id: 1,
+        name: "Java",
+        about: "Java is a versatile programming language commonly used for web development.",
+        category: "BACKEND",
+        experience: "2 years",
+        twColorClasses: "to-blue-300 shadow-blue-300/30",
+        imageUrl: "https://cdn-icons-png.flaticon.com/256/226/226777.png",
+    },
+    {
+        id: 2,
+        name: "Node.JS",
+        about: "Node.JS is based in JavaScript for backend programing.",
+        category: "BACKEND",
+        experience: "2 years",
+        twColorClasses: "to-lime-500 shadow-lime-500/30",
+        imageUrl:
+            "https://cdn.iconscout.com/icon/free/png-256/free-node-js-1174925.png?f=webp",
+    },
+    {
+        id: 3,
+        name: "Nest.JS",
+        about: "Nest.JS is a JavaScript backend framework for productions aplications.",
+        category: "BACKEND",
+        experience: "2 years",
+        twColorClasses: "to-pink-800 shadow-pink-800/30",
+        imageUrl:
+            "https://static-00.iconduck.com/assets.00/nestjs-plain-icon-256x256-20nmj4pt.png",
+    },
+];
 
 export function BackendCarousel() {
     return (
         <TechnologieCarousel>
-            <CarouselItem>
-                <TechnologieCard
-                    about="test"
-                    experience="2 years"
-                    title="Java"
-                    className="to-blue-300 shadow-lg shadow-blue-300/30"
-                    imageUrl="https://cdn-icons-png.flaticon.com/256/226/226777.png"
-                />
-            </CarouselItem>
-            <CarouselItem>
-                <TechnologieCard
-                    about="test"
-                    experience="2 years"
-                    title="Node.JS"
-                    className="to-lime-500 shadow-lg shadow-lime-500/30"
-                    imageUrl="https://cdn.iconscout.com/icon/free/png-256/free-node-js-1174925.png?f=webp"
-                />
-            </CarouselItem>
-            <CarouselItem>
-                <TechnologieCard
-                    about="test"
-                    experience="2 years"
-                    title="Nest.JS"
-                    className="to-pink-800 shadow-lg shadow-pink-800/30"
-                    imageUrl="https://static-00.iconduck.com/assets.00/nestjs-plain-icon-256x256-20nmj4pt.png"
-                />
-            </CarouselItem>
+            {backendTechnologiesTemp &&
+                backendTechnologiesTemp.map((tech) => (
+                    <CarouselItem key={tech.id}>
+                        <TechnologieCard.Root className={tech.twColorClasses}>
+                            <H3 className="absolute -top-3 bg-background px-1 text-lg">
+                                {tech.name}
+                            </H3>
+                            <div className="flex justify-between ">
+                                <Blockquote>
+                                    Experience: {tech.experience}
+                                </Blockquote>
+                                <TechnologieCard.Image
+                                    imageUrl={tech.imageUrl}
+                                />
+                            </div>
+                            <TechnologieCard.About>
+                                {tech.about}
+                            </TechnologieCard.About>
+                        </TechnologieCard.Root>
+                    </CarouselItem>
+                ))}
         </TechnologieCarousel>
     );
 }

@@ -19,7 +19,7 @@ export function AddDataDialog({ children, ...props }: AddDataDialogProps) {
                     <Plus />
                 </Button>
             </DialogTrigger>
-            <DialogContent>{children}</DialogContent>
+            <DialogContent className="max-w-4xl">{children}</DialogContent>
         </Dialog>
     );
 }

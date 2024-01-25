@@ -5,7 +5,7 @@ import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-de
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Technology = {
+export type Technologie = {
     id: number;
     name: string;
     experience: string;
@@ -15,7 +15,7 @@ export type Technology = {
     twColorClasses: string;
 };
 
-export const TechnologiesTableColumns: ColumnDef<Technology>[] = [
+export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
     {
         accessorKey: "id",
         header: ({ column }) => <SortingButton column={column} label="ID" />,
@@ -50,10 +50,10 @@ export const TechnologiesTableColumns: ColumnDef<Technology>[] = [
         header: "Actions",
 
         cell: ({ row }) => {
-            const technology = row.original;
+            const technologie = row.original;
 
             return (
-                <ActionsTableDropDown title={`Actions - ${technology.id}`} />
+                <ActionsTableDropDown title={`Actions - ${technologie.id}`} />
             );
         },
     },

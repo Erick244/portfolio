@@ -1,11 +1,12 @@
 import { DataTable } from "@/components/shadcn-ui/data-table";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { CreateTechnologieForm } from "../forms/components/CreateTechnologieForm";
 import {
+    Technologie,
     TechnologiesTableColumns,
-    Technology,
 } from "../table/TechnologiesTableColumns";
 
-const technologiesDataTemp: Technology[] = [
+const technologiesDataTemp: Technologie[] = [
     {
         id: 1,
         name: "Javascript",
@@ -59,7 +60,7 @@ export function TechnologiesTab() {
             <H2 className="mb-5">Technologies</H2>
 
             <DataTable
-                addFormData={<p />}
+                addFormData={<CreateTechnologieForm />}
                 columns={TechnologiesTableColumns}
                 data={technologiesDataTemp}
                 filterField="name"
