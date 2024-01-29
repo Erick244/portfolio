@@ -1,5 +1,6 @@
 import { DataTable } from "@/components/shadcn-ui/data-table";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { CreateProjectForm } from "../forms/components/CreateProjectForm";
 import { Project, ProjectsTableColumns } from "../table/ProjectsTableColumns";
 
 const projectsDataTemp: Project[] = [
@@ -11,6 +12,7 @@ const projectsDataTemp: Project[] = [
         name: "FinApp",
         repoUrl: "https://github",
         siteUrl: "",
+        color: "#ffbc05",
     },
     {
         id: 2,
@@ -20,6 +22,7 @@ const projectsDataTemp: Project[] = [
         name: "TaskFlow",
         repoUrl: "https://github",
         siteUrl: "",
+        color: "#ffbc05",
     },
     {
         id: 3,
@@ -29,6 +32,7 @@ const projectsDataTemp: Project[] = [
         name: "Other",
         repoUrl: "https://github",
         siteUrl: "",
+        color: "#ffbc05",
     },
     {
         id: 4,
@@ -38,6 +42,7 @@ const projectsDataTemp: Project[] = [
         name: "Other 2",
         repoUrl: "https://github",
         siteUrl: "",
+        color: "#ffbc05",
     },
     {
         id: 5,
@@ -47,6 +52,7 @@ const projectsDataTemp: Project[] = [
         name: "Other 3",
         repoUrl: "https://github",
         siteUrl: "",
+        color: "#ffbc05",
     },
 ];
 
@@ -56,7 +62,7 @@ export function ProjectsTab() {
             <H2 className="mb-5">Projects</H2>
 
             <DataTable
-                addFormData={<p />}
+                addFormData={<CreateProjectForm />}
                 columns={ProjectsTableColumns}
                 data={projectsDataTemp}
                 filterField="name"

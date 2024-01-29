@@ -12,7 +12,7 @@ const frontendTechnologiesTemp: Technologie[] = [
         about: "JavaScript is a versatile programming language commonly used for web development.",
         category: "FRONTEND",
         experience: "2 years",
-        twColorClasses: "to-yellow-500 shadow-yellow-500/30",
+        color: "#fae102",
         imageUrl:
             "https://itexto.com.br/wp-content/uploads/2017/08/logotipo.png",
     },
@@ -22,7 +22,7 @@ const frontendTechnologiesTemp: Technologie[] = [
         about: "CSS3 is a styled runtime built on Chrome's V8 engine.",
         category: "FRONTEND",
         experience: "2 years",
-        twColorClasses: "to-blue-500 shadow-blue-500/30",
+        color: "#0297fa",
         imageUrl:
             "https://cdn.iconscout.com/icon/free/png-256/free-css3-8-1175200.png",
     },
@@ -32,7 +32,7 @@ const frontendTechnologiesTemp: Technologie[] = [
         about: "HTML (Hypertext Markup Language) are fundamental technologies for web development.",
         category: "FRONTEND",
         experience: "3 years",
-        twColorClasses: "to-orange-500 shadow-orange-500/30",
+        color: "#fa8b02",
         imageUrl:
             "https://www.falsepositives.com/wp-content/uploads/2011/01/HTML5_Logo_256.png",
     },
@@ -44,7 +44,7 @@ export function FrontendCarousel() {
             {frontendTechnologiesTemp &&
                 frontendTechnologiesTemp.map((tech) => (
                     <CarouselItem key={tech.id}>
-                        <TechnologieCard.Root className={tech.twColorClasses}>
+                        <TechnologieCard.Root color={tech.color}>
                             <H3 className="absolute -top-3 bg-background px-1 text-lg">
                                 {tech.name}
                             </H3>

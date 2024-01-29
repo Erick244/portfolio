@@ -1,14 +1,15 @@
+import { Project as ProjectData } from "@/components/admin/management/projects/table/ProjectsTableColumns";
 import { cn } from "@/lib/utils";
-import { Github, Globe } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 import { HTMLAttributes } from "react";
 import { Project } from "../templates/project";
 
 // TEMP
-const projectsData = [
+const projectsData: ProjectData[] = [
     {
         id: 1,
-        color: "from-purple-700",
-        title: "BanQ",
+        color: "#6105ff",
+        name: "BanQ",
         description:
             "This project represents the best possible solution for creating new projects for developers and developers to.",
         imageUrl:
@@ -18,8 +19,8 @@ const projectsData = [
     },
     {
         id: 2,
-        color: "from-sky-300",
-        title: "Stats",
+        color: "#05b4ff",
+        name: "Stats",
         description:
             "This project represents the be projects for developers and developers to. This project includes information.",
         imageUrl: null,
@@ -28,8 +29,8 @@ const projectsData = [
     },
     {
         id: 3,
-        color: "from-yellow-700",
-        title: "Life",
+        color: "#ffbc05",
+        name: "Life",
         description: "This project represents developers and developers to.",
         imageUrl:
             "https://sujeitoprogramador.com/wp-content/uploads/2020/12/Screenshot_1.png",
@@ -43,16 +44,12 @@ export function Projects(props: HTMLAttributes<HTMLDivElement>) {
         <div {...props} className={cn("space-y-10", props.className)}>
             {projectsData &&
                 projectsData.map((project) => (
-                    <Project.Root className={project.color} key={project.id}>
+                    <Project.Root color={project.color} key={project.id}>
                         <Project.Informations
-                            title={project.title}
+                            title={project.name}
                             description={project.description}
                         />
-                        <Project.Image
-                            imageUrl={
-                                project.imageUrl ? project.imageUrl : undefined
-                            }
-                        />
+                        <Project.Image imageUrl={project.imageUrl} />
                         <Project.Links>
                             <Project.Link
                                 Icon={Github}
@@ -61,7 +58,7 @@ export function Projects(props: HTMLAttributes<HTMLDivElement>) {
 
                             {project.siteUrl && (
                                 <Project.Link
-                                    Icon={Globe}
+                                    Icon={ExternalLink}
                                     href={project.siteUrl}
                                 />
                             )}

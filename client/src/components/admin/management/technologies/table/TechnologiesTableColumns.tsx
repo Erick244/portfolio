@@ -1,6 +1,7 @@
 "use client";
 
 import { ActionsTableDropDown } from "@/components/admin/ui/ActionsTableDropDown";
+import { technologieColorStyles } from "@/components/home/templates/technologie-card/TechnologieCardRoot";
 import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-demonstration";
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
@@ -12,7 +13,7 @@ export type Technologie = {
     category: "FRONTEND" | "BACKEND";
     about: string;
     imageUrl: string;
-    twColorClasses: string;
+    color: string;
 };
 
 export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
@@ -40,9 +41,13 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
         id: "twColorClasses",
         header: "Colors",
         cell: ({ row }) => {
-            const twColorClasses = row.original.twColorClasses;
+            const color = row.original.color;
 
-            return <ColorsTableDemonstration className={twColorClasses} />;
+            return (
+                <ColorsTableDemonstration
+                    style={technologieColorStyles(color)}
+                />
+            );
         },
     },
     {

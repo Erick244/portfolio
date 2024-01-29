@@ -1,5 +1,6 @@
 "use client";
 
+import { achievementColorStyles } from "@/components/about/templates/achievement/AchievementTitle";
 import { ActionsTableDropDown } from "@/components/admin/ui/ActionsTableDropDown";
 import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-demonstration";
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
@@ -9,7 +10,7 @@ export type Achievement = {
     id: number;
     title: string;
     dateFormated: string;
-    twColorClasses: string;
+    color: string;
 };
 
 export const JorneyTableColumns: ColumnDef<Achievement>[] = [
@@ -27,12 +28,16 @@ export const JorneyTableColumns: ColumnDef<Achievement>[] = [
     },
 
     {
-        id: "twColorClasses",
+        id: "color",
         header: "Colors",
         cell: ({ row }) => {
-            const twColorClasses = row.original.twColorClasses;
+            const color = row.original.color;
 
-            return <ColorsTableDemonstration className={twColorClasses} />;
+            return (
+                <ColorsTableDemonstration
+                    style={achievementColorStyles(color)}
+                />
+            );
         },
     },
     {

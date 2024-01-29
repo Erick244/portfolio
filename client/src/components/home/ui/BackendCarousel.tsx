@@ -12,7 +12,7 @@ const backendTechnologiesTemp: Technologie[] = [
         about: "Java is a versatile programming language commonly used for web development.",
         category: "BACKEND",
         experience: "2 years",
-        twColorClasses: "to-blue-300 shadow-blue-300/30",
+        color: "#058aff",
         imageUrl: "https://cdn-icons-png.flaticon.com/256/226/226777.png",
     },
     {
@@ -21,7 +21,7 @@ const backendTechnologiesTemp: Technologie[] = [
         about: "Node.JS is based in JavaScript for backend programing.",
         category: "BACKEND",
         experience: "2 years",
-        twColorClasses: "to-lime-500 shadow-lime-500/30",
+        color: "#3fff05",
         imageUrl:
             "https://cdn.iconscout.com/icon/free/png-256/free-node-js-1174925.png?f=webp",
     },
@@ -31,7 +31,7 @@ const backendTechnologiesTemp: Technologie[] = [
         about: "Nest.JS is a JavaScript backend framework for productions aplications.",
         category: "BACKEND",
         experience: "2 years",
-        twColorClasses: "to-pink-800 shadow-pink-800/30",
+        color: "#ff0533",
         imageUrl:
             "https://static-00.iconduck.com/assets.00/nestjs-plain-icon-256x256-20nmj4pt.png",
     },
@@ -43,7 +43,7 @@ export function BackendCarousel() {
             {backendTechnologiesTemp &&
                 backendTechnologiesTemp.map((tech) => (
                     <CarouselItem key={tech.id}>
-                        <TechnologieCard.Root className={tech.twColorClasses}>
+                        <TechnologieCard.Root color={tech.color}>
                             <H3 className="absolute -top-3 bg-background px-1 text-lg">
                                 {tech.name}
                             </H3>

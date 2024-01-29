@@ -3,7 +3,7 @@ import Image from "next/image";
 import { HTMLAttributes } from "react";
 
 interface ProjectImageProps extends HTMLAttributes<HTMLDivElement> {
-    imageUrl?: string;
+    imageUrl?: string | null;
 }
 
 export function ProjectImage({ imageUrl, ...props }: ProjectImageProps) {
@@ -20,7 +20,7 @@ export function ProjectImage({ imageUrl, ...props }: ProjectImageProps) {
                 width={500}
                 height={500}
                 alt="Project image"
-                src={imageUrl ?? "/only-backend.png"}
+                src={imageUrl || "/only-backend.png"}
             />
         </div>
     );

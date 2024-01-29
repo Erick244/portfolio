@@ -13,7 +13,7 @@ const technologiesDataTemp: Technologie[] = [
         about: "JavaScript is a versatile programming language commonly used for web development.",
         category: "BACKEND",
         experience: "2 years",
-        twColorClasses: "to-yellow-500 shadow-yellow-500/30",
+        color: "#facd02",
         imageUrl: "",
     },
     {
@@ -22,7 +22,7 @@ const technologiesDataTemp: Technologie[] = [
         about: "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine.",
         category: "BACKEND",
         experience: "2 years",
-        twColorClasses: "to-green-500 shadow-green-500/30",
+        color: "#0bfa02",
         imageUrl: "",
     },
     {
@@ -31,7 +31,7 @@ const technologiesDataTemp: Technologie[] = [
         about: "React is a JavaScript library for building user interfaces.",
         category: "FRONTEND",
         experience: "2 years",
-        twColorClasses: "to-sky-500 shadow-sky-500/30",
+        color: "#02d1fa",
         imageUrl: "",
     },
     {
@@ -40,7 +40,7 @@ const technologiesDataTemp: Technologie[] = [
         about: "Java is a widely-used, class-based, object-oriented programming language.",
         category: "BACKEND",
         experience: "4 years",
-        twColorClasses: "to-orange-500 shadow-orange-500/30",
+        color: "#fa7602",
         imageUrl: "",
     },
     {
@@ -49,7 +49,7 @@ const technologiesDataTemp: Technologie[] = [
         about: "HTML (Hypertext Markup Language) and CSS (Cascading Style Sheets) are fundamental technologies for web development.",
         category: "FRONTEND",
         experience: "3 years",
-        twColorClasses: "to-rose-500 shadow-rose-500/30",
+        color: "#fa7602",
         imageUrl: "",
     },
 ];

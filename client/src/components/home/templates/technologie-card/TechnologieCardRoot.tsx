@@ -1,23 +1,33 @@
 import { cn } from "@/lib/utils";
-import { HTMLAttributes } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
 
 interface TechnologieCardRootProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
+    color: string;
 }
 
 export function TechnologieCardRoot({
     children,
+    color,
     ...props
 }: TechnologieCardRootProps) {
     return (
         <div
             {...props}
             className={cn(
-                "snap-center relative shadow-lg border h-60 border-border p-5 m-5 transition-all duration-300 rounded-lg bg-gradient-to-br from-background from-60% to-100%",
+                "snap-center relative border h-60 border-border p-5 m-5 transition-all duration-300 rounded-lg",
                 props.className
             )}
+            style={technologieColorStyles(color)}
         >
             {children}
         </div>
     );
+}
+
+export function technologieColorStyles(color: string): CSSProperties {
+    return {
+        background: `linear-gradient(to bottom right, transparent 60%, ${color} 100%)`,
+        boxShadow: `0 10px 15px -3px ${color}30, 0 4px 6px -4px ${color}30`,
+    };
 }

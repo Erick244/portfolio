@@ -16,51 +16,44 @@ import {
     IconLabel,
 } from "@/components/shadcn-ui/form";
 import { Input } from "@/components/shadcn-ui/input";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/shadcn-ui/select";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import {
-    CalendarClock,
+    ExternalLink,
+    Github,
     ImageIcon,
-    Layers,
     Palette,
     TextIcon,
     WholeWord,
 } from "lucide-react";
-import { TechnologieComponentPreview } from "../ui/TechnologieComponentPreview";
+import { ProjectComponentPreview } from "../ui/ProjectComponentPreview";
 
-const createTechnologieSchema = z.object({
+const createProjectSchema = z.object({
     name: z.string().min(1).max(20),
-    experience: z.string().min(1).max(20),
-    category: z.enum(["FRONTEND", "BACKEND"]),
-    about: z.string().min(1).max(150),
-    imageUrl: z.string(),
+    description: z.string().min(1).max(150),
+    imageUrl: z.string().min(0),
+    repoUrl: z.string(),
+    siteUrl: z.string().min(0),
     color: z.string(),
 });
 
-export type CreateTechnologieFormData = z.infer<typeof createTechnologieSchema>;
+export type CreateProjectFormData = z.infer<typeof createProjectSchema>;
 
-export function CreateTechnologieForm() {
-    const form = useForm<CreateTechnologieFormData>({
-        resolver: zodResolver(createTechnologieSchema),
+export function CreateProjectForm() {
+    const form = useForm<CreateProjectFormData>({
+        resolver: zodResolver(createProjectSchema),
         defaultValues: {
             name: "",
-            experience: "",
+            description: "",
             imageUrl: "",
-            category: "" as "FRONTEND",
-            about: "",
-            color: "#adb0ac",
+            repoUrl: "",
+            siteUrl: "",
+            color: "#74d3fe",
         },
     });
 
-    async function onSubmit(data: CreateTechnologieFormData) {
+    async function onSubmit(data: CreateProjectFormData) {
         console.log(data);
     }
 
@@ -71,7 +64,7 @@ export function CreateTechnologieForm() {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-8 w-full"
                 >
-                    <H2 className="my-5 text-xl">Create Technologie</H2>
+                    <H2 className="my-5 text-xl">Create Project</H2>
                     <FormField
                         control={form.control}
                         name="name"
@@ -84,30 +77,7 @@ export function CreateTechnologieForm() {
                                     <Input
                                         minLength={1}
                                         maxLength={20}
-                                        placeholder="Technologie name..."
-                                        {...field}
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="experience"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormLabel>
-                                    <IconLabel
-                                        Icon={CalendarClock}
-                                        label="Experience"
-                                    />
-                                </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        minLength={1}
-                                        maxLength={20}
-                                        placeholder="ex: 2 years..."
+                                        placeholder="Project name..."
                                         {...field}
                                     />
                                 </FormControl>
@@ -123,7 +93,7 @@ export function CreateTechnologieForm() {
                                 <FormLabel>
                                     <IconLabel
                                         Icon={ImageIcon}
-                                        label="Image URL"
+                                        label="Image URL (optional)"
                                     />
                                 </FormLabel>
                                 <FormControl>
@@ -137,54 +107,64 @@ export function CreateTechnologieForm() {
                             </FormItem>
                         )}
                     />
-
                     <FormField
                         control={form.control}
-                        name="category"
+                        name="repoUrl"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>
-                                    <IconLabel Icon={Layers} label="Category" />
+                                    <IconLabel Icon={Github} label="Repo URL" />
                                 </FormLabel>
-                                <Select
-                                    onValueChange={field.onChange}
-                                    defaultValue={field.value}
-                                >
-                                    <FormControl>
-                                        <SelectTrigger>
-                                            <SelectValue placeholder="Select a technologie category" />
-                                        </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                        <SelectItem value="FRONTEND">
-                                            Frontend
-                                        </SelectItem>
-                                        <SelectItem value="BACKEND">
-                                            Backend
-                                        </SelectItem>
-                                    </SelectContent>
-                                </Select>
-                                <FormDescription>
-                                    The category will separate technology from
-                                    other categories.
-                                </FormDescription>
+                                <FormControl>
+                                    <Input
+                                        type="url"
+                                        placeholder="Repo URL..."
+                                        {...field}
+                                    />
+                                </FormControl>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
-                        name="about"
+                        name="siteUrl"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>
-                                    <IconLabel Icon={TextIcon} label="About" />
+                                    <IconLabel
+                                        Icon={ExternalLink}
+                                        label="Site URL (optional)"
+                                    />
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        type="url"
+                                        placeholder="Site URL..."
+                                        {...field}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+
+                    <FormField
+                        control={form.control}
+                        name="description"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>
+                                    <IconLabel
+                                        Icon={TextIcon}
+                                        label="Description"
+                                    />
                                 </FormLabel>
                                 <FormControl>
                                     <Textarea
                                         minLength={1}
                                         maxLength={150}
-                                        placeholder="Briefly describe the technology..."
+                                        placeholder="Briefly describe the project..."
                                         className="resize-none"
                                         {...field}
                                     />
@@ -220,9 +200,9 @@ export function CreateTechnologieForm() {
                 </form>
             </Form>
             <VerticalDivisor />
-            <TechnologieComponentPreview
-                className="w-full self-center"
+            <ProjectComponentPreview
                 form={form}
+                className="w-full self-center"
             />
         </div>
     );
