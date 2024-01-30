@@ -1,10 +1,14 @@
 "use client";
 
+import { ActionFormDialog } from "@/components/admin/ui/ActionFormDialog";
 import { ActionsTableDropDown } from "@/components/admin/ui/ActionsTableDropDown";
 import { technologieColorStyles } from "@/components/home/templates/technologie-card/TechnologieCardRoot";
 import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-demonstration";
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
+import { DeleteIcon, EditIcon } from "lucide-react";
+import { DeleteTechnologieForm } from "../forms/components/DeleteTechnologieForm";
+import { EditTechnologieForm } from "../forms/components/EditTechnologieForm";
 
 export type Technologie = {
     id: number;
@@ -58,7 +62,25 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
             const technologie = row.original;
 
             return (
-                <ActionsTableDropDown title={`Actions - ${technologie.id}`} />
+                <ActionsTableDropDown title={`Actions - ${technologie.id}`}>
+                    <ActionFormDialog
+                        FormComponent={
+                            <EditTechnologieForm technologie={technologie} />
+                        }
+                        className="flex justify-between"
+                    >
+                        Edit <EditIcon className="w-4 h-4" />
+                    </ActionFormDialog>
+                    <ActionFormDialog
+                        contentClasses="max-w-lg"
+                        FormComponent={
+                            <DeleteTechnologieForm technologie={technologie} />
+                        }
+                        className="flex justify-between"
+                    >
+                        Delete <DeleteIcon className="w-4 h-4" />
+                    </ActionFormDialog>
+                </ActionsTableDropDown>
             );
         },
     },

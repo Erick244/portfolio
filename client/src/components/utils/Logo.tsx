@@ -14,7 +14,7 @@ export function Logo(props: ComponentProps<typeof Link>) {
         >
             <div className="text-xl space-x-1">
                 <span>&lt;</span>
-                <span>ErickHenrique</span>
+                <span>Erick.Henrique</span>
                 <span>/&gt;</span>
             </div>
         </Link>

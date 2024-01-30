@@ -2,7 +2,6 @@ import { Button } from "@/components/shadcn-ui/button";
 import {
     DropdownMenu,
     DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
@@ -11,11 +10,15 @@ import { MoreHorizontal } from "lucide-react";
 
 interface ActionsTableDropDownProps {
     title: string;
+    children: React.ReactNode;
 }
 
-export function ActionsTableDropDown({ title }: ActionsTableDropDownProps) {
+export function ActionsTableDropDown({
+    title,
+    children,
+}: ActionsTableDropDownProps) {
     return (
-        <DropdownMenu>
+        <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="h-8 w-8 p-0">
                     <span className="sr-only">Open menu</span>
@@ -26,8 +29,8 @@ export function ActionsTableDropDown({ title }: ActionsTableDropDownProps) {
                 <DropdownMenuLabel>{title}</DropdownMenuLabel>
 
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Edit</DropdownMenuItem>
-                <DropdownMenuItem>Delete</DropdownMenuItem>
+
+                {children}
             </DropdownMenuContent>
         </DropdownMenu>
     );

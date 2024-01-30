@@ -14,7 +14,8 @@ const technologiesDataTemp: Technologie[] = [
         category: "BACKEND",
         experience: "2 years",
         color: "#facd02",
-        imageUrl: "",
+        imageUrl:
+            "https://itexto.com.br/wp-content/uploads/2017/08/logotipo.png",
     },
     {
         id: 2,
