@@ -15,7 +15,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const adminFormSchema = z.object({
-    login: z.string().min(2).max(50),
+    username: z.string().min(2).max(50),
     password: z.string().min(8).max(16),
 });
 
@@ -25,7 +25,7 @@ export function AdminForm() {
     const form = useForm<AdminFormData>({
         resolver: zodResolver(adminFormSchema),
         defaultValues: {
-            login: "",
+            username: "",
             password: "",
         },
     });
@@ -42,13 +42,13 @@ export function AdminForm() {
             >
                 <FormField
                     control={form.control}
-                    name="login"
+                    name="username"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>Login</FormLabel>
+                            <FormLabel>Username</FormLabel>
                             <FormControl>
                                 <Input
-                                    placeholder="Add predefined login..."
+                                    placeholder="Add predefined username..."
                                     {...field}
                                 />
                             </FormControl>
