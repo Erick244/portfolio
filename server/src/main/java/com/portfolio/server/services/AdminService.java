@@ -1,11 +1,16 @@
 package com.portfolio.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.portfolio.server.models.dto.admin.LoginDto;
+import com.portfolio.server.models.dto.admin.LoginResponseDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.repositories.AdminRepository;
 
@@ -14,6 +19,12 @@ public class AdminService implements UserDetailsService {
 
 	@Autowired
 	private AdminRepository adminRepository;
+
+	@Autowired
+	private AuthenticationManager authenticationManager;
+
+	@Autowired
+	private JwtService jwtService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -24,5 +35,23 @@ public class AdminService implements UserDetailsService {
 		}
 
 		return admin;
+	}
+
+	public ResponseEntity<?> login(LoginDto dto) {
+		String username = dto.username();
+		Admin admin = adminRepository.findByUsername(username).orElse(null);
+
+		if (admin == null) {
+			return ResponseEntity.badRequest().body("Admin not registred.");
+		}
+
+		String password = dto.password();
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password);
+		authenticationManager.authenticate(authToken);
+
+		String token = jwtService.createToken(username);
+
+		return ResponseEntity.ok(new LoginResponseDto(admin, token));
+
 	}
 }

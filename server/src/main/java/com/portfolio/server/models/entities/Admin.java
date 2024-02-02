@@ -6,6 +6,8 @@ import java.util.Collections;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,7 +45,7 @@ public class Admin implements UserDetails {
 		return Collections.emptyList();
 	}
 
-	@Override
+	@JsonIgnore
 	public String getPassword() {
 		return password;
 	}
