@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,6 +25,11 @@ public class AdminServiceIntegrationTest {
 
 	@Autowired
 	private AdminRepository adminRepository;
+
+	@BeforeEach
+	void setUp() {
+		adminRepository.deleteAll();
+	}
 
 	@Test
 	void testLoadUserByUsername() {
@@ -50,4 +56,5 @@ public class AdminServiceIntegrationTest {
 			adminService.loadUserByUsername(username);
 		});
 	}
+
 }

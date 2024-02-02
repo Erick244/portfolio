@@ -15,6 +15,7 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 @Service
 public class JwtService {
 
+	// TODO: Replace this with ENVIRONMENT injection
 	@Value("${jwt.token.secret}")
 	private String secret;
 
