@@ -90,25 +90,6 @@ public class SecurityFilterIntegrationTest {
 	}
 
 	@Test
-	void testDoFilterInternal_WhithInvalidToken() throws ServletException, IOException {
-		// Arrange
-		String subject = "username";
-		Admin admin = new Admin(subject, "password");
-		adminRepository.save(admin);
-
-		MockHttpServletRequest req = createRequestWhithAuthToken("Invalid token");
-		MockHttpServletResponse res = new MockHttpServletResponse();
-		FilterChain filterChain = getFilterChainImpl();
-
-		// Act
-		securityFilter.doFilter(req, res, filterChain);
-
-		// Assert
-		assertEquals(res.getStatus(), 403);
-		assertEquals(res.getContentAsString(), "Invalid bearer token.");
-	}
-
-	@Test
 	void testDoFilterInternal_WhithAdminInTokenNotExist() throws ServletException, IOException {
 		// Arrange
 		Admin admin = new Admin("username", "password");

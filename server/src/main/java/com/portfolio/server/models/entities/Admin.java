@@ -40,7 +40,7 @@ public class Admin implements UserDetails {
 		this.password = password;
 	}
 
-	@Override
+	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return Collections.emptyList();
 	}
@@ -55,22 +55,22 @@ public class Admin implements UserDetails {
 		return username;
 	}
 
-	@Override
+	@JsonIgnore
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
-	@Override
+	@JsonIgnore
 	public boolean isAccountNonLocked() {
 		return true;
 	}
 
-	@Override
+	@JsonIgnore
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
 
-	@Override
+	@JsonIgnore
 	public boolean isEnabled() {
 		return true;
 	}

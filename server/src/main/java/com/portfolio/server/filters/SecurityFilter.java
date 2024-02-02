@@ -32,24 +32,22 @@ public class SecurityFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String token = extractBearerToken(request);
 
-		if (token == null) {
-			sendResponseErrorMessage(response, HttpStatus.FORBIDDEN, "Invalid bearer token.");
-			return;
+		if (token != null) {
+			String username = jwtService.decodeToken(token);
+			Admin admin = adminRepository.findByUsername(username).orElse(null);
+
+			if (admin != null) {
+				loginAdminInSecurityContext(admin);
+				filterChain.doFilter(request, response);
+			} else {
+				sendResponseErrorMessage(response,
+						HttpStatus.FORBIDDEN,
+						"Valid token but the associated admin does not exist. Please request new access.");
+				return;
+			}
 		}
 
-		String username = jwtService.decodeToken(token);
-		Admin admin = adminRepository.findByUsername(username).orElse(null);
-
-		if (admin != null) {
-			loginAdminInSecurityContext(admin);
-			filterChain.doFilter(request, response);
-		} else {
-			sendResponseErrorMessage(response,
-					HttpStatus.FORBIDDEN,
-					"Valid token but the associated admin does not exist. Please request new access.");
-			return;
-		}
-
+		filterChain.doFilter(request, response);
 	}
 
 	public String extractBearerToken(HttpServletRequest req) {
