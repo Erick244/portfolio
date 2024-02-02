@@ -67,7 +67,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 			throws IOException {
 		response.setStatus(statusCode.value());
 		response.setContentType("text");
-		response.getWriter().println(message);
+		response.getWriter().print(message);
 		response.getWriter().flush();
 	}
 

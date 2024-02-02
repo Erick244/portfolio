@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
 
 	@GetMapping
-	String testGet() {
-		return "TEST 200OK";
+	String test() {
+		return "SUCCESS";
 	}
 }
