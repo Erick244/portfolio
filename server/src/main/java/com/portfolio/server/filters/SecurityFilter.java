@@ -38,7 +38,6 @@ public class SecurityFilter extends OncePerRequestFilter {
 
 			if (admin != null) {
 				loginAdminInSecurityContext(admin);
-				filterChain.doFilter(request, response);
 			} else {
 				sendResponseErrorMessage(response,
 						HttpStatus.FORBIDDEN,

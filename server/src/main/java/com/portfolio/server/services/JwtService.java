@@ -4,7 +4,8 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.auth0.jwt.JWT;
@@ -15,20 +16,14 @@ import com.auth0.jwt.exceptions.JWTDecodeException;
 @Service
 public class JwtService {
 
-	// TODO: Replace this with ENVIRONMENT injection
-	@Value("${jwt.token.secret}")
-	private String secret;
-
-	@Value("${jwt.token.issuer}")
-	private String issuer;
-
-	@Value("${jwt.token.zone.offset}")
-	private String zoneOffset;
+	@Autowired
+	private Environment env;
 
 	public String createToken(String subject) {
 		try {
 			Algorithm algorithm = getAlgorithm();
 			int oneMonthInSeconds = 60 * 60 * 24 * 30;
+			String issuer = env.getProperty("jwt.token.issuer");
 
 			String jwt = JWT.create()
 					.withIssuer(issuer)
@@ -44,10 +39,12 @@ public class JwtService {
 	}
 
 	public Algorithm getAlgorithm() {
+		String secret = env.getProperty("jwt.token.secret");
 		return Algorithm.HMAC256(secret);
 	}
 
 	public Instant createExpInstant(Integer seconds) {
+		String zoneOffset = env.getProperty("jwt.token.zone.offset");
 		ZoneOffset localZoneOffset = ZoneOffset.of(zoneOffset);
 
 		Instant expInstant = LocalDateTime
@@ -61,6 +58,7 @@ public class JwtService {
 	public String decodeToken(String token) {
 		try {
 			Algorithm algorithm = getAlgorithm();
+			String issuer = env.getProperty("jwt.token.issuer");
 
 			String subject = JWT.require(algorithm)
 					.withIssuer(issuer)
@@ -75,18 +73,4 @@ public class JwtService {
 			throw new JWTDecodeException(e.getMessage(), e.getCause());
 		}
 	}
-
-	// Methods for tests
-	public void setSecret(String secret) {
-		this.secret = secret;
-	}
-
-	public void setIssuer(String issuer) {
-		this.issuer = issuer;
-	}
-
-	public void setZoneOffset(String zoneOffset) {
-		this.zoneOffset = zoneOffset;
-	}
-
 }

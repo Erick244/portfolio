@@ -9,22 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.Instant;
 import java.util.Date;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.test.context.TestPropertySource;
 
 import com.auth0.jwt.exceptions.JWTDecodeException;
 
-public class JwtServiceUnitTest {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@TestPropertySource(locations = "classpath:application-test.properties")
+public class JwtServiceIntegrationTest {
 
+	@Autowired
 	private JwtService jwtService;
-
-	@BeforeEach
-	void setUp() {
-		jwtService = new JwtService();
-		jwtService.setIssuer("test-issuer");
-		jwtService.setSecret("test-secret");
-		jwtService.setZoneOffset("-03:00");
-	}
 
 	@Test
 	void testCreateExpInstant() {

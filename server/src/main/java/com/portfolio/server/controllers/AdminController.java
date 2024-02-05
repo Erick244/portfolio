@@ -2,7 +2,6 @@ package com.portfolio.server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +18,6 @@ public class AdminController {
 	@Autowired
 	private AuthService authService;
 
-	@GetMapping
-	String test() {
-		return "SUCCESS";
-	}
-
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginDto dto) {
 		return authService.login(dto);
@@ -31,6 +25,7 @@ public class AdminController {
 
 	@PostMapping("/signup")
 	public ResponseEntity<?> signUp(@RequestBody SignUpDto dto) {
+
 		return authService.signUp(dto);
 	}
 

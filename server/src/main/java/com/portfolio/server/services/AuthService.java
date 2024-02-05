@@ -29,9 +29,6 @@ public class AuthService {
 
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-	// @Value("${admin.secret}")
-	// private String secret;
-
 	@Autowired
 	private Environment env;
 
@@ -57,17 +54,23 @@ public class AuthService {
 	}
 
 	public ResponseEntity<?> signUp(SignUpDto dto) {
-		String secret = env.getProperty("admin.secret");
+		String username = dto.username();
+		Admin admin = adminRepository.findByUsername(username).orElse(null);
 
+		if (admin != null) {
+			return ResponseEntity.badRequest().body("Admin is already registered.");
+		}
+
+		String secret = env.getProperty("admin.secret");
 		Boolean isSecret = secret != null && secret.equals(dto.secret());
 
 		if (isSecret) {
 			String passwordEncrypted = passwordEncoder.encode(dto.password());
-			adminRepository.save(new Admin(dto.username(), passwordEncrypted));
+			adminRepository.save(new Admin(username, passwordEncrypted));
 
-			return ResponseEntity.ok().build();
+			return ResponseEntity.noContent().build();
 		} else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.badRequest().body("Invalid secret.");
 		}
 	}
 }
