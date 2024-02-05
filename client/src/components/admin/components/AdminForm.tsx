@@ -10,16 +10,17 @@ import {
     FormMessage,
 } from "@/components/shadcn-ui/form";
 import { Input } from "@/components/shadcn-ui/input";
+import { useAdminAuthContext } from "@/contexts/auth/AdminAuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 const adminFormSchema = z.object({
     username: z.string().min(2).max(50),
-    password: z.string().min(8).max(16),
+    password: z.string().min(8),
 });
 
-type AdminFormData = z.infer<typeof adminFormSchema>;
+export type AdminFormData = z.infer<typeof adminFormSchema>;
 
 export function AdminForm() {
     const form = useForm<AdminFormData>({
@@ -30,8 +31,10 @@ export function AdminForm() {
         },
     });
 
+    const { login } = useAdminAuthContext();
+
     async function onSubmit(data: AdminFormData) {
-        console.log(data);
+        await login(data);
     }
 
     return (

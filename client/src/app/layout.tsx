@@ -1,4 +1,4 @@
-import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { RootProviders } from "@/components/providers";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import "./globals.css";
@@ -20,14 +20,7 @@ export default function RootLayout({ children }: LayoutProps) {
                     "min-h-screen bg-background font-sans antialiased overflow-x-hidden"
                 )}
             >
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    {children}
-                </ThemeProvider>
+                <RootProviders>{children}</RootProviders>
             </body>
         </html>
     );
