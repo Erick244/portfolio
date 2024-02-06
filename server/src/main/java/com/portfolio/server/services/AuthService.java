@@ -73,4 +73,15 @@ public class AuthService {
 			return ResponseEntity.badRequest().body("Invalid secret.");
 		}
 	}
+
+	public ResponseEntity<?> adminByToken(String token) {
+		String username = jwtService.decodeToken(token);
+		Admin admin = adminRepository.findByUsername(username).orElse(null);
+
+		if (admin == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		return ResponseEntity.ok(admin);
+	}
 }

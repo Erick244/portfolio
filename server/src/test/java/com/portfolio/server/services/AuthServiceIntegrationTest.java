@@ -28,6 +28,9 @@ public class AuthServiceIntegrationTest {
 	@Autowired
 	private AdminRepository adminRepository;
 
+	@Autowired
+	private JwtService jwtService;
+
 	@BeforeEach
 	void setUp() {
 		adminRepository.deleteAll();
@@ -125,5 +128,33 @@ public class AuthServiceIntegrationTest {
 
 		// Assert
 		assertEquals(res.getStatusCode().value(), 400);
+	}
+
+	@Test
+	void testAdminByToken() {
+		// Arrange
+		Admin admin = adminRepository.save(new Admin("username", "password"));
+		String token = jwtService.createToken("username");
+
+		// Act
+		ResponseEntity<?> res = authService.adminByToken(token);
+
+		// Assert
+		Admin adminByToken = (Admin) res.getBody();
+
+		assertNotNull(adminByToken);
+		assertEquals(admin.toString(), adminByToken.toString());
+	}
+
+	@Test
+	void testAdminByToken_NotFound() {
+		// Arrange
+		String token = jwtService.createToken("username");
+
+		// Act
+		ResponseEntity<?> res = authService.adminByToken(token);
+
+		// Assert
+		assertEquals(res.getStatusCode().value(), 404);
 	}
 }
