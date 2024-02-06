@@ -2,13 +2,13 @@
 
 import { AdminFormData } from "@/components/admin/components/AdminForm";
 import { toast } from "@/components/shadcn-ui/use-toast";
-import { postData } from "@/functions/api";
+import { getData, postData } from "@/functions/api";
 import { Admin } from "@/models/Admin.model";
 import { AdminAndToken } from "@/models/AdminAndToken.model";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
 import { useCookies } from "next-client-cookies";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface AdminAuthContextProps {
     login: (data: AdminFormData) => Promise<void>;
@@ -24,6 +24,19 @@ export default function AdminAuthContextProvider({
     const router = useRouter();
     const cookies = useCookies();
     const [admin, setAdmin] = useState<Admin | null>(null);
+
+    async function retriveAdmin() {
+        const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
+        if (!token) return;
+
+        const admin = await getData<Admin>(`/admin/token/${token}`);
+
+        setAdmin(admin);
+    }
+
+    useEffect(() => {
+        retriveAdmin();
+    }, []);
 
     async function login(data: AdminFormData) {
         try {

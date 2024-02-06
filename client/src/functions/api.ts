@@ -32,3 +32,24 @@ export async function postData<R>(
         throw message;
     }
 }
+
+export async function getData<R>(
+    url: string,
+    config?: RequestInit | undefined
+): Promise<R> {
+    const resp = await fetch(`${BASE_API_URL}${url}`, {
+        method: "GET",
+        headers: {
+            ...DEFAULT_HEADERS,
+        },
+        ...config,
+    });
+
+    if (resp.ok) {
+        const data = await resp.json();
+        return data;
+    } else {
+        const message = await resp.text();
+        throw message;
+    }
+}
