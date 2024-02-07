@@ -28,7 +28,7 @@ public class Technologie {
 	@NotNull(message = "The experience cannot be null.")
 	private String experience;
 
-	@Column(nullable = true)
+	@NotNull(message = "The imageUrl cannot be null.")
 	private String imageUrl;
 
 	@NotNull(message = "The category cannot be null.")

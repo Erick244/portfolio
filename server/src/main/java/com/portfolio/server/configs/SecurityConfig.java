@@ -33,6 +33,8 @@ public class SecurityConfig {
 						.permitAll()
 						.anyRequest()
 						.authenticated())
+				// DefaultHandlerExceptionResolver try midify this resolver for handle
+				// exceptions
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return httpSecurity.build();

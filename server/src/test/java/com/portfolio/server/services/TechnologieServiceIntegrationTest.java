@@ -119,7 +119,8 @@ public class TechnologieServiceIntegrationTest {
 		ResponseEntity<?> resp = technologieService.create(dto);
 
 		// Assert
-		assertEquals(resp.getStatusCode().value(), 200);
+		assertEquals(resp.getStatusCode().value(), 400);
+		assertEquals(resp.getBody(), "The imageUrl cannot be null.");
 	}
 
 	@Test
