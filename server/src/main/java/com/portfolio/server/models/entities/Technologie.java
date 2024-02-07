@@ -41,7 +41,7 @@ public class Technologie {
 	@NotNull(message = "The color cannot be null.")
 	private String color;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Admin createdBy;
 
 	public Technologie() {

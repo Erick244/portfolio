@@ -9,6 +9,8 @@ import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.repositories.TechnologieRepository;
 
+import jakarta.validation.ConstraintViolationException;
+
 @Service
 public class TechnologieService {
 
@@ -18,13 +20,31 @@ public class TechnologieService {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private ViolationService violationService;
+
 	public ResponseEntity<?> create(CreateTechnologieDto dto) {
-		Admin adminAuth = adminService.getAdminAuth();
-		Technologie technologie = new Technologie(dto.name(), dto.experience(), dto.imageUrl(), dto.category(),
-				dto.about(), dto.color(), adminAuth);
+		try {
+			String name = dto.name();
+			Technologie technologie = technologieRepository.findByName(name).orElse(null);
 
-		technologieRepository.save(technologie);
+			if (technologie != null) {
+				return ResponseEntity.badRequest().body("A technology with the same name has already been registered.");
+			}
 
-		return ResponseEntity.ok().build();
+			Admin adminAuth = adminService.getAdminAuth();
+			Technologie newTechnologie = new Technologie(
+					name, dto.experience(), dto.imageUrl(), dto.category(),
+					dto.about(), dto.color(), adminAuth);
+
+			technologieRepository.save(newTechnologie);
+
+			return ResponseEntity.ok().build();
+
+		} catch (ConstraintViolationException e) {
+			String errorMessage = violationService.getMessageFromConstraintViolationException(e);
+			return ResponseEntity.badRequest().body(errorMessage);
+		}
+
 	}
 }

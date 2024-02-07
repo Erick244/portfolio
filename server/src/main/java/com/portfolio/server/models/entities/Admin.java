@@ -30,7 +30,7 @@ public class Admin implements UserDetails {
 
 	private String password;
 
-	@OneToMany(mappedBy = "createdBy", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "createdBy", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private List<Technologie> technologies;
 
 	public Admin() {
