@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.portfolio.server.models.entities.Admin;
+import com.portfolio.server.models.entities.Technologie;
 
 @Repository
-public interface AdminRepository extends CrudRepository<Admin, Integer> {
+public interface TechnologieRepository extends CrudRepository<Technologie, Integer> {
 
-	Optional<Admin> findByUsername(String username);
+	Optional<Technologie> findByName(String name);
 }

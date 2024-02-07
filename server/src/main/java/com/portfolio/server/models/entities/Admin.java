@@ -2,16 +2,21 @@ package com.portfolio.server.models.entities;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity(name = "admins")
 public class Admin implements UserDetails {
@@ -20,9 +25,13 @@ public class Admin implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@Column(unique = true)
 	private String username;
 
 	private String password;
+
+	@OneToMany(mappedBy = "createdBy", fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	private List<Technologie> technologies;
 
 	public Admin() {
 	}
@@ -77,6 +86,15 @@ public class Admin implements UserDetails {
 
 	public int getId() {
 		return id;
+	}
+
+	@JsonIgnore
+	public List<Technologie> getTechnologies() {
+		return technologies;
+	}
+
+	public void setTechnologies(List<Technologie> technologies) {
+		this.technologies = technologies;
 	}
 
 	@Override

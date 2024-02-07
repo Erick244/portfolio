@@ -1,6 +1,8 @@
 package com.portfolio.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,4 +28,14 @@ public class AdminService implements UserDetailsService {
 		return admin;
 	}
 
+	public Admin getAdminAuth() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+		if (authentication != null) {
+			Admin admin = (Admin) authentication.getPrincipal();
+			return admin;
+		} else {
+			return null;
+		}
+	}
 }
