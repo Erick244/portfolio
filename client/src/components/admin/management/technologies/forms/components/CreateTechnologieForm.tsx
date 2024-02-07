@@ -23,9 +23,12 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/shadcn-ui/select";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { postData } from "@/functions/api";
 import {
     CalendarClock,
     ImageIcon,
@@ -34,6 +37,7 @@ import {
     TextIcon,
     WholeWord,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { TechnologieComponentPreview } from "../ui/TechnologieComponentPreview";
 
 const createTechnologieSchema = z.object({
@@ -60,8 +64,26 @@ export function CreateTechnologieForm() {
         },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: CreateTechnologieFormData) {
-        console.log(data);
+        try {
+            await postData("/technologies", data);
+
+            // TODO: Fix this error
+            // toast({
+            //     title: "Success",
+            //     description: `Technologie "${data.name}" created!`,
+            // });
+
+            router.refresh();
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
@@ -216,7 +238,9 @@ export function CreateTechnologieForm() {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Create</Button>
+                    <Button type="submit">
+                        {form.formState.isSubmitting ? <Spinner /> : "Create"}
+                    </Button>
                 </form>
             </Form>
             <VerticalDivisor />

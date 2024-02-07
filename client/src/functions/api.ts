@@ -3,7 +3,7 @@ import { parseCookies } from "nookies";
 
 const BASE_API_URL = "http://localhost:8080";
 const { [AUTH_TOKEN_COOKIE_NAME]: token } = parseCookies(null, {
-    path: "/admin",
+    path: "/",
 });
 const DEFAULT_HEADERS = {
     "Content-Type": "application/json",

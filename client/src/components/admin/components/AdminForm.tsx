@@ -10,6 +10,7 @@ import {
     FormMessage,
 } from "@/components/shadcn-ui/form";
 import { Input } from "@/components/shadcn-ui/input";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 import { useAdminAuthContext } from "@/contexts/auth/AdminAuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -79,7 +80,9 @@ export function AdminForm() {
                     )}
                 />
 
-                <Button type="submit">Submit</Button>
+                <Button type="submit">
+                    {form.formState.isSubmitting ? <Spinner /> : "Submit"}
+                </Button>
             </form>
         </Form>
     );
