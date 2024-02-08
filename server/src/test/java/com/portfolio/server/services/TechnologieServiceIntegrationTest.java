@@ -1,6 +1,9 @@
 package com.portfolio.server.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -215,5 +218,78 @@ public class TechnologieServiceIntegrationTest {
 		// In this case it will pick up the last error message.
 		// When this error is corrected, it will pick up the last one again, and so on.
 		assertEquals(resp.getBody(), "The color cannot be null.");
+	}
+
+	@Test
+	void testFindAll() {
+		// Arrange
+		int take = 5;
+		int page = 0;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = technologieService.findAll(take, page);
+		List<Technologie> technologies = (List<Technologie>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(technologies);
+		assertEquals(technologies.size(), take);
+	}
+
+	private void seedDataBase(int size) {
+		for (int i = 0; i < size; i++) {
+			String name = "name" + i;
+			String experience = "experience" + i;
+			String imageUrl = "imageUrl" + i;
+			String about = "about" + i;
+			String color = "color" + i;
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+
+			Technologie technologie = new Technologie(
+					name,
+					experience,
+					imageUrl,
+					TechnologieCategory.BACKEND,
+					about,
+					color,
+					admin);
+
+			technologieRepository.save(technologie);
+		}
+	}
+
+	@Test
+	void testFindAll_OtherPage() {
+		// Arrange
+		int take = 5;
+		int page = 1;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = technologieService.findAll(take, page);
+		List<Technologie> technologies = (List<Technologie>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(technologies);
+		assertEquals(technologies.size(), take);
+	}
+
+	@Test
+	void testFindAll_NoPagination() {
+		// Arrange
+		int take = -1;
+		int page = -1;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = technologieService.findAll(take, page);
+		List<Technologie> technologies = (List<Technologie>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(technologies);
+		assertEquals(technologies.size(), 10);
 	}
 }

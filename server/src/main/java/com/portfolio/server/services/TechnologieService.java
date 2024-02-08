@@ -1,6 +1,10 @@
 package com.portfolio.server.services;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -46,5 +50,16 @@ public class TechnologieService {
 			return ResponseEntity.badRequest().body(errorMessage);
 		}
 
+	}
+
+	public ResponseEntity<?> findAll(int take, int page) {
+		if (take <= 0 || page < 0) {
+			return ResponseEntity.ok(technologieRepository.findAll());
+		}
+
+		Pageable pageable = PageRequest.of(page, take);
+		List<Technologie> technologies = technologieRepository.findAll(pageable).getContent();
+
+		return ResponseEntity.ok(technologies);
 	}
 }

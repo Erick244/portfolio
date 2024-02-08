@@ -3,6 +3,7 @@ package com.portfolio.server.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -30,6 +31,8 @@ public class SecurityConfig {
 				.csrf(csrf -> csrf.disable())
 				.cors(Customizer.withDefaults())
 				.authorizeHttpRequests(a -> a.requestMatchers("/admin/login", "/admin/token/**")
+						.permitAll()
+						.requestMatchers(HttpMethod.GET, "/technologies")
 						.permitAll()
 						.anyRequest()
 						.authenticated())
