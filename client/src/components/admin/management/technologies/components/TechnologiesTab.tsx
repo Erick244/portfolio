@@ -14,7 +14,7 @@ interface TechnologiesTabProps {
 }
 
 export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
-    const count = 50;
+    const count = await getData<number>("/technologies/count");
     const take = 10;
     const pagesCount = getPagesCount(count, take);
     const apiPageValue = getApiPageValue(pageParam, pagesCount);
@@ -33,7 +33,7 @@ export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
                 data={technologies}
                 filterField="name"
             />
-            <TablePagination pagesCount={pagesCount} />
+            {pagesCount > 1 && <TablePagination pagesCount={pagesCount} />}
         </div>
     );
 }
