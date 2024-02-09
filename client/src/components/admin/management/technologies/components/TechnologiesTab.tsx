@@ -1,6 +1,7 @@
 import { DataTable } from "@/components/shadcn-ui/data-table";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { getData } from "@/functions/api";
+import { getApiPageValue, getPagesCount } from "@/functions/data";
 import { TablePagination } from "../../components/TablePagination";
 import { CreateTechnologieForm } from "../forms/components/CreateTechnologieForm";
 import {
@@ -8,9 +9,18 @@ import {
     TechnologiesTableColumns,
 } from "../table/TechnologiesTableColumns";
 
-export async function TechnologiesTab() {
+interface TechnologiesTabProps {
+    pageParam: string;
+}
+
+export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
+    const count = 50;
+    const take = 10;
+    const pagesCount = getPagesCount(count, take);
+    const apiPageValue = getApiPageValue(pageParam, pagesCount);
+
     const technologies = await getData<Technologie[]>(
-        `/technologies?take=10&page=0`
+        `/technologies?page=${apiPageValue}&take=${take}`
     );
 
     return (
@@ -23,7 +33,7 @@ export async function TechnologiesTab() {
                 data={technologies}
                 filterField="name"
             />
-            <TablePagination count={50} />
+            <TablePagination pagesCount={pagesCount} />
         </div>
     );
 }
