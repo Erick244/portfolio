@@ -57,7 +57,7 @@ export default function AdminAuthContextProvider({
         } catch (error: any) {
             toast({
                 title: "Admin - Error",
-                description: error,
+                description: error.message,
                 variant: "destructive",
             });
         }

@@ -24,13 +24,20 @@ export async function postData<R>(
         ...config,
     });
 
-    if (resp.ok) {
+    const badRequest = !resp.ok;
+    if (badRequest) {
+        const message = await resp.text();
+        throw new Error(message);
+    }
+
+    const isJsonContent =
+        resp.headers.get("Content-Type") === "application/json";
+    if (isJsonContent) {
         const data = await resp.json();
         return data;
-    } else {
-        const message = await resp.text();
-        throw message;
     }
+
+    return <R>null;
 }
 
 export async function getData<R>(
@@ -50,6 +57,6 @@ export async function getData<R>(
         return data;
     } else {
         const message = await resp.text();
-        throw message;
+        throw new Error(message);
     }
 }

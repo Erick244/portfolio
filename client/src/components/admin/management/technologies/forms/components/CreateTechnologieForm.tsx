@@ -75,11 +75,11 @@ export function CreateTechnologieForm() {
                 description: `Technologie "${data.name}" created!`,
             });
 
-            // router.refresh();
+            router.refresh();
         } catch (error: any) {
             toast({
                 title: "Error",
-                description: error,
+                description: error.message,
                 variant: "destructive",
             });
         }
