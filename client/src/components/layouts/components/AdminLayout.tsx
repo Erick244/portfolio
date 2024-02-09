@@ -26,7 +26,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
                     <ModeToggle />
                 </Header.Root>
 
-                <main className="grow">{children}</main>
+                <main className="grow h-full my-10">{children}</main>
 
                 <Footer.Root className="flex justify-between items-center">
                     <Logo href="/" />

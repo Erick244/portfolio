@@ -14,7 +14,7 @@ interface ManagementTabsProps {
 
 export function ManagementTabs({ pageParam = "1" }: ManagementTabsProps) {
     return (
-        <Tabs defaultValue="technologies" className="w-4/5 my-10">
+        <Tabs defaultValue="technologies" className="w-4/5">
             <TabsList>
                 <TabsTrigger value="technologies">Technologies</TabsTrigger>
                 <TabsTrigger value="projects">Projects</TabsTrigger>
