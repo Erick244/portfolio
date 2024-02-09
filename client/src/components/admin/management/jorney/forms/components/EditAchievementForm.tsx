@@ -62,7 +62,7 @@ export function EditAchievementForm({ achievement }: EditAchievementFormProps) {
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-8 w-full"
                 >
-                    <H2 className="my-5 text-xl">Edit Project</H2>
+                    <H2 className="my-5 text-xl">Edit Achievement</H2>
                     <FormField
                         control={form.control}
                         name="title"

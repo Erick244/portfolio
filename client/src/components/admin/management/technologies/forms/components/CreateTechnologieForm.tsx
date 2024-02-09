@@ -70,13 +70,12 @@ export function CreateTechnologieForm() {
         try {
             await postData("/technologies", data);
 
-            // TODO: Fix this error
-            // toast({
-            //     title: "Success",
-            //     description: `Technologie "${data.name}" created!`,
-            // });
+            toast({
+                title: "Success",
+                description: `Technologie "${data.name}" created!`,
+            });
 
-            router.refresh();
+            // router.refresh();
         } catch (error: any) {
             toast({
                 title: "Error",
