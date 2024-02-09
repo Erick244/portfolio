@@ -30,4 +30,9 @@ public class TechnologieController {
 			@RequestParam(defaultValue = "0", required = false) int page) {
 		return technologieService.findAll(take, page);
 	}
+
+	@GetMapping("/count")
+	public ResponseEntity<?> count() {
+		return technologieService.count();
+	}
 }

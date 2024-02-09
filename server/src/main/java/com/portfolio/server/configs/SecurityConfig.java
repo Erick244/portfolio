@@ -32,7 +32,7 @@ public class SecurityConfig {
 				.cors(Customizer.withDefaults())
 				.authorizeHttpRequests(a -> a.requestMatchers("/admin/login", "/admin/token/**")
 						.permitAll()
-						.requestMatchers(HttpMethod.GET, "/technologies")
+						.requestMatchers(HttpMethod.GET, "/technologies/**")
 						.permitAll()
 						.anyRequest()
 						.authenticated())

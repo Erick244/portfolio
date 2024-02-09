@@ -1,8 +1,10 @@
 package com.portfolio.server.controllers;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -47,6 +49,7 @@ public class TechnologieControllerIntegrationTest {
 
 	@BeforeEach
 	void setUp() {
+		technologieRepository.deleteAll();
 		adminRepository.deleteAll();
 	}
 
@@ -69,6 +72,7 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(status().isOk());
 	}
 
+	@SuppressWarnings("null")
 	@Test
 	void testFindAll() throws Exception {
 		// Arrange
@@ -80,10 +84,12 @@ public class TechnologieControllerIntegrationTest {
 		// Act & Assert
 		mvc.perform(get("/technologies?page=0&take=5"))
 				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseTechnologiesListSizeIsSame);
 	}
 
+	@SuppressWarnings("null")
 	@Test
 	void testFindAll_NoPagination() throws Exception {
 		// Arrange
@@ -95,6 +101,7 @@ public class TechnologieControllerIntegrationTest {
 		// Act & Assert
 		mvc.perform(get("/technologies"))
 				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseTechnologiesListSizeIsSame);
 
@@ -120,5 +127,23 @@ public class TechnologieControllerIntegrationTest {
 
 			technologieRepository.save(technologie);
 		}
+	}
+
+	@SuppressWarnings("null")
+	@Test
+	void testCount() throws Exception {
+		// Arrange
+		seedDataBase(10);
+
+		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
+		ResultMatcher responseCountIsSame = jsonPath("$", is(10));
+
+		// Act & Arrange
+		mvc.perform(get("/technologies/count"))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(responseContentIsNotNull)
+				.andExpect(responseCountIsSame);
+
 	}
 }

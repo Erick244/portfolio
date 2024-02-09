@@ -292,4 +292,17 @@ public class TechnologieServiceIntegrationTest {
 		assertNotNull(technologies);
 		assertEquals(technologies.size(), 10);
 	}
+
+	@Test
+	void testCount() {
+		// Arrange
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = technologieService.count();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertEquals(resp.getBody(), 10L);
+	}
 }

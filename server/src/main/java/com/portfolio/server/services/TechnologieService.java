@@ -62,4 +62,10 @@ public class TechnologieService {
 
 		return ResponseEntity.ok(technologies);
 	}
+
+	public ResponseEntity<?> count() {
+		long count = technologieRepository.count();
+
+		return ResponseEntity.ok(count);
+	}
 }
