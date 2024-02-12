@@ -46,7 +46,6 @@ public class TechnologieController {
 
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
-		System.out.println(id);
 
 		return technologieService.delete(id);
 	}

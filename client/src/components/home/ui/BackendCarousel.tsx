@@ -8,7 +8,8 @@ import { TechnologieCarousel } from "./TechnologieCarousel";
 
 export async function BackendCarousel() {
     const technologies = await getData<Technologie[]>(
-        "/technologies/findAllByCategory/BACKEND"
+        "/technologies/findAllByCategory/BACKEND",
+        { cache: "no-store" }
     );
 
     return (
