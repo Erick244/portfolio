@@ -115,7 +115,7 @@ public class AuthServiceIntegrationTest {
 		ResponseEntity<?> res = authService.signUp(dto);
 
 		// Assert
-		assertEquals(res.getStatusCode().value(), 200);
+		assertEquals(res.getStatusCode().value(), 204);
 	}
 
 	@Test

@@ -114,7 +114,7 @@ public class TechnologieControllerIntegrationTest {
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
-			Admin admin = new Admin("username" + i, "password" + i);
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
 
 			Technologie technologie = new Technologie(
 					name,

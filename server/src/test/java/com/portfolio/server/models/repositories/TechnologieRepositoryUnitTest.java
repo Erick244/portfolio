@@ -64,6 +64,7 @@ public class TechnologieRepositoryUnitTest {
 	}
 
 	private void persistTechnologie(Technologie technologie) {
+		entityManager.persist(technologie.getCreatedBy());
 		entityManager.persist(technologie);
 		entityManager.flush();
 	}
