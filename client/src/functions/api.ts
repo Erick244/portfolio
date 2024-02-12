@@ -40,6 +40,36 @@ export async function postData<R>(
     return <R>null;
 }
 
+export async function putData<R>(
+    url: string,
+    body: any,
+    config?: RequestInit | undefined
+): Promise<R> {
+    const resp = await fetch(`${BASE_API_URL}${url}`, {
+        method: "PUT",
+        body: JSON.stringify(body),
+        headers: {
+            ...DEFAULT_HEADERS,
+        },
+        ...config,
+    });
+
+    const badRequest = !resp.ok;
+    if (badRequest) {
+        const message = await resp.text();
+        throw new Error(message);
+    }
+
+    const isJsonContent =
+        resp.headers.get("Content-Type") === "application/json";
+    if (isJsonContent) {
+        const data = await resp.json();
+        return data;
+    }
+
+    return <R>null;
+}
+
 export async function getData<R>(
     url: string,
     config?: RequestInit | undefined

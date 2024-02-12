@@ -25,7 +25,9 @@ import {
 } from "@/components/shadcn-ui/select";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { putData } from "@/functions/api";
 import {
     CalendarClock,
     ImageIcon,
@@ -34,6 +36,7 @@ import {
     TextIcon,
     WholeWord,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Technologie } from "../../table/TechnologiesTableColumns";
 import { TechnologieComponentPreview } from "../ui/TechnologieComponentPreview";
 
@@ -58,8 +61,24 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
         defaultValues: { ...technologie },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: EditTechnologieFormData) {
-        console.log(data);
+        try {
+            await putData("/technologies", data);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${data.name}" edited!`,
+            });
+
+            router.refresh();
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+            });
+        }
     }
 
     return (
