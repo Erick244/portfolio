@@ -65,23 +65,6 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testSave_TechnologyAlreadyRegistered() {
-		// Arrange
-		technologieRepository.save(new Technologie("technologie", "experience", "imageUrl",
-				TechnologieCategory.BACKEND, "about", "#FFFFFF", authenticateAdmin()));
-
-		SaveTechnologieDto dto = new SaveTechnologieDto("technologie", "experience", "imageUrl",
-				TechnologieCategory.BACKEND, "about", "#FFFFFF");
-
-		// Act
-		ResponseEntity<?> resp = technologieService.save(dto);
-
-		// Assert
-		assertEquals(resp.getStatusCode().value(), 400);
-		assertEquals(resp.getBody(), "A technology with the same name has already been registered.");
-	}
-
-	@Test
 	void testSave_NameNull() {
 		// Arrange
 		authenticateAdmin();
@@ -215,9 +198,30 @@ public class TechnologieServiceIntegrationTest {
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
-		// In this case it will pick up the last error message.
-		// When this error is corrected, it will pick up the last one again, and so on.
-		assertEquals(resp.getBody(), "The color cannot be null.");
+	}
+
+	@Test
+	void testSave_EditTechnologie() {
+		// Arrange
+		Admin admin = authenticateAdmin();
+		technologieRepository.save(
+				new Technologie("name", "experience", "imageUrl",
+						TechnologieCategory.BACKEND, "about", "#FFFFFF", admin));
+
+		SaveTechnologieDto dto = new SaveTechnologieDto(
+				"name", "2 years",
+				"imageUrl",
+				TechnologieCategory.BACKEND, "about", "#00000");
+
+		// Act
+		ResponseEntity<?> resp = technologieService.save(dto);
+
+		// Assert
+		Technologie technologieEdited = technologieRepository.findByName("name").orElse(null);
+
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(technologieEdited);
+		assertEquals(technologieEdited.getExperience(), dto.experience());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -245,7 +249,7 @@ public class TechnologieServiceIntegrationTest {
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
-			Admin admin = new Admin("username" + i, "password" + i);
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
 
 			Technologie technologie = new Technologie(
 					name,

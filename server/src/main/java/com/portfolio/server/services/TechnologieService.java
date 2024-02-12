@@ -34,15 +34,16 @@ public class TechnologieService {
 			Technologie technologie = technologieRepository.findByName(name).orElse(null);
 
 			if (technologie != null) {
-				return ResponseEntity.badRequest().body("A technology with the same name has already been registered.");
+				Technologie editedTechnologie = new Technologie(dto, technologie.getId());
+				technologieRepository.save(editedTechnologie);
+			} else {
+				Admin adminAuth = adminService.getAdminAuth();
+				Technologie newTechnologie = new Technologie(
+						name, dto.experience(), dto.imageUrl(), dto.category(),
+						dto.about(), dto.color(), adminAuth);
+
+				technologieRepository.save(newTechnologie);
 			}
-
-			Admin adminAuth = adminService.getAdminAuth();
-			Technologie newTechnologie = new Technologie(
-					name, dto.experience(), dto.imageUrl(), dto.category(),
-					dto.about(), dto.color(), adminAuth);
-
-			technologieRepository.save(newTechnologie);
 
 			return ResponseEntity.ok().build();
 
@@ -50,7 +51,6 @@ public class TechnologieService {
 			String errorMessage = violationService.getMessageFromConstraintViolationException(e);
 			return ResponseEntity.badRequest().body(errorMessage);
 		}
-
 	}
 
 	public ResponseEntity<?> findAll(int take, int page) {

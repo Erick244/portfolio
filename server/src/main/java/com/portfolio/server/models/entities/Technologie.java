@@ -1,12 +1,12 @@
 package com.portfolio.server.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.enums.TechnologieCategory;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +41,7 @@ public class Technologie {
 	@NotNull(message = "The color cannot be null.")
 	private String color;
 
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Admin createdBy;
 
 	public Technologie() {
@@ -56,6 +56,16 @@ public class Technologie {
 		this.about = about;
 		this.color = color;
 		this.createdBy = createdBy;
+	}
+
+	public Technologie(SaveTechnologieDto dto, int id) {
+		this.id = id;
+		setAbout(dto.about());
+		setCategory(dto.category());
+		setColor(dto.color());
+		setExperience(dto.experience());
+		setImageUrl(dto.imageUrl());
+		setName(dto.name());
 	}
 
 	public void setName(String name) {
