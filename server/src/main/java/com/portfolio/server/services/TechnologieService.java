@@ -75,4 +75,15 @@ public class TechnologieService {
 
 		return ResponseEntity.ok(technologies);
 	}
+
+	public ResponseEntity<?> delete(int id) {
+		Technologie technologie = technologieRepository.findById(id).orElse(null);
+
+		if (technologie == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		technologieRepository.delete(technologie);
+		return ResponseEntity.ok().build();
+	}
 }

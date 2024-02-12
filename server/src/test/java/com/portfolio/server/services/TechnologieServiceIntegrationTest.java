@@ -328,4 +328,30 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(technologies.size(), 0);
 	}
 
+	@Test
+	void testDelete() {
+		// Arrange
+		seedDataBase(10);
+		int technologieId = 1;
+
+		// Act
+		ResponseEntity<?> resp = technologieService.delete(technologieId);
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+	}
+
+	@Test
+	void testDelete_NotFound() {
+		// Arrange
+		seedDataBase(10);
+		int technologieId = 99;
+
+		// Act
+		ResponseEntity<?> resp = technologieService.delete(technologieId);
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 404);
+	}
+
 }

@@ -2,6 +2,7 @@ package com.portfolio.server.controllers;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -163,5 +164,17 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseTechnologiesSizeIsSame);
+	}
+
+	@Test
+	void testDelete() throws Exception {
+		// Arrange
+		seedDataBase(10);
+		String bearerToken = "Bearer " + jwtService.createToken("username1");
+
+		// Act
+		mvc.perform(delete("/technologies/{id}", 1)
+				.header("Authorization", bearerToken))
+				.andExpect(status().isOk());
 	}
 }
