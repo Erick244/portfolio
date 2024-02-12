@@ -8,9 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.server.models.dto.technologie.CreateTechnologieDto;
+import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
+import com.portfolio.server.models.enums.TechnologieCategory;
 import com.portfolio.server.models.repositories.TechnologieRepository;
 
 import jakarta.validation.ConstraintViolationException;
@@ -27,7 +28,7 @@ public class TechnologieService {
 	@Autowired
 	private ViolationService violationService;
 
-	public ResponseEntity<?> create(CreateTechnologieDto dto) {
+	public ResponseEntity<?> save(SaveTechnologieDto dto) {
 		try {
 			String name = dto.name();
 			Technologie technologie = technologieRepository.findByName(name).orElse(null);
@@ -67,5 +68,11 @@ public class TechnologieService {
 		long count = technologieRepository.count();
 
 		return ResponseEntity.ok(count);
+	}
+
+	public ResponseEntity<?> findAllByCategory(TechnologieCategory category) {
+		List<Technologie> technologies = technologieRepository.findAllByCategory(category);
+
+		return ResponseEntity.ok(technologies);
 	}
 }

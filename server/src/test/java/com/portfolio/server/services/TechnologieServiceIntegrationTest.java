@@ -15,7 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.context.TestPropertySource;
 
-import com.portfolio.server.models.dto.technologie.CreateTechnologieDto;
+import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.enums.TechnologieCategory;
@@ -42,14 +42,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate() {
+	void testSave() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("technologie", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("technologie", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 200);
@@ -65,16 +65,16 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_TechnologyAlreadyRegistered() {
+	void testSave_TechnologyAlreadyRegistered() {
 		// Arrange
 		technologieRepository.save(new Technologie("technologie", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF", authenticateAdmin()));
 
-		CreateTechnologieDto dto = new CreateTechnologieDto("technologie", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("technologie", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -82,14 +82,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_NameNull() {
+	void testSave_NameNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto(null, "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto(null, "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -97,14 +97,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_ExperienceNull() {
+	void testSave_ExperienceNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", null, "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", null, "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -112,14 +112,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_ImageUrlNull() {
+	void testSave_ImageUrlNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", null,
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", null,
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -127,14 +127,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_CategoryNull() {
+	void testSave_CategoryNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				null, "about", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -142,14 +142,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_AboutNull() {
+	void testSave_AboutNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, null, "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -157,14 +157,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_AboutLessThan3Characters() {
+	void testSave_AboutLessThan3Characters() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "ab", "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -172,15 +172,15 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_AboutMoreThan150Characters() {
+	void testSave_AboutMoreThan150Characters() {
 		// Arrange
 		authenticateAdmin();
 		String about = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, about, "#FFFFFF");
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -188,14 +188,14 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_ColorNull() {
+	void testSave_ColorNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", null);
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -203,15 +203,15 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testCreate_AllNull() {
+	void testSave_AllNull() {
 		// Arrange
 		authenticateAdmin();
-		CreateTechnologieDto dto = new CreateTechnologieDto(null, null,
+		SaveTechnologieDto dto = new SaveTechnologieDto(null, null,
 				null,
 				null, null, null);
 
 		// Act
-		ResponseEntity<?> resp = technologieService.create(dto);
+		ResponseEntity<?> resp = technologieService.save(dto);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
@@ -220,6 +220,7 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(resp.getBody(), "The color cannot be null.");
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	void testFindAll() {
 		// Arrange
@@ -244,7 +245,7 @@ public class TechnologieServiceIntegrationTest {
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
-			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+			Admin admin = new Admin("username" + i, "password" + i);
 
 			Technologie technologie = new Technologie(
 					name,
@@ -259,6 +260,7 @@ public class TechnologieServiceIntegrationTest {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	void testFindAll_OtherPage() {
 		// Arrange
@@ -276,6 +278,7 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(technologies.size(), take);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	void testFindAll_NoPagination() {
 		// Arrange
@@ -305,4 +308,20 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(resp.getStatusCode().value(), 200);
 		assertEquals(resp.getBody(), 10L);
 	}
+
+	@SuppressWarnings({ "unchecked", "null" })
+	@Test
+	void testFindAllByCategory() {
+		// Arrange
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = technologieService.findAllByCategory(TechnologieCategory.FRONTEND);
+
+		// Assert
+		List<Technologie> technologies = (List<Technologie>) resp.getBody();
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertEquals(technologies.size(), 0);
+	}
+
 }

@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.portfolio.server.models.dto.technologie.CreateTechnologieDto;
+import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.enums.TechnologieCategory;
@@ -57,7 +57,7 @@ public class TechnologieControllerIntegrationTest {
 	@Test
 	void testCreate() throws Exception {
 		// Arrange
-		CreateTechnologieDto dto = new CreateTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#ffff");
 		String jsonDto = mapper.writeValueAsString(dto);
 
@@ -114,7 +114,7 @@ public class TechnologieControllerIntegrationTest {
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
-			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+			Admin admin = new Admin("username" + i, "password" + i);
 
 			Technologie technologie = new Technologie(
 					name,
@@ -145,5 +145,23 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseCountIsSame);
 
+	}
+
+	@SuppressWarnings("null")
+	@Test
+	void testFindAllByCategory() throws Exception {
+		// Arrange
+		seedDataBase(10);
+
+		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
+		ResultMatcher responseTechnologiesSizeIsSame = jsonPath("$", hasSize(10));
+
+		// Act
+		mvc.perform(get("/technologies/findAllByCategory/{category}", TechnologieCategory.BACKEND)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(responseContentIsNotNull)
+				.andExpect(responseTechnologiesSizeIsSame);
 	}
 }

@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +66,26 @@ public class TechnologieRepositoryUnitTest {
 	private void persistTechnologie(Technologie technologie) {
 		entityManager.persist(technologie);
 		entityManager.flush();
+	}
+
+	@Test
+	void testFindAllByCategory() {
+		// Arrange
+		persistTechnologie(
+				new Technologie("technologie1", "experience", "imageUrl", TechnologieCategory.BACKEND, "about",
+						"#fffff", new Admin("username1", "password")));
+		persistTechnologie(
+				new Technologie("technologie2", "experience", "imageUrl", TechnologieCategory.BACKEND, "about",
+						"#fffff", new Admin("username2", "password")));
+		persistTechnologie(
+				new Technologie("technologie3", "experience", "imageUrl", TechnologieCategory.FRONTEND, "about",
+						"#fffff", new Admin("username3", "password")));
+
+		// Act
+		List<Technologie> technologies = repository.findAllByCategory(TechnologieCategory.BACKEND);
+
+		// Assert
+		assertNotNull(technologies);
+		assertEquals(technologies.size(), 2);
 	}
 }
