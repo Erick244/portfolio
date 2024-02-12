@@ -76,6 +76,7 @@ export function CreateTechnologieForm() {
             });
 
             router.refresh();
+            router.prefetch("/");
         } catch (error: any) {
             toast({
                 title: "Error",

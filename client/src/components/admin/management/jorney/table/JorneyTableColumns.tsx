@@ -7,7 +7,7 @@ import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-de
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
 import { DeleteIcon, EditIcon } from "lucide-react";
-import { DeleteAchievementForm } from "../forms/components/DeleteTechnologieForm";
+import { DeleteAchievementForm } from "../forms/components/DeleteAchievement";
 import { EditAchievementForm } from "../forms/components/EditAchievementForm";
 
 export type Achievement = {

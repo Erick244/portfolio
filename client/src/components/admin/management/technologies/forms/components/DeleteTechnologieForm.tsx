@@ -3,6 +3,9 @@
 import { Button } from "@/components/shadcn-ui/button";
 import { DialogClose } from "@/components/shadcn-ui/dialog";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
+import { deleteData } from "@/functions/api";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { Technologie } from "../../table/TechnologiesTableColumns";
 
@@ -13,10 +16,26 @@ interface DeleteTechnologieFormProps {
 export function DeleteTechnologieForm({
     technologie,
 }: DeleteTechnologieFormProps) {
-    function onSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
+    const router = useRouter();
 
-        console.log("Delete");
+    async function onSubmit(e: FormEvent<HTMLFormElement>) {
+        try {
+            await deleteData(`/technologies/${technologie.id}`);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${technologie.name}" deleted!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (

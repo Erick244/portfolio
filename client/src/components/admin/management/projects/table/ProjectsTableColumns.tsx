@@ -7,7 +7,7 @@ import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-de
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
 import { DeleteIcon, EditIcon } from "lucide-react";
-import { DeleteProjectForm } from "../forms/components/DeleteTechnologieForm";
+import { DeleteProjectForm } from "../forms/components/DeleteProjectForm";
 import { EditProjectForm } from "../forms/components/EditProjectForm";
 
 export type Project = {

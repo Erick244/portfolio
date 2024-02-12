@@ -90,3 +90,31 @@ export async function getData<R>(
         throw new Error(message);
     }
 }
+
+export async function deleteData<R>(
+    url: string,
+    config?: RequestInit | undefined
+): Promise<R> {
+    const resp = await fetch(`${BASE_API_URL}${url}`, {
+        method: "DELETE",
+        headers: {
+            ...DEFAULT_HEADERS,
+        },
+        ...config,
+    });
+
+    const badRequest = !resp.ok;
+    if (badRequest) {
+        const message = await resp.text();
+        throw new Error(message);
+    }
+
+    const isJsonContent =
+        resp.headers.get("Content-Type") === "application/json";
+    if (isJsonContent) {
+        const data = await resp.json();
+        return data;
+    }
+
+    return <R>null;
+}

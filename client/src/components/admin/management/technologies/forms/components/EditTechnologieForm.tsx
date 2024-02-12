@@ -73,10 +73,12 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
             });
 
             router.refresh();
+            router.prefetch("/");
         } catch (error: any) {
             toast({
                 title: "Error",
                 description: error.message,
+                variant: "destructive",
             });
         }
     }
@@ -99,6 +101,7 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
+                                        disabled
                                         minLength={1}
                                         maxLength={20}
                                         placeholder="Technologie name..."
@@ -164,6 +167,7 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
                                     <IconLabel Icon={Layers} label="Category" />
                                 </FormLabel>
                                 <Select
+                                    disabled
                                     onValueChange={field.onChange}
                                     defaultValue={field.value}
                                 >
