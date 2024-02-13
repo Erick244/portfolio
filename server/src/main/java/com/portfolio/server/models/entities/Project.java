@@ -18,6 +18,7 @@ public class Project {
 	private int id;
 
 	@NotNull(message = "The name cannot be null.")
+	@Column(unique = true)
 	private String name;
 
 	@Column(nullable = true)
@@ -55,6 +56,14 @@ public class Project {
 
 	public String getName() {
 		return name;
+	}
+
+	public Admin getCreatedBy() {
+		return createdBy;
+	}
+
+	public void setCreatedBy(Admin createdBy) {
+		this.createdBy = createdBy;
 	}
 
 	public void setName(String name) {
@@ -103,6 +112,12 @@ public class Project {
 
 	public int getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", name=" + name + ", imageUrl=" + imageUrl + ", repoUrl=" + repoUrl + ", siteUrl="
+				+ siteUrl + ", description=" + description + ", color=" + color + ", createdBy=" + createdBy + "]";
 	}
 
 }
