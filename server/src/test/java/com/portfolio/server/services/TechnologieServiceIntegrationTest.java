@@ -331,14 +331,16 @@ public class TechnologieServiceIntegrationTest {
 	@Test
 	void testDelete() {
 		// Arrange
-		seedDataBase(10);
+		seedDataBase(2);
 		int technologieId = 1;
 
 		// Act
 		ResponseEntity<?> resp = technologieService.delete(technologieId);
 
 		// Assert
+		long count = technologieRepository.count();
 		assertEquals(resp.getStatusCode().value(), 200);
+		assertEquals(count, 1l);
 	}
 
 	@Test
