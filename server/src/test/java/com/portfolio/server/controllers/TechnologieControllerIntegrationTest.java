@@ -56,7 +56,7 @@ public class TechnologieControllerIntegrationTest {
 
 	@SuppressWarnings("null")
 	@Test
-	void testCreate() throws Exception {
+	void testSave() throws Exception {
 		// Arrange
 		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#ffff");
@@ -72,6 +72,8 @@ public class TechnologieControllerIntegrationTest {
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());
 	}
+
+	// TODO: CREATE EDIT TECHNOLOGIE TEST
 
 	@SuppressWarnings("null")
 	@Test
