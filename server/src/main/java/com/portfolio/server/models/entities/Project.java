@@ -1,5 +1,7 @@
 package com.portfolio.server.models.entities;
 
+import com.portfolio.server.models.dto.project.SaveProjectDto;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -49,6 +51,16 @@ public class Project {
 		this.description = description;
 		this.color = color;
 		this.createdBy = createdBy;
+	}
+
+	public Project(SaveProjectDto dto, int id) {
+		this.id = id;
+		setDescription(dto.description());
+		setImageUrl(dto.imageUrl());
+		setName(dto.name());
+		setColor(dto.color());
+		setRepoUrl(dto.repoUrl());
+		setSiteUrl(dto.siteUrl());
 	}
 
 	public Project() {
