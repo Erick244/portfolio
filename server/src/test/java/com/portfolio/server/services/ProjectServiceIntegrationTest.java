@@ -391,4 +391,31 @@ public class ProjectServiceIntegrationTest {
 		assertEquals(resp.getBody(), 10L);
 	}
 
+	@Test
+	void testDelete() {
+		// Arrange
+		seedDataBase(2);
+		int technologieId = 1;
+
+		// Act
+		ResponseEntity<?> resp = projectService.delete(technologieId);
+
+		// Assert
+		long count = projectRepository.count();
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertEquals(count, 1l);
+	}
+
+	@Test
+	void testDelete_NotFound() {
+		// Arrange
+		seedDataBase(10);
+		int technologieId = 99;
+
+		// Act
+		ResponseEntity<?> resp = projectService.delete(technologieId);
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 404);
+	}
 }

@@ -2,6 +2,7 @@ package com.portfolio.server.controllers;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -166,5 +167,17 @@ public class ProjectControllerIntegrationTest {
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseCountIsSame);
 
+	}
+
+	@Test
+	void testDelete() throws Exception {
+		// Arrange
+		seedDataBase(10);
+		String bearerToken = "Bearer " + jwtService.createToken("username1");
+
+		// Act
+		mvc.perform(delete("/projects/{id}", 1)
+				.header("Authorization", bearerToken))
+				.andExpect(status().isOk());
 	}
 }

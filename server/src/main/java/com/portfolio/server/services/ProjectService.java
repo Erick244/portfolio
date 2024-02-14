@@ -76,4 +76,15 @@ public class ProjectService {
 		return ResponseEntity.ok(count);
 	}
 
+	public ResponseEntity<?> delete(int id) {
+		Project project = projectRepository.findById(id).orElse(null);
+
+		if (project == null) {
+			return ResponseEntity.notFound().build();
+		}
+
+		projectRepository.delete(project);
+		return ResponseEntity.ok().build();
+	}
+
 }
