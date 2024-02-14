@@ -24,6 +24,7 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/shadcn-ui/select";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
@@ -239,7 +240,9 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
                         )}
                     />
                     <DialogClose asChild>
-                        <Button type="submit">Save</Button>
+                        <Button type="submit">
+                            {form.formState.isSubmitting ? <Spinner /> : "Save"}
+                        </Button>
                     </DialogClose>
                 </form>
             </Form>

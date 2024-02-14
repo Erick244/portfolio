@@ -24,6 +24,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/shadcn-ui/popover";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
@@ -182,7 +183,13 @@ export function CreateAchievementForm() {
                         )}
                     />
                     <DialogClose asChild>
-                        <Button type="submit">Create</Button>
+                        <Button type="submit">
+                            {form.formState.isSubmitting ? (
+                                <Spinner />
+                            ) : (
+                                "Create"
+                            )}
+                        </Button>
                     </DialogClose>
                 </form>
             </Form>

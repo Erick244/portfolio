@@ -17,6 +17,7 @@ import {
     IconLabel,
 } from "@/components/shadcn-ui/form";
 import { Input } from "@/components/shadcn-ui/input";
+import { Spinner } from "@/components/shadcn-ui/spinner";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
@@ -219,7 +220,13 @@ export function CreateProjectForm() {
                         )}
                     />
                     <DialogClose asChild>
-                        <Button type="submit">Create</Button>
+                        <Button type="submit">
+                            {form.formState.isSubmitting ? (
+                                <Spinner />
+                            ) : (
+                                "Create"
+                            )}
+                        </Button>
                     </DialogClose>
                 </form>
             </Form>
