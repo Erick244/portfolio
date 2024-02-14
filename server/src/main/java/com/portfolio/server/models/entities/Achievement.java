@@ -1,6 +1,7 @@
 package com.portfolio.server.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.portfolio.server.models.dto.achievement.SaveAchievementDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -39,6 +40,13 @@ public class Achievement {
 		this.dateFormated = dateFormated;
 		this.color = color;
 		this.createdBy = createdBy;
+	}
+
+	public Achievement(SaveAchievementDto dto, int id) {
+		this.id = id;
+		setColor(dto.color());
+		setDateFormated(dto.dateFormated());
+		setTitle(dto.title());
 	}
 
 	public String getTitle() {
