@@ -3,11 +3,13 @@ package com.portfolio.server.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity(name = "jorney")
 public class Achievement {
@@ -16,10 +18,14 @@ public class Achievement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
+	@NotNull(message = "The title cannot be null.")
+	@Column(unique = true)
 	private String title;
 
+	@NotNull(message = "The date cannot be null.")
 	private String dateFormated;
 
+	@NotNull(message = "The color cannot be null.")
 	private String color;
 
 	@ManyToOne(cascade = CascadeType.MERGE)
