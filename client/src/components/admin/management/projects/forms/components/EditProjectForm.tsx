@@ -18,7 +18,9 @@ import {
 import { Input } from "@/components/shadcn-ui/input";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { putData } from "@/functions/api";
 import {
     ExternalLink,
     Github,
@@ -27,6 +29,7 @@ import {
     TextIcon,
     WholeWord,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Project } from "../../table/ProjectsTableColumns";
 import { ProjectComponentPreview } from "../ui/ProjectComponentPreview";
 
@@ -55,8 +58,26 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
         },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: EditProjectFormData) {
-        console.log(data);
+        try {
+            await putData("/projects", data);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${data.name}" edited!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
@@ -77,6 +98,7 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
+                                        disabled
                                         minLength={1}
                                         maxLength={20}
                                         placeholder="Project name..."

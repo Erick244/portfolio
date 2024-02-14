@@ -6,7 +6,9 @@ import { HTMLAttributes } from "react";
 import { Project } from "../templates/project";
 
 export async function Projects(props: HTMLAttributes<HTMLDivElement>) {
-    const projects = await getData<ProjectData[]>("/projects");
+    const projects = await getData<ProjectData[]>("/projects", {
+        cache: "no-store",
+    });
 
     return (
         <div {...props} className={cn("space-y-10", props.className)}>
