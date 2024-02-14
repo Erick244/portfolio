@@ -35,6 +35,9 @@ public class Admin implements UserDetails {
 	@OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
 	private List<Project> projects;
 
+	@OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
+	private List<Achievement> jorney;
+
 	public Admin() {
 	}
 

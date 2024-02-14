@@ -1,5 +1,6 @@
 package com.portfolio.server.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.portfolio.server.models.dto.project.SaveProjectDto;
 
 import jakarta.persistence.CascadeType;
@@ -70,6 +71,7 @@ public class Project {
 		return name;
 	}
 
+	@JsonIgnore
 	public Admin getCreatedBy() {
 		return createdBy;
 	}
