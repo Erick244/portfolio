@@ -2,7 +2,7 @@
 
 import { AdminFormData } from "@/components/admin/components/AdminForm";
 import { toast } from "@/components/shadcn-ui/use-toast";
-import { getData, postData } from "@/functions/api";
+import { postData } from "@/functions/api";
 import { Admin } from "@/models/Admin.model";
 import { AdminAndToken } from "@/models/AdminAndToken.model";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
@@ -30,7 +30,7 @@ export default function AdminAuthContextProvider({
             const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
             if (!token) return;
 
-            const admin = await getData<Admin>(`/admin/token/${token}`);
+            const admin = await postData<Admin>("/admin/token", { token });
 
             setAdmin(admin);
         } catch (error: any) {

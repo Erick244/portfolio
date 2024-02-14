@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.portfolio.server.models.dto.admin.AdminByTokenDto;
 import com.portfolio.server.models.dto.admin.LoginDto;
 import com.portfolio.server.models.dto.admin.LoginResponseDto;
 import com.portfolio.server.models.dto.admin.SignUpDto;
@@ -74,7 +75,9 @@ public class AuthService {
 		}
 	}
 
-	public ResponseEntity<?> adminByToken(String token) {
+	public ResponseEntity<?> adminByToken(AdminByTokenDto dto) {
+		String token = dto.token();
+
 		String username = jwtService.decodeToken(token);
 		Admin admin = adminRepository.findByUsername(username).orElse(null);
 

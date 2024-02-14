@@ -1,7 +1,6 @@
 package com.portfolio.server.controllers;
 
 import static org.hamcrest.Matchers.is;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -21,6 +20,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.portfolio.server.models.dto.admin.AdminByTokenDto;
 import com.portfolio.server.models.dto.admin.LoginDto;
 import com.portfolio.server.models.dto.admin.SignUpDto;
 import com.portfolio.server.models.entities.Admin;
@@ -106,13 +106,17 @@ public class AdminControllerIntegrationTest {
 		// Arrange
 		Admin admin = adminRepository.save(new Admin("username", "password"));
 		String token = jwtService.createToken("username");
+		AdminByTokenDto dto = new AdminByTokenDto(token);
+		String jsonDto = mapper.writeValueAsString(dto);
 
 		ResultMatcher responseContentIsNotEmpty = jsonPath("$").isNotEmpty();
 		ResultMatcher responseAdminIdIsSame = jsonPath("$.id", is(admin.getId()));
 		ResultMatcher responseAdminUsernameIsSame = jsonPath("$.username", is(admin.getUsername()));
 
 		// Act & Assert
-		mvc.perform(get("/admin/token/{token}", token))
+		mvc.perform(post("/admin/token")
+				.content(jsonDto)
+				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(responseContentIsNotEmpty)
 				.andExpect(responseAdminIdIsSame)

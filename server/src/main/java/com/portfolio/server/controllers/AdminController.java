@@ -2,13 +2,12 @@ package com.portfolio.server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portfolio.server.models.dto.admin.AdminByTokenDto;
 import com.portfolio.server.models.dto.admin.LoginDto;
 import com.portfolio.server.models.dto.admin.SignUpDto;
 import com.portfolio.server.services.AuthService;
@@ -31,9 +30,9 @@ public class AdminController {
 		return authService.signUp(dto);
 	}
 
-	@GetMapping("/token/{token}")
-	public ResponseEntity<?> adminByToken(@PathVariable String token) {
-		return authService.adminByToken(token);
+	@PostMapping("/token")
+	public ResponseEntity<?> adminByToken(@RequestBody AdminByTokenDto dto) {
+		return authService.adminByToken(dto);
 	}
 
 }
