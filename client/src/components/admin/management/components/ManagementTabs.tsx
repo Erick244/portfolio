@@ -24,7 +24,7 @@ export function ManagementTabs({ pageParam = "1" }: ManagementTabsProps) {
                 <TechnologiesTab pageParam={pageParam} />
             </TabsContent>
             <TabsContent value="projects">
-                <ProjectsTab />
+                <ProjectsTab pageParam={pageParam} />
             </TabsContent>
             <TabsContent value="jorney">
                 <JorneyTab />

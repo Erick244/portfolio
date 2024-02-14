@@ -23,6 +23,8 @@ export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
         `/technologies?page=${apiPageValue}&take=${take}`
     );
 
+    const enablePagination = pagesCount > 1;
+
     return (
         <div className="py-5">
             <H2 className="mb-5">Technologies</H2>
@@ -33,7 +35,7 @@ export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
                 data={technologies}
                 filterField="name"
             />
-            {pagesCount > 1 && <TablePagination pagesCount={pagesCount} />}
+            {enablePagination && <TablePagination pagesCount={pagesCount} />}
         </div>
     );
 }

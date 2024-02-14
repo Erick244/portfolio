@@ -1,62 +1,27 @@
 import { DataTable } from "@/components/shadcn-ui/data-table";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { getData } from "@/functions/api";
+import { getApiPageValue, getPagesCount } from "@/functions/data";
+import { TablePagination } from "../../components/TablePagination";
 import { CreateProjectForm } from "../forms/components/CreateProjectForm";
 import { Project, ProjectsTableColumns } from "../table/ProjectsTableColumns";
 
-const projectsDataTemp: Project[] = [
-    {
-        id: 1,
-        description:
-            "fkdaweni bnawiwh aiwa hdiwahdhwaihdi owai dhwaihiw ahidhwaoihdoiwaidhawio",
-        imageUrl: "",
-        name: "FinApp",
-        repoUrl: "https://github",
-        siteUrl: "",
-        color: "#ffbc05",
-    },
-    {
-        id: 2,
-        description:
-            "fkdaweni bnawiwh aiwa hdiwahdhwaihdi owai dhwaihiw ahidhwaoihdoiwaidhawio",
-        imageUrl: "",
-        name: "TaskFlow",
-        repoUrl: "https://github",
-        siteUrl: "",
-        color: "#ffbc05",
-    },
-    {
-        id: 3,
-        description:
-            "fkdaweni bnawiwh aiwa hdiwahdhwaihdi owai dhwaihiw ahidhwaoihdoiwaidhawio",
-        imageUrl: "",
-        name: "Other",
-        repoUrl: "https://github",
-        siteUrl: "",
-        color: "#ffbc05",
-    },
-    {
-        id: 4,
-        description:
-            "fkdaweni bnawiwh aiwa hdiwahdhwaihdi owai dhwaihiw ahidhwaoihdoiwaidhawio",
-        imageUrl: "",
-        name: "Other 2",
-        repoUrl: "https://github",
-        siteUrl: "",
-        color: "#ffbc05",
-    },
-    {
-        id: 5,
-        description:
-            "fkdaweni bnawiwh aiwa hdiwahdhwaihdi owai dhwaihiw ahidhwaoihdoiwaidhawio",
-        imageUrl: "",
-        name: "Other 3",
-        repoUrl: "https://github",
-        siteUrl: "",
-        color: "#ffbc05",
-    },
-];
+interface ProjectsTabProps {
+    pageParam: string;
+}
 
-export function ProjectsTab() {
+export async function ProjectsTab({ pageParam }: ProjectsTabProps) {
+    const take = 10;
+    const count = await getData<number>("/projects/count");
+    const pagesCount = getPagesCount(count, take);
+    const apiPageValue = getApiPageValue(pageParam, pagesCount);
+
+    const projects = await getData<Project[]>(
+        `/projects?page=${apiPageValue}&take=${take}`
+    );
+
+    const enablePagination = pagesCount > 1;
+
     return (
         <div className="py-5">
             <H2 className="mb-5">Projects</H2>
@@ -64,9 +29,11 @@ export function ProjectsTab() {
             <DataTable
                 addFormData={<CreateProjectForm />}
                 columns={ProjectsTableColumns}
-                data={projectsDataTemp}
+                data={projects}
                 filterField="name"
             />
+
+            {enablePagination && <TablePagination pagesCount={pagesCount} />}
         </div>
     );
 }
