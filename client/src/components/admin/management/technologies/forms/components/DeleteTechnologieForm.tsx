@@ -19,6 +19,8 @@ export function DeleteTechnologieForm({
     const router = useRouter();
 
     async function onSubmit(e: FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+
         try {
             await deleteData(`/technologies/${technologie.id}`);
 

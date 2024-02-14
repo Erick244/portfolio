@@ -3,6 +3,9 @@
 import { Button } from "@/components/shadcn-ui/button";
 import { DialogClose } from "@/components/shadcn-ui/dialog";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
+import { deleteData } from "@/functions/api";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { Project } from "../../table/ProjectsTableColumns";
 
@@ -11,10 +14,28 @@ interface DeleteProjectFormProps {
 }
 
 export function DeleteProjectForm({ project }: DeleteProjectFormProps) {
-    function onSubmit(e: FormEvent<HTMLFormElement>) {
+    const router = useRouter();
+
+    async function onSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        console.log("Delete");
+        try {
+            await deleteData(`/projects/${project.id}`);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${project.name}" deleted!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
@@ -25,9 +46,11 @@ export function DeleteProjectForm({ project }: DeleteProjectFormProps) {
                 {project.name}&quot; project?
             </p>
             <div className="flex justify-between">
-                <Button type="submit" variant="destructive">
-                    Delete
-                </Button>
+                <DialogClose asChild>
+                    <Button type="submit" variant="destructive">
+                        Delete
+                    </Button>
+                </DialogClose>
                 <DialogClose asChild>
                     <Button type="button" variant="secondary">
                         Cancel
