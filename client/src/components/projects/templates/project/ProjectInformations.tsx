@@ -22,7 +22,7 @@ export function ProjectInformations({
             )}
         >
             <H2 className="sm:text-left text-center">{title}</H2>
-            <P className="sm:text-base  text-sm sm:text-left text-center break-words">
+            <P className="sm:text-base text-sm sm:text-left text-center break-words max-w-sm w-full">
                 {description}
             </P>
         </div>
