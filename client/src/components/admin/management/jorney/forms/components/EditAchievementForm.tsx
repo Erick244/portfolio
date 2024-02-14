@@ -24,9 +24,12 @@ import {
     PopoverTrigger,
 } from "@/components/shadcn-ui/popover";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { putData } from "@/functions/api";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, Palette, WholeWord } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Achievement } from "../../table/JorneyTableColumns";
 import { AchievementComponentPreview } from "../ui/AchievementComponentPreview";
 
@@ -51,8 +54,28 @@ export function EditAchievementForm({ achievement }: EditAchievementFormProps) {
         },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: EditAchievementFormData) {
-        console.log(data);
+        const dateFormated = format(data.date, "PPP");
+
+        try {
+            await putData("/jorney", { dateFormated, ...data });
+
+            toast({
+                title: "Success",
+                description: `Technologie "${data.title}" edited!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
@@ -73,6 +96,7 @@ export function EditAchievementForm({ achievement }: EditAchievementFormProps) {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
+                                        disabled
                                         minLength={1}
                                         maxLength={20}
                                         placeholder="Achievement name..."
