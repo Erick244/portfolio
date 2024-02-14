@@ -7,6 +7,7 @@ import * as z from "zod";
 
 import { Button } from "@/components/shadcn-ui/button";
 import { Calendar } from "@/components/shadcn-ui/calendar";
+import { DialogClose } from "@/components/shadcn-ui/dialog";
 import {
     Form,
     FormControl,
@@ -186,7 +187,9 @@ export function EditAchievementForm({ achievement }: EditAchievementFormProps) {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Save</Button>
+                    <DialogClose asChild>
+                        <Button type="submit">Save</Button>
+                    </DialogClose>
                 </form>
             </Form>
             <VerticalDivisor />

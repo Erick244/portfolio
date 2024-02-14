@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/shadcn-ui/button";
+import { DialogClose } from "@/components/shadcn-ui/dialog";
 import {
     Form,
     FormControl,
@@ -238,9 +239,15 @@ export function CreateTechnologieForm() {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">
-                        {form.formState.isSubmitting ? <Spinner /> : "Create"}
-                    </Button>
+                    <DialogClose asChild>
+                        <Button type="submit">
+                            {form.formState.isSubmitting ? (
+                                <Spinner />
+                            ) : (
+                                "Create"
+                            )}
+                        </Button>
+                    </DialogClose>
                 </form>
             </Form>
             <VerticalDivisor />

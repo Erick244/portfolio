@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/shadcn-ui/button";
+import { DialogClose } from "@/components/shadcn-ui/dialog";
 import {
     Form,
     FormControl,
@@ -237,7 +238,9 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Save</Button>
+                    <DialogClose asChild>
+                        <Button type="submit">Save</Button>
+                    </DialogClose>
                 </form>
             </Form>
             <VerticalDivisor />

@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/shadcn-ui/button";
+import { DialogClose } from "@/components/shadcn-ui/dialog";
 import {
     Form,
     FormControl,
@@ -217,7 +218,9 @@ export function CreateProjectForm() {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Create</Button>
+                    <DialogClose asChild>
+                        <Button type="submit">Create</Button>
+                    </DialogClose>
                 </form>
             </Form>
             <VerticalDivisor />

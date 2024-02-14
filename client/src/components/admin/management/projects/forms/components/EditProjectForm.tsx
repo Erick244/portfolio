@@ -21,6 +21,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { putData } from "@/functions/api";
+import { DialogClose } from "@radix-ui/react-dialog";
 import {
     ExternalLink,
     Github,
@@ -220,7 +221,9 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
                             </FormItem>
                         )}
                     />
-                    <Button type="submit">Save</Button>
+                    <DialogClose asChild>
+                        <Button type="submit">Save</Button>
+                    </DialogClose>
                 </form>
             </Form>
             <VerticalDivisor />
