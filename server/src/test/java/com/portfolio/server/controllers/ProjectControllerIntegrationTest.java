@@ -1,6 +1,7 @@
 package com.portfolio.server.controllers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.server.models.dto.project.SaveProjectDto;
 import com.portfolio.server.models.entities.Admin;
+import com.portfolio.server.models.entities.Project;
 import com.portfolio.server.models.repositories.AdminRepository;
 import com.portfolio.server.models.repositories.ProjectRepository;
 import com.portfolio.server.services.JwtService;
@@ -63,5 +65,47 @@ public class ProjectControllerIntegrationTest {
 				.andExpect(status().isOk());
 	}
 
-	// TODO: CREATE EDIT PROJECT TEST
+	@SuppressWarnings("null")
+	@Test
+	void testSave_Put() throws Exception {
+		// Arrange
+		seedDataBase(1);
+		String projectName = "name0";
+		String adminUsername = "username0";
+
+		SaveProjectDto dto = new SaveProjectDto(projectName, null, "repoUrl", null, "description", "#fff");
+		String jsonDto = mapper.writeValueAsString(dto);
+
+		String bearerToken = "Bearer " + jwtService.createToken(adminUsername);
+
+		// Act & Assert
+		mvc.perform(put("/projects")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content(jsonDto)
+				.header("Authorization", bearerToken))
+				.andExpect(status().isOk());
+	}
+
+	private void seedDataBase(int size) {
+		for (int i = 0; i < size; i++) {
+			String name = "name" + i;
+			String imageUrl = "imageUrl" + i;
+			String description = "description" + i;
+			String color = "color" + i;
+			String repoUrl = "repoUrl" + i;
+			String siteUrl = "siteUrl" + i;
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+
+			Project project = new Project(
+					name,
+					imageUrl,
+					repoUrl,
+					siteUrl,
+					description,
+					color,
+					admin);
+
+			projectRepository.save(project);
+		}
+	}
 }

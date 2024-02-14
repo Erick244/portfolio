@@ -5,6 +5,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,7 +74,50 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(status().isOk());
 	}
 
-	// TODO: CREATE EDIT TECHNOLOGIE TEST
+	@SuppressWarnings("null")
+	@Test
+	void testSave_Put() throws Exception {
+		// Arrange
+		seedDataBase(1);
+		String technologieName = "name0";
+		String adminUsername = "username0";
+
+		SaveTechnologieDto dto = new SaveTechnologieDto(
+				technologieName, "experience - edited", "imageUrl",
+				TechnologieCategory.BACKEND, "about", "#ffff");
+		String jsonDto = mapper.writeValueAsString(dto);
+
+		String bearerToken = "Bearer " + jwtService.createToken(adminUsername);
+
+		// Act & Assert
+		mvc.perform(put("/technologies")
+				.content(jsonDto)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", bearerToken))
+				.andExpect(status().isOk());
+	}
+
+	private void seedDataBase(int size) {
+		for (int i = 0; i < size; i++) {
+			String name = "name" + i;
+			String experience = "experience" + i;
+			String imageUrl = "imageUrl" + i;
+			String about = "about" + i;
+			String color = "color" + i;
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+
+			Technologie technologie = new Technologie(
+					name,
+					experience,
+					imageUrl,
+					TechnologieCategory.BACKEND,
+					about,
+					color,
+					admin);
+
+			technologieRepository.save(technologie);
+		}
+	}
 
 	@SuppressWarnings("null")
 	@Test
@@ -108,28 +152,6 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseTechnologiesListSizeIsSame);
 
-	}
-
-	private void seedDataBase(int size) {
-		for (int i = 0; i < size; i++) {
-			String name = "name" + i;
-			String experience = "experience" + i;
-			String imageUrl = "imageUrl" + i;
-			String about = "about" + i;
-			String color = "color" + i;
-			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
-
-			Technologie technologie = new Technologie(
-					name,
-					experience,
-					imageUrl,
-					TechnologieCategory.BACKEND,
-					about,
-					color,
-					admin);
-
-			technologieRepository.save(technologie);
-		}
 	}
 
 	@SuppressWarnings("null")
