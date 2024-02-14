@@ -1,6 +1,7 @@
 package com.portfolio.server.controllers;
 
 import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -146,6 +147,24 @@ public class ProjectControllerIntegrationTest {
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
 				.andExpect(responseProjectsListSizeIsSame);
+
+	}
+
+	@SuppressWarnings("null")
+	@Test
+	void testCount() throws Exception {
+		// Arrange
+		seedDataBase(10);
+
+		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
+		ResultMatcher responseCountIsSame = jsonPath("$", is(10));
+
+		// Act & Arrange
+		mvc.perform(get("/projects/count"))
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk())
+				.andExpect(responseContentIsNotNull)
+				.andExpect(responseCountIsSame);
 
 	}
 }

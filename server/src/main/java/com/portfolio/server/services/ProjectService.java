@@ -69,4 +69,11 @@ public class ProjectService {
 
 		return ResponseEntity.ok(projects);
 	}
+
+	public ResponseEntity<?> count() {
+		long count = projectRepository.count();
+
+		return ResponseEntity.ok(count);
+	}
+
 }

@@ -30,4 +30,9 @@ public class ProjectController {
 			@RequestParam(defaultValue = "0", required = false) int page) {
 		return projectService.findAll(take, page);
 	}
+
+	@GetMapping("/count")
+	public ResponseEntity<?> count() {
+		return projectService.count();
+	}
 }
