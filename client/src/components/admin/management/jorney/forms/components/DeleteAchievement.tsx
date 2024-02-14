@@ -22,7 +22,7 @@ export function DeleteAchievementForm({
         e.preventDefault();
 
         try {
-            await deleteData(`/projects/${achievement.id}`);
+            await deleteData(`/jorney/${achievement.id}`);
 
             toast({
                 title: "Success",
