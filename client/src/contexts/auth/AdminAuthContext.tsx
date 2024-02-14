@@ -26,12 +26,25 @@ export default function AdminAuthContextProvider({
     const [admin, setAdmin] = useState<Admin | null>(null);
 
     async function retriveAdmin() {
-        const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
-        if (!token) return;
+        try {
+            const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
+            if (!token) return;
 
-        const admin = await getData<Admin>(`/admin/token/${token}`);
+            const admin = await getData<Admin>(`/admin/token/${token}`);
 
-        setAdmin(admin);
+            setAdmin(admin);
+        } catch (error: any) {
+            toast({
+                title: "Admin - Error",
+                description: error.message,
+                variant: "destructive",
+            });
+
+            cookies.remove(AUTH_TOKEN_COOKIE_NAME, {
+                path: "/admin",
+            });
+            router.push("/admin");
+        }
     }
 
     useEffect(() => {

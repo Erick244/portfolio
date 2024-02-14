@@ -18,7 +18,9 @@ import {
 import { Input } from "@/components/shadcn-ui/input";
 import { Textarea } from "@/components/shadcn-ui/textarea";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { postData } from "@/functions/api";
 import {
     ExternalLink,
     Github,
@@ -27,6 +29,7 @@ import {
     TextIcon,
     WholeWord,
 } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { ProjectComponentPreview } from "../ui/ProjectComponentPreview";
 
 const createProjectSchema = z.object({
@@ -53,8 +56,26 @@ export function CreateProjectForm() {
         },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: CreateProjectFormData) {
-        console.log(data);
+        try {
+            await postData("/projects", data);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${data.name}" created!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
