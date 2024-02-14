@@ -1,7 +1,11 @@
 package com.portfolio.server.controllers;
 
+import static org.hamcrest.Matchers.hasSize;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -13,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.portfolio.server.models.dto.project.SaveProjectDto;
@@ -107,5 +112,40 @@ public class ProjectControllerIntegrationTest {
 
 			projectRepository.save(project);
 		}
+	}
+
+	@SuppressWarnings("null")
+	@Test
+	void testFindAll() throws Exception {
+		// Arrange
+		seedDataBase(10);
+
+		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
+		ResultMatcher responseProjectsListSizeIsSame = jsonPath("$", hasSize(5));
+
+		// Act & Assert
+		mvc.perform(get("/projects?page=0&take=5"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(responseContentIsNotNull)
+				.andExpect(responseProjectsListSizeIsSame);
+	}
+
+	@SuppressWarnings("null")
+	@Test
+	void testFindAll_NoPagination() throws Exception {
+		// Arrange
+		seedDataBase(10);
+
+		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
+		ResultMatcher responseProjectsListSizeIsSame = jsonPath("$", hasSize(10));
+
+		// Act & Assert
+		mvc.perform(get("/projects"))
+				.andExpect(status().isOk())
+				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
+				.andExpect(responseContentIsNotNull)
+				.andExpect(responseProjectsListSizeIsSame);
+
 	}
 }

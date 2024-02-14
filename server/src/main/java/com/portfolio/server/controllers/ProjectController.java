@@ -2,9 +2,11 @@ package com.portfolio.server.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.portfolio.server.models.dto.project.SaveProjectDto;
@@ -20,5 +22,12 @@ public class ProjectController {
 	@RequestMapping(method = { RequestMethod.POST, RequestMethod.PUT })
 	public ResponseEntity<?> save(@RequestBody SaveProjectDto dto) {
 		return projectService.save(dto);
+	}
+
+	@GetMapping
+	public ResponseEntity<?> findAll(
+			@RequestParam(defaultValue = "0", required = false) int take,
+			@RequestParam(defaultValue = "0", required = false) int page) {
+		return projectService.findAll(take, page);
 	}
 }

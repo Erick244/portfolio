@@ -3,6 +3,8 @@ package com.portfolio.server.services;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -297,6 +299,83 @@ public class ProjectServiceIntegrationTest {
 
 		assertEquals(resp.getStatusCode().value(), 400);
 		assertNotNull(errorMessage);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	void testFindAll() {
+		// Arrange
+		int take = 5;
+		int page = 0;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = projectService.findAll(take, page);
+		List<Project> projects = (List<Project>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(projects);
+		assertEquals(projects.size(), take);
+	}
+
+	private void seedDataBase(int size) {
+		for (int i = 0; i < size; i++) {
+			String name = "name" + i;
+			String imageUrl = "imageUrl" + i;
+			String description = "description" + i;
+			String color = "color" + i;
+			String repoUrl = "repoUrl" + i;
+			String siteUrl = "siteUrl" + i;
+			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
+
+			Project project = new Project(
+					name,
+					imageUrl,
+					repoUrl,
+					siteUrl,
+					description,
+					color,
+					admin);
+
+			projectRepository.save(project);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	void testFindAll_OtherPage() {
+		// Arrange
+		int take = 5;
+		int page = 1;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = projectService.findAll(take, page);
+		List<Project> projects = (List<Project>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(projects);
+		assertEquals(projects.size(), take);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Test
+	void testFindAll_NoPagination() {
+		// Arrange
+		int take = -1;
+		int page = -1;
+		seedDataBase(10);
+
+		// Act
+		ResponseEntity<?> resp = projectService.findAll(take, page);
+		List<Project> projects = (List<Project>) resp.getBody();
+
+		// Assert
+		assertEquals(resp.getStatusCode().value(), 200);
+		assertNotNull(projects);
+		assertEquals(projects.size(), 10);
 	}
 
 }
