@@ -3,6 +3,9 @@
 import { Button } from "@/components/shadcn-ui/button";
 import { DialogClose } from "@/components/shadcn-ui/dialog";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
+import { deleteData } from "@/functions/api";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { Achievement } from "../../table/JorneyTableColumns";
 
@@ -13,10 +16,28 @@ interface DeleteAchievementFormProps {
 export function DeleteAchievementForm({
     achievement,
 }: DeleteAchievementFormProps) {
-    function onSubmit(e: FormEvent<HTMLFormElement>) {
+    const router = useRouter();
+
+    async function onSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        console.log("Delete");
+        try {
+            await deleteData(`/projects/${achievement.id}`);
+
+            toast({
+                title: "Success",
+                description: `Technologie "${achievement.title}" deleted!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
