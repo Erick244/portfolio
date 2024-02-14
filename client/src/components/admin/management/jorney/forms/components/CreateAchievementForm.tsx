@@ -24,9 +24,12 @@ import {
     PopoverTrigger,
 } from "@/components/shadcn-ui/popover";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
+import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
+import { postData } from "@/functions/api";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, Palette, WholeWord } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { AchievementComponentPreview } from "../ui/AchievementComponentPreview";
 
 const createAchievementSchema = z.object({
@@ -46,8 +49,28 @@ export function CreateAchievementForm() {
         },
     });
 
+    const router = useRouter();
+
     async function onSubmit(data: CreateAchievementFormData) {
-        console.log(data);
+        const dateFormated = format(data.date, "PPP");
+
+        try {
+            await postData("/jorney", { dateFormated, ...data });
+
+            toast({
+                title: "Success",
+                description: `Technologie "${data.title}" created!`,
+            });
+
+            router.refresh();
+            router.prefetch("/");
+        } catch (error: any) {
+            toast({
+                title: "Error",
+                description: error.message,
+                variant: "destructive",
+            });
+        }
     }
 
     return (
