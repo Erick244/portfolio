@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.TestPropertySource;
 
+import com.portfolio.server.models.dto.admin.AdminByTokenDto;
 import com.portfolio.server.models.dto.admin.LoginDto;
 import com.portfolio.server.models.dto.admin.LoginResponseDto;
 import com.portfolio.server.models.dto.admin.SignUpDto;
@@ -135,9 +136,10 @@ public class AuthServiceIntegrationTest {
 		// Arrange
 		Admin admin = adminRepository.save(new Admin("username", "password"));
 		String token = jwtService.createToken("username");
+		AdminByTokenDto dto = new AdminByTokenDto(token);
 
 		// Act
-		ResponseEntity<?> res = authService.adminByToken(token);
+		ResponseEntity<?> res = authService.adminByToken(dto);
 
 		// Assert
 		Admin adminByToken = (Admin) res.getBody();
@@ -150,9 +152,10 @@ public class AuthServiceIntegrationTest {
 	void testAdminByToken_NotFound() {
 		// Arrange
 		String token = jwtService.createToken("username");
+		AdminByTokenDto dto = new AdminByTokenDto(token);
 
 		// Act
-		ResponseEntity<?> res = authService.adminByToken(token);
+		ResponseEntity<?> res = authService.adminByToken(dto);
 
 		// Assert
 		assertEquals(res.getStatusCode().value(), 404);
