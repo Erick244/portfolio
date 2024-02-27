@@ -3,6 +3,11 @@ import { Muted } from "@/components/shadcn-ui/typography/Muted";
 import { Logo } from "@/components/utils/Logo";
 import { notExistCookieOrRedirect } from "@/functions/cookie";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Admin",
+};
 
 export default function Page() {
     notExistCookieOrRedirect(AUTH_TOKEN_COOKIE_NAME, "/admin/management");

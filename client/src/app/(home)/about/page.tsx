@@ -3,7 +3,12 @@ import { Goal } from "@/components/about/components/Goal";
 import { Jorney } from "@/components/about/components/Jorney";
 import { JorneySkeleton } from "@/components/about/skeletons/JorneySkeleton";
 import { H1 } from "@/components/shadcn-ui/typography/H1";
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+    title: "About",
+};
 
 export default function Page() {
     return (

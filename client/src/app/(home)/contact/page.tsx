@@ -2,6 +2,11 @@ import { CopyEmail } from "@/components/contact/CopyEmail";
 import { OthersContacts } from "@/components/contact/OthersContacts";
 import { H1 } from "@/components/shadcn-ui/typography/H1";
 import { P } from "@/components/shadcn-ui/typography/P";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Contact",
+};
 
 export default function Page() {
     return (

@@ -1,7 +1,12 @@
 import { Projects } from "@/components/projects/components/Projects";
 import { ProjectsIntroduction } from "@/components/projects/components/ProjectsIntroduction";
 import { ProjectsSkeleton } from "@/components/projects/skeletons/ProjectsSkeleton";
+import { Metadata } from "next";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+    title: "Projects",
+};
 
 export default function Page() {
     return (
