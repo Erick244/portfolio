@@ -13,7 +13,7 @@ export default function Page() {
         <div className="my-10 ">
             <H1 className="text-center">Contatct</H1>
             <P className="text-center mb-10">
-                Send me a message or maybe a proposal :D
+                Send me a message or maybe a proposal! 👋
             </P>
             <CopyEmail className="mb-5" />
             <OthersContacts />

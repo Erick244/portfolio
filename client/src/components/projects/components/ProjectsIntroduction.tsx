@@ -15,7 +15,7 @@ export function ProjectsIntroduction(props: HTMLAttributes<HTMLDivElement>) {
             <H1>Projects</H1>
             <P className="text-center">
                 In this section you will see my best projects made along my
-                journey.
+                journey. 📱💻
             </P>
         </div>
     );

@@ -9,5 +9,9 @@ export const metadata: Metadata = {
 export default function Page() {
     existCookieOrRedirect(AUTH_TOKEN_COOKIE_NAME, "/admin");
 
-    return <div>IN WORKING...</div>;
+    return (
+        <div className="flex justify-center bg-yellow-500 p-2 text-white font-bold">
+            IN WORKING...
+        </div>
+    );
 }

@@ -8,10 +8,10 @@ export function Goal(props: HTMLAttributes<HTMLDivElement>) {
         <div {...props} className={cn("", props.className)}>
             <H1 className="text-center">Goal</H1>
             <P className="text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore
-                explicabo, quo tempora sunt quam placeat delectus exercitationem
-                sequi ullam recusandae omnis alias dolor voluptatem earum iusto
-                ducimus! Enim, alias iste?
+                “My goal today is to collaborate with a professional team. I
+                want not only to showcase my work but also to contribute to the
+                team&apos;s growth. Additionally, I am committed to learning
+                more and teaching as much as I can.” 🌟🤝
             </P>
         </div>
     );
