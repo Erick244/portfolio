@@ -1,7 +1,6 @@
 import { Achievement as AcheivementData } from "@/components/admin/management/jorney/table/JorneyTableColumns";
 import { H1 } from "@/components/shadcn-ui/typography/H1";
 import { getData } from "@/functions/api";
-import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 import { Achievement } from "../templates/achievement";
 
@@ -11,7 +10,7 @@ export async function Jorney(props: HTMLAttributes<HTMLDivElement>) {
     });
 
     return (
-        <div className={cn("", props.className)}>
+        <div {...props}>
             <H1 className="text-center mb-10">Jorney</H1>
             <div className="space-y-10 pb-10 overflow-y-scroll max-h-96 h-full">
                 {jorney &&

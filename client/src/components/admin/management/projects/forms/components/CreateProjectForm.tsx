@@ -54,7 +54,7 @@ export function CreateProjectForm() {
             imageUrl: "",
             repoUrl: "",
             siteUrl: "",
-            color: "#74d3fe",
+            color: "#ffffff",
         },
     });
 

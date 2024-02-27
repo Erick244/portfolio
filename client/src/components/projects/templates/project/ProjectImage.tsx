@@ -26,9 +26,9 @@ export function ProjectImage({ imageUrl, ...props }: ProjectImageProps) {
                     src={imageUrl}
                 />
             ) : (
-                <div className="w-full rounded-lg h-full p-10 bg-clip-border border border-background flex gap-4 flex-col justify-center items-center bg-[linear-gradient(to_right,hsl(var(--background))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--background))_1px,transparent_1px)] bg-[size:24px_24px] bg-background/20 text-foreground/60">
-                    <H3 className="text-3xl">ONLY BACKEND</H3>
-                    <Server className="w-10 h-10" />
+                <div className="w-full rounded-lg h-56 p-10 flex gap-4 flex-col justify-center items-center bg-background/20 text-foreground/70 border border-border border-opacity-25">
+                    <H3>ONLY BACKEND</H3>
+                    <Server className="w-5 h-5" />
                 </div>
             )}
         </div>
