@@ -21,7 +21,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
             </SideBar.Root>
 
             <div className="flex flex-col w-full h-full">
-                <Header.Root className="px-10 flex justify-between items-center border-b border-border sticky top-0">
+                <Header.Root className="px-10 flex justify-between  items-center border-b border-border sticky top-0">
                     <H1 className="lg:text-2xl text-2xl">{title}</H1>
                     <ModeToggle />
                 </Header.Root>

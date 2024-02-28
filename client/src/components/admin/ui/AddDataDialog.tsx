@@ -19,7 +19,9 @@ export function AddDataDialog({ children, ...props }: AddDataDialogProps) {
                     <Plus />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="max-w-7xl">{children}</DialogContent>
+            <DialogContent className="max-w-7xl sm:h-auto h-5/6 overflow-scroll">
+                {children}
+            </DialogContent>
         </Dialog>
     );
 }

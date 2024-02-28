@@ -29,7 +29,12 @@ export function ActionFormDialog({
                     {children}
                 </DropdownMenuItem>
             </DialogTrigger>
-            <DialogContent className={cn("max-w-7xl", contentClasses)}>
+            <DialogContent
+                className={cn(
+                    "max-w-7xl sm:h-auto h-5/6 overflow-scroll",
+                    contentClasses
+                )}
+            >
                 {FormComponent}
             </DialogContent>
         </Dialog>

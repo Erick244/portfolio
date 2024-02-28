@@ -83,7 +83,7 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
     }
 
     return (
-        <div className="flex w-full h-full gap-5">
+        <div className="flex sm:flex-row flex-col w-full h-full gap-5 p-2 sm:p-0">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}
