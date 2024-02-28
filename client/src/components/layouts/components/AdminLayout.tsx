@@ -16,7 +16,7 @@ export function AdminLayout({ children, title }: AdminLayoutProps) {
     return (
         <div className="h-screen w-screen flex">
             <SideBar.Root className="items-center">
-                <Logo href="/" className="pb-12 pt-8" />
+                <Logo href="/" className="pb-12 pt-8 sm:flex hidden" />
                 <SideBarItems />
             </SideBar.Root>
 

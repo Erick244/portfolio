@@ -15,7 +15,7 @@ export function SideBarLink({
         <Link
             {...props}
             className={cn(
-                "p-2 transition-all duration-300 border border-border rounded w-full flex justify-between items-center hover:bg-secondary",
+                "sm:p-2 p-4 transition-all duration-300 border border-border rounded w-full flex justify-between items-center hover:bg-secondary",
                 props.className,
                 isActive
                     ? "bg-foreground text-background hover:bg-foreground"
