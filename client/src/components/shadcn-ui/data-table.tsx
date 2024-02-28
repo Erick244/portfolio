@@ -57,13 +57,15 @@ export function DataTable<TData, TValue>({
 
     return (
         <div>
-            <div className="flex items-center justify-between">
+            <div className="flex sm:flex-row gap-2 flex-col-reverse sm:items-center justify-between">
                 <TableFilter
                     className="w-1/2"
                     filterField={filterField}
                     table={table}
                 />
-                <AddDataDialog>{addFormData}</AddDataDialog>
+                <AddDataDialog className="w-1/2 sm:w-auto">
+                    {addFormData}
+                </AddDataDialog>
             </div>
             <div className="rounded-md border">
                 <Table>

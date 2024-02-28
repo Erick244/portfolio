@@ -14,7 +14,7 @@ interface TechnologiesTabProps {
 }
 
 export async function TechnologiesTab({ pageParam }: TechnologiesTabProps) {
-    const take = 10;
+    const take = 6;
     const count = await getData<number>("/technologies/count");
     const pagesCount = getPagesCount(count, take);
     const apiPageValue = getApiPageValue(pageParam, pagesCount);

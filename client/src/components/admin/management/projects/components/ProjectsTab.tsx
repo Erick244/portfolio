@@ -11,7 +11,7 @@ interface ProjectsTabProps {
 }
 
 export async function ProjectsTab({ pageParam }: ProjectsTabProps) {
-    const take = 10;
+    const take = 6;
     const count = await getData<number>("/projects/count");
     const pagesCount = getPagesCount(count, take);
     const apiPageValue = getApiPageValue(pageParam, pagesCount);

@@ -11,7 +11,7 @@ interface JorneyTabProps {
 }
 
 export async function JorneyTab({ pageParam }: JorneyTabProps) {
-    const take = 10;
+    const take = 6;
     const count = await getData<number>("/jorney/count");
     const pagesCount = getPagesCount(count, take);
     const apiPageValue = getApiPageValue(pageParam, pagesCount);
