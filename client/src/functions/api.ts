@@ -1,7 +1,12 @@
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
 import { parseCookies } from "nookies";
 
-const BASE_API_URL = "http://localhost:8080";
+// DEV
+// const BASE_API_URL = "http://localhost:8080";
+
+// PROD
+const BASE_API_URL = "https://erick-henrique-server.up.railway.app";
+
 const { [AUTH_TOKEN_COOKIE_NAME]: token } = parseCookies(null, {
     path: "/",
 });
