@@ -2,7 +2,7 @@
 
 This is my portfolio, here you will learn about my trajectory in programming and what I am looking for in the future. 🚀
 
-Live: [portfolio-link]
+> **Live**: [portfolio-link]
 
 ### Technologies
 
