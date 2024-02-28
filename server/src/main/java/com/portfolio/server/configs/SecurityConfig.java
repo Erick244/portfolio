@@ -3,6 +3,7 @@ package com.portfolio.server.configs;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -25,12 +26,15 @@ public class SecurityConfig {
 	@Autowired
 	private SecurityFilter securityFilter;
 
+	@Autowired
+	private Environment env;
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 				.csrf(csrf -> csrf.disable())
 				.cors(Customizer.withDefaults())
-				.authorizeHttpRequests(a -> a.requestMatchers("/admin/login", "/admin/token/**", "/admin/signup")
+				.authorizeHttpRequests(a -> a.requestMatchers("/admin/login", "/admin/token/**")
 						.permitAll()
 						.requestMatchers(HttpMethod.GET, "/technologies/**", "/projects/**", "/jorney/**")
 						.permitAll()
@@ -54,7 +58,7 @@ public class SecurityConfig {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")
-						.allowedOrigins("http://localhost:3000")
+						.allowedOrigins(env.getProperty("frontend.url"))
 						.allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH");
 			}
 		};
