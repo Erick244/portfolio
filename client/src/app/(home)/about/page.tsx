@@ -20,7 +20,7 @@ export default function Page() {
                 <H1 className="text-center mb-10">Jorney</H1>
                 <P className="text-center mb-10">
                     Here you will find my study journey. The start date of the
-                    studies. 📚
+                    studies. 📚 <br /> (Dates/orders are not 100% correct)
                 </P>
                 <Suspense fallback={<JorneySkeleton />}>
                     <Jorney />
