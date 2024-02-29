@@ -12,7 +12,7 @@ Main Technologies used in the project:
     -   [HTML5, CSS3 and JavaScript/Typescript](https://developer.mozilla.org/pt-BR/)
     -   [NextJS](https://nextjs.org/)
     -   [Shadcn/ui](https://ui.shadcn.com/)
-    -   [TailwindCSS](https://tailwindcss.com/docs/line-height)
+    -   [TailwindCSS](https://tailwindcss.com)
 -   **Backend**
     -   [Java](https://www.java.com/pt-BR/)
     -   [Spring Boot](https://spring.io/projects/spring-boot)
