@@ -11,6 +11,7 @@ export function ProjectLink({ Icon, ...props }: ProjectLinkProps) {
     return (
         <Link
             {...props}
+            target="_blank"
             className={cn(
                 "shadow-md shadow-black/30 bg-black/30 text-white  p-1 rounded hover:scale-105",
                 props.className
