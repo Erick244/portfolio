@@ -1,15 +1,11 @@
+"use server";
+
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
-import { parseCookies } from "nookies";
+import { getCookie } from "./cookie";
 
-// DEV
-// const BASE_API_URL = "http://localhost:8080";
+const BASE_API_URL = process.env.BASE_API_URL;
+const token = getCookie(AUTH_TOKEN_COOKIE_NAME)?.value;
 
-// PROD
-const BASE_API_URL = "https://erick-henrique-server.up.railway.app";
-
-const { [AUTH_TOKEN_COOKIE_NAME]: token } = parseCookies(null, {
-    path: "/",
-});
 const DEFAULT_HEADERS = {
     "Content-Type": "application/json",
     Authorization: token ? "Bearer " + token : "",
