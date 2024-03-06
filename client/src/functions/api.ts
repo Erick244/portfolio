@@ -4,12 +4,15 @@ import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
 import { getCookie } from "./cookie";
 
 const BASE_API_URL = process.env.BASE_API_URL;
-const token = getCookie(AUTH_TOKEN_COOKIE_NAME)?.value;
 
-const DEFAULT_HEADERS = {
-    "Content-Type": "application/json",
-    Authorization: token ? "Bearer " + token : "",
-};
+async function getDefaultHeaders() {
+    const token = getCookie(AUTH_TOKEN_COOKIE_NAME)?.value;
+
+    return {
+        "Content-Type": "application/json",
+        Authorization: token ? "Bearer " + token : "",
+    };
+}
 
 export async function postData<R>(
     url: string,
@@ -20,7 +23,7 @@ export async function postData<R>(
         method: "POST",
         body: JSON.stringify(body),
         headers: {
-            ...DEFAULT_HEADERS,
+            ...(await getDefaultHeaders()),
         },
         ...config,
     });
@@ -50,7 +53,7 @@ export async function putData<R>(
         method: "PUT",
         body: JSON.stringify(body),
         headers: {
-            ...DEFAULT_HEADERS,
+            ...(await getDefaultHeaders()),
         },
         ...config,
     });
@@ -78,7 +81,7 @@ export async function getData<R>(
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "GET",
         headers: {
-            ...DEFAULT_HEADERS,
+            ...(await getDefaultHeaders()),
         },
         ...config,
     });
@@ -99,7 +102,7 @@ export async function deleteData<R>(
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "DELETE",
         headers: {
-            ...DEFAULT_HEADERS,
+            ...(await getDefaultHeaders()),
         },
         ...config,
     });
