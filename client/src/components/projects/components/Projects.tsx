@@ -19,7 +19,10 @@ export async function Projects(props: HTMLAttributes<HTMLDivElement>) {
                             title={project.name}
                             description={project.description}
                         />
-                        <Project.Image imageUrl={project.imageUrl} />
+                        <Project.Image
+                            imageUrl={project.imageUrl}
+                            siteUrl={project.siteUrl}
+                        />
                         <Project.Links>
                             <Project.Link
                                 Icon={Github}
