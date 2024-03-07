@@ -1,5 +1,6 @@
 "use server";
 
+import { DefaultException } from "@/models/DefaultException";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
 import { getCookie } from "./cookie";
 
@@ -14,11 +15,11 @@ async function getDefaultHeaders() {
     };
 }
 
-export async function postData<R>(
+export async function postData(
     url: string,
     body: any,
     config?: RequestInit | undefined
-): Promise<R> {
+): Promise<any> {
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -29,26 +30,40 @@ export async function postData<R>(
     });
 
     const badRequest = !resp.ok;
+
     if (badRequest) {
-        const message = await resp.text();
-        throw new Error(message);
+        return await createDefaultException(resp);
     }
 
-    const isJsonContent =
-        resp.headers.get("Content-Type") === "application/json";
-    if (isJsonContent) {
+    if (isJsonContent(resp)) {
         const data = await resp.json();
         return data;
     }
 
-    return <R>null;
+    return null;
 }
 
-export async function putData<R>(
+async function createDefaultException(
+    resp: Response
+): Promise<DefaultException> {
+    const errorMessage = await resp.text();
+    const statusCode = resp.status;
+
+    return {
+        errorMessage,
+        statusCode,
+    };
+}
+
+function isJsonContent(resp: Response): boolean {
+    return resp.headers.get("Content-Type") === "application/json";
+}
+
+export async function putData(
     url: string,
     body: any,
     config?: RequestInit | undefined
-): Promise<R> {
+): Promise<any> {
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "PUT",
         body: JSON.stringify(body),
@@ -60,24 +75,21 @@ export async function putData<R>(
 
     const badRequest = !resp.ok;
     if (badRequest) {
-        const message = await resp.text();
-        throw new Error(message);
+        return await createDefaultException(resp);
     }
 
-    const isJsonContent =
-        resp.headers.get("Content-Type") === "application/json";
-    if (isJsonContent) {
+    if (isJsonContent(resp)) {
         const data = await resp.json();
         return data;
     }
 
-    return <R>null;
+    return null;
 }
 
-export async function getData<R>(
+export async function getData(
     url: string,
     config?: RequestInit | undefined
-): Promise<R> {
+): Promise<any> {
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "GET",
         headers: {
@@ -90,15 +102,14 @@ export async function getData<R>(
         const data = await resp.json();
         return data;
     } else {
-        const message = await resp.text();
-        throw new Error(message);
+        return await createDefaultException(resp);
     }
 }
 
-export async function deleteData<R>(
+export async function deleteData(
     url: string,
     config?: RequestInit | undefined
-): Promise<R> {
+): Promise<any> {
     const resp = await fetch(`${BASE_API_URL}${url}`, {
         method: "DELETE",
         headers: {
@@ -109,16 +120,13 @@ export async function deleteData<R>(
 
     const badRequest = !resp.ok;
     if (badRequest) {
-        const message = await resp.text();
-        throw new Error(message);
+        return await createDefaultException(resp);
     }
 
-    const isJsonContent =
-        resp.headers.get("Content-Type") === "application/json";
-    if (isJsonContent) {
+    if (isJsonContent(resp)) {
         const data = await resp.json();
         return data;
     }
 
-    return <R>null;
+    return null;
 }

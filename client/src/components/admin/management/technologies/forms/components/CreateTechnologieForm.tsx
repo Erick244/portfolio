@@ -30,6 +30,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { postData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import {
     CalendarClock,
     ImageIcon,
@@ -67,13 +68,20 @@ export function CreateTechnologieForm() {
 
     const router = useRouter();
 
-    async function onSubmit(data: CreateTechnologieFormData) {
+    async function onSubmit(
+        createTechnologieFormData: CreateTechnologieFormData
+    ) {
         try {
-            await postData("/technologies", data);
+            const data = await postData(
+                "/technologies",
+                createTechnologieFormData
+            );
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",
-                description: `Technologie "${data.name}" created!`,
+                description: `Technologie "${createTechnologieFormData.name}" created!`,
             });
 
             router.refresh();

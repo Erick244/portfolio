@@ -5,6 +5,7 @@ import { DialogClose } from "@/components/shadcn-ui/dialog";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { deleteData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { Project } from "../../table/ProjectsTableColumns";
@@ -20,7 +21,9 @@ export function DeleteProjectForm({ project }: DeleteProjectFormProps) {
         e.preventDefault();
 
         try {
-            await deleteData(`/projects/${project.id}`);
+            const data = await deleteData(`/projects/${project.id}`);
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",

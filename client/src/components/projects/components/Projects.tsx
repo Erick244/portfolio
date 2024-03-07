@@ -6,7 +6,7 @@ import { HTMLAttributes } from "react";
 import { Project } from "../templates/project";
 
 export async function Projects(props: HTMLAttributes<HTMLDivElement>) {
-    const projects = await getData<ProjectData[]>("/projects", {
+    const projects: ProjectData[] = await getData("/projects", {
         cache: "no-store",
     });
 

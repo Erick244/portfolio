@@ -22,6 +22,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { putData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import { DialogClose } from "@radix-ui/react-dialog";
 import {
     ExternalLink,
@@ -62,13 +63,15 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
 
     const router = useRouter();
 
-    async function onSubmit(data: EditProjectFormData) {
+    async function onSubmit(editProjectFormData: EditProjectFormData) {
         try {
-            await putData("/projects", data);
+            const data = await putData("/projects", editProjectFormData);
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",
-                description: `Technologie "${data.name}" edited!`,
+                description: `Technologie "${editProjectFormData.name}" edited!`,
             });
 
             router.refresh();

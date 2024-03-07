@@ -4,7 +4,7 @@ import { HTMLAttributes } from "react";
 import { Achievement } from "../templates/achievement";
 
 export async function Jorney(props: HTMLAttributes<HTMLDivElement>) {
-    const jorney = await getData<AcheivementData[]>("/jorney", {
+    const jorney: AcheivementData[] = await getData("/jorney", {
         cache: "no-store",
     });
 

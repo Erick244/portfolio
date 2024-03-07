@@ -3,6 +3,7 @@
 import { AdminFormData } from "@/components/admin/components/AdminForm";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { postData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import { Admin } from "@/models/Admin.model";
 import { AdminAndToken } from "@/models/AdminAndToken.model";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
@@ -30,7 +31,9 @@ export default function AdminAuthContextProvider({
             const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
             if (!token) return;
 
-            const admin = await postData<Admin>("/admin/token", { token });
+            const data = await postData("/admin/token", { token });
+
+            const admin = checkForErrorInResponseData<Admin>(data);
 
             setAdmin(admin);
         } catch (error: any) {
@@ -52,12 +55,12 @@ export default function AdminAuthContextProvider({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    async function login(data: AdminFormData) {
+    async function login(aaminFormData: AdminFormData) {
         try {
-            const adminAndToken = await postData<AdminAndToken>(
-                "/admin/login",
-                data
-            );
+            const data = await postData("/admin/login", aaminFormData);
+
+            const adminAndToken =
+                checkForErrorInResponseData<AdminAndToken>(data);
 
             const oneMonthInSeconds = 60 * 60 * 24 * 30;
             cookies.set(AUTH_TOKEN_COOKIE_NAME, adminAndToken.token, {

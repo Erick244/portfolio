@@ -12,11 +12,11 @@ interface JorneyTabProps {
 
 export async function JorneyTab({ pageParam }: JorneyTabProps) {
     const take = 6;
-    const count = await getData<number>("/jorney/count");
+    const count: number = await getData("/jorney/count");
     const pagesCount = getPagesCount(count, take);
     const apiPageValue = getApiPageValue(pageParam, pagesCount);
 
-    const jorney = await getData<Achievement[]>(
+    const jorney: Achievement[] = await getData(
         `/jorney?page=${apiPageValue}&take=${take}`
     );
 

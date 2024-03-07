@@ -23,6 +23,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { postData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import {
     ExternalLink,
     Github,
@@ -60,13 +61,15 @@ export function CreateProjectForm() {
 
     const router = useRouter();
 
-    async function onSubmit(data: CreateProjectFormData) {
+    async function onSubmit(createProjectFormData: CreateProjectFormData) {
         try {
-            await postData("/projects", data);
+            const data = await postData("/projects", createProjectFormData);
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",
-                description: `Technologie "${data.name}" created!`,
+                description: `Technologie "${createProjectFormData.name}" created!`,
             });
 
             router.refresh();

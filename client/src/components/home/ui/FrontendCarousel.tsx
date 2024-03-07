@@ -7,7 +7,7 @@ import { TechnologieCard } from "../templates/technologie-card";
 import { TechnologieCarousel } from "./TechnologieCarousel";
 
 export async function FrontendCarousel() {
-    const technologies = await getData<Technologie[]>(
+    const technologies: Technologie[] = await getData(
         "/technologies/findAllByCategory/FRONTEND",
         { cache: "no-store" }
     );

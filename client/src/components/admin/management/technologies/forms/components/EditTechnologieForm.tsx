@@ -30,6 +30,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { putData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import {
     CalendarClock,
     ImageIcon,
@@ -65,13 +66,18 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
 
     const router = useRouter();
 
-    async function onSubmit(data: EditTechnologieFormData) {
+    async function onSubmit(editTechnologieFormData: EditTechnologieFormData) {
         try {
-            await putData("/technologies", data);
+            const data = await putData(
+                "/technologies",
+                editTechnologieFormData
+            );
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",
-                description: `Technologie "${data.name}" edited!`,
+                description: `Technologie "${editTechnologieFormData.name}" edited!`,
             });
 
             router.refresh();

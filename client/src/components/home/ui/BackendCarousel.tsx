@@ -7,7 +7,7 @@ import { TechnologieCard } from "../templates/technologie-card";
 import { TechnologieCarousel } from "./TechnologieCarousel";
 
 export async function BackendCarousel() {
-    const technologies = await getData<Technologie[]>(
+    const technologies: Technologie[] = await getData(
         "/technologies/findAllByCategory/BACKEND",
         { cache: "no-store" }
     );

@@ -5,6 +5,7 @@ import { DialogClose } from "@/components/shadcn-ui/dialog";
 import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { deleteData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { Technologie } from "../../table/TechnologiesTableColumns";
@@ -22,7 +23,9 @@ export function DeleteTechnologieForm({
         e.preventDefault();
 
         try {
-            await deleteData(`/technologies/${technologie.id}`);
+            const data = await deleteData(`/technologies/${technologie.id}`);
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",

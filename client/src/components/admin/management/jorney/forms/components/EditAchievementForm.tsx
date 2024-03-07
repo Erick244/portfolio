@@ -29,6 +29,7 @@ import { H2 } from "@/components/shadcn-ui/typography/H2";
 import { toast } from "@/components/shadcn-ui/use-toast";
 import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { putData } from "@/functions/api";
+import { checkForErrorInResponseData } from "@/functions/data";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, Palette, WholeWord } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -58,15 +59,20 @@ export function EditAchievementForm({ achievement }: EditAchievementFormProps) {
 
     const router = useRouter();
 
-    async function onSubmit(data: EditAchievementFormData) {
-        const dateFormated = format(data.date, "PPP");
+    async function onSubmit(editAchievementFormData: EditAchievementFormData) {
+        const dateFormated = format(editAchievementFormData.date, "PPP");
 
         try {
-            await putData("/jorney", { dateFormated, ...data });
+            const data = await putData("/jorney", {
+                dateFormated,
+                ...editAchievementFormData,
+            });
+
+            checkForErrorInResponseData(data);
 
             toast({
                 title: "Success",
-                description: `Technologie "${data.title}" edited!`,
+                description: `Technologie "${editAchievementFormData.title}" edited!`,
             });
 
             router.refresh();
