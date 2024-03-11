@@ -256,6 +256,7 @@ public class AchievementServiceIntegrationTest {
 		assertEquals(resp.getBody(), 10L);
 	}
 
+	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange

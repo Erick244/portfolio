@@ -19,6 +19,7 @@ import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.enums.TechnologieCategory;
+import com.portfolio.server.models.enums.TechnologieKnowledge;
 import com.portfolio.server.models.repositories.AdminRepository;
 import com.portfolio.server.models.repositories.TechnologieRepository;
 
@@ -45,7 +46,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("technologie", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("technologie", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
@@ -68,7 +69,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_NameNull() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto(null, "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto(null, TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
@@ -80,7 +81,7 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
-	void testSave_ExperienceNull() {
+	void testSave_knowledgeNull() {
 		// Arrange
 		authenticateAdmin();
 		SaveTechnologieDto dto = new SaveTechnologieDto("name", null, "imageUrl",
@@ -91,14 +92,14 @@ public class TechnologieServiceIntegrationTest {
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 400);
-		assertEquals(resp.getBody(), "The experience cannot be null.");
+		assertEquals(resp.getBody(), "The knowledge cannot be null.");
 	}
 
 	@Test
 	void testSave_ImageUrlNull() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", null,
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, null,
 				TechnologieCategory.BACKEND, "about", "#FFFFFF");
 
 		// Act
@@ -113,7 +114,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_CategoryNull() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				null, "about", "#FFFFFF");
 
 		// Act
@@ -128,7 +129,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_AboutNull() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, null, "#FFFFFF");
 
 		// Act
@@ -143,7 +144,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_AboutLessThan3Characters() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, "ab", "#FFFFFF");
 
 		// Act
@@ -159,7 +160,7 @@ public class TechnologieServiceIntegrationTest {
 		// Arrange
 		authenticateAdmin();
 		String about = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, about, "#FFFFFF");
 
 		// Act
@@ -174,7 +175,7 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_ColorNull() {
 		// Arrange
 		authenticateAdmin();
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, "about", null);
 
 		// Act
@@ -205,11 +206,11 @@ public class TechnologieServiceIntegrationTest {
 		// Arrange
 		Admin admin = authenticateAdmin();
 		technologieRepository.save(
-				new Technologie("name", "experience", "imageUrl",
+				new Technologie("name", TechnologieKnowledge.EXPERT, "imageUrl",
 						TechnologieCategory.BACKEND, "about", "#FFFFFF", admin));
 
 		SaveTechnologieDto dto = new SaveTechnologieDto(
-				"name", "2 years",
+				"name", TechnologieKnowledge.BASIC,
 				"imageUrl",
 				TechnologieCategory.BACKEND, "about", "#00000");
 
@@ -221,7 +222,7 @@ public class TechnologieServiceIntegrationTest {
 
 		assertEquals(resp.getStatusCode().value(), 200);
 		assertNotNull(technologieEdited);
-		assertEquals(technologieEdited.getExperience(), dto.experience());
+		assertEquals(technologieEdited.getknowledge(), dto.knowledge());
 	}
 
 	@SuppressWarnings("unchecked")
@@ -245,7 +246,6 @@ public class TechnologieServiceIntegrationTest {
 	private void seedDataBase(int size) {
 		for (int i = 0; i < size; i++) {
 			String name = "name" + i;
-			String experience = "experience" + i;
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
@@ -253,7 +253,7 @@ public class TechnologieServiceIntegrationTest {
 
 			Technologie technologie = new Technologie(
 					name,
-					experience,
+					TechnologieKnowledge.EXPERT,
 					imageUrl,
 					TechnologieCategory.BACKEND,
 					about,
@@ -328,6 +328,7 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(technologies.size(), 0);
 	}
 
+	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange

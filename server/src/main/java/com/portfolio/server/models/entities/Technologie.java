@@ -3,6 +3,7 @@ package com.portfolio.server.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.enums.TechnologieCategory;
+import com.portfolio.server.models.enums.TechnologieKnowledge;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -25,8 +26,9 @@ public class Technologie {
 	@Column(unique = true)
 	private String name;
 
-	@NotNull(message = "The experience cannot be null.")
-	private String experience;
+	@NotNull(message = "The knowledge cannot be null.")
+	@Column(name = "knowledge")
+	private TechnologieKnowledge knowledge;
 
 	@NotNull(message = "The imageUrl cannot be null.")
 	private String imageUrl;
@@ -47,10 +49,11 @@ public class Technologie {
 	public Technologie() {
 	}
 
-	public Technologie(String name, String experience, String imageUrl, TechnologieCategory category, String about,
+	public Technologie(String name, TechnologieKnowledge knowledge, String imageUrl, TechnologieCategory category,
+			String about,
 			String color, Admin createdBy) {
 		this.name = name;
-		this.experience = experience;
+		this.knowledge = knowledge;
 		this.imageUrl = imageUrl;
 		this.category = category;
 		this.about = about;
@@ -63,7 +66,7 @@ public class Technologie {
 		setAbout(dto.about());
 		setCategory(dto.category());
 		setColor(dto.color());
-		setExperience(dto.experience());
+		setknowledge(dto.knowledge());
 		setImageUrl(dto.imageUrl());
 		setName(dto.name());
 	}
@@ -72,8 +75,8 @@ public class Technologie {
 		this.name = name;
 	}
 
-	public void setExperience(String experience) {
-		this.experience = experience;
+	public void setknowledge(TechnologieKnowledge knowledge) {
+		this.knowledge = knowledge;
 	}
 
 	public void setImageUrl(String imageUrl) {
@@ -100,8 +103,8 @@ public class Technologie {
 		return name;
 	}
 
-	public String getExperience() {
-		return experience;
+	public TechnologieKnowledge getknowledge() {
+		return knowledge;
 	}
 
 	public String getImageUrl() {

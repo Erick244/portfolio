@@ -22,8 +22,23 @@ export async function FrontendCarousel() {
                                 {tech.name}
                             </H3>
                             <div className="flex justify-between ">
-                                <Blockquote>
-                                    Experience: {tech.experience}
+                                <Blockquote className="flex items-center gap-2">
+                                    <span>Knowledge:</span>
+                                    <TechnologieCard.Star
+                                        fill
+                                        toolTipText="Basic"
+                                    />
+                                    <TechnologieCard.Star
+                                        fill={
+                                            tech.knowledge === "INTERMEDIATE" ||
+                                            tech.knowledge === "EXPERT"
+                                        }
+                                        toolTipText="Intermediate"
+                                    />
+                                    <TechnologieCard.Star
+                                        fill={tech.knowledge === "EXPERT"}
+                                        toolTipText="Expert"
+                                    />
                                 </Blockquote>
                                 <TechnologieCard.Image
                                     imageUrl={tech.imageUrl}

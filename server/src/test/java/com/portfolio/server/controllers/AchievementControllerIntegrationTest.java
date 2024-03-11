@@ -163,6 +163,7 @@ public class AchievementControllerIntegrationTest {
 
 	}
 
+	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange

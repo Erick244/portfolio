@@ -13,7 +13,7 @@ import { EditTechnologieForm } from "../forms/components/EditTechnologieForm";
 export type Technologie = {
     id: number;
     name: string;
-    experience: string;
+    knowledge: "BASIC" | "INTERMEDIATE" | "EXPERT";
     category: "FRONTEND" | "BACKEND";
     about: string;
     imageUrl: string;
@@ -30,9 +30,9 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
         header: ({ column }) => <SortingButton column={column} label="Name" />,
     },
     {
-        accessorKey: "experience",
+        accessorKey: "knowledge",
         header: ({ column }) => (
-            <SortingButton column={column} label="Experience" />
+            <SortingButton column={column} label="Knowledge" />
         ),
     },
     {

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { TechnologieCard } from "@/components/home/templates/technologie-card";
 import { Button } from "@/components/shadcn-ui/button";
 import { DialogClose } from "@/components/shadcn-ui/dialog";
 import {
@@ -32,7 +33,7 @@ import { VerticalDivisor } from "@/components/shadcn-ui/vertical-divisor";
 import { putData } from "@/functions/api";
 import { checkForErrorInResponseData } from "@/functions/data";
 import {
-    CalendarClock,
+    GraduationCap,
     ImageIcon,
     Layers,
     Palette,
@@ -45,7 +46,7 @@ import { TechnologieComponentPreview } from "../ui/TechnologieComponentPreview";
 
 const editTechnologieSchema = z.object({
     name: z.string().min(1).max(20),
-    experience: z.string().min(1).max(20),
+    knowledge: z.enum(["BASIC", "INTERMEDIATE", "EXPERT"]),
     category: z.enum(["FRONTEND", "BACKEND"]),
     about: z.string().min(1).max(150),
     imageUrl: z.string(),
@@ -122,23 +123,57 @@ export function EditTechnologieForm({ technologie }: EditTechnologieFormProps) {
                     />
                     <FormField
                         control={form.control}
-                        name="experience"
+                        name="knowledge"
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel>
                                     <IconLabel
-                                        Icon={CalendarClock}
-                                        label="Experience"
+                                        Icon={GraduationCap}
+                                        label="Knowledge"
                                     />
                                 </FormLabel>
-                                <FormControl>
-                                    <Input
-                                        minLength={1}
-                                        maxLength={20}
-                                        placeholder="ex: 2 years..."
-                                        {...field}
-                                    />
-                                </FormControl>
+                                <Select
+                                    onValueChange={field.onChange}
+                                    defaultValue={field.value}
+                                >
+                                    <FormControl>
+                                        <SelectTrigger>
+                                            <SelectValue placeholder="Select a technologie knowledge" />
+                                        </SelectTrigger>
+                                    </FormControl>
+                                    <SelectContent>
+                                        <SelectItem value="BASIC">
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Basic"
+                                            />
+                                        </SelectItem>
+                                        <SelectItem value="INTERMEDIATE">
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Basic"
+                                            />
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Intermediate"
+                                            />
+                                        </SelectItem>
+                                        <SelectItem value="EXPERT">
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Basic"
+                                            />
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Intermediate"
+                                            />
+                                            <TechnologieCard.Star
+                                                fill
+                                                toolTipText="Expert"
+                                            />
+                                        </SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 <FormMessage />
                             </FormItem>
                         )}

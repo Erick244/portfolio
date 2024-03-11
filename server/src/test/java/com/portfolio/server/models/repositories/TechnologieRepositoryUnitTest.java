@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.enums.TechnologieCategory;
+import com.portfolio.server.models.enums.TechnologieKnowledge;
 
 @DataJpaTest
 public class TechnologieRepositoryUnitTest {
@@ -36,7 +37,8 @@ public class TechnologieRepositoryUnitTest {
 		// Arrange
 		String name = "technologie";
 		persistTechnologie(
-				new Technologie(name, "experience", "imageUrl", TechnologieCategory.BACKEND, "about", "#fffff",
+				new Technologie(name, TechnologieKnowledge.EXPERT, "imageUrl", TechnologieCategory.BACKEND, "about",
+						"#fffff",
 						new Admin("username", "password")));
 
 		// Act
@@ -51,7 +53,8 @@ public class TechnologieRepositoryUnitTest {
 	void testFindByName_NotFound() {
 		// Arrange
 		persistTechnologie(
-				new Technologie("technologie", "experience", "imageUrl", TechnologieCategory.BACKEND, "about",
+				new Technologie("technologie", TechnologieKnowledge.EXPERT, "imageUrl", TechnologieCategory.BACKEND,
+						"about",
 						"#fffff", new Admin("username", "password")));
 
 		String name = "not-found";
@@ -73,13 +76,16 @@ public class TechnologieRepositoryUnitTest {
 	void testFindAllByCategory() {
 		// Arrange
 		persistTechnologie(
-				new Technologie("technologie1", "experience", "imageUrl", TechnologieCategory.BACKEND, "about",
+				new Technologie("technologie1", TechnologieKnowledge.EXPERT, "imageUrl", TechnologieCategory.BACKEND,
+						"about",
 						"#fffff", new Admin("username1", "password")));
 		persistTechnologie(
-				new Technologie("technologie2", "experience", "imageUrl", TechnologieCategory.BACKEND, "about",
+				new Technologie("technologie2", TechnologieKnowledge.EXPERT, "imageUrl", TechnologieCategory.BACKEND,
+						"about",
 						"#fffff", new Admin("username2", "password")));
 		persistTechnologie(
-				new Technologie("technologie3", "experience", "imageUrl", TechnologieCategory.FRONTEND, "about",
+				new Technologie("technologie3", TechnologieKnowledge.EXPERT, "imageUrl", TechnologieCategory.FRONTEND,
+						"about",
 						"#fffff", new Admin("username3", "password")));
 
 		// Act

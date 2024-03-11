@@ -10,7 +10,7 @@ export function Blockquote({ children, ...props }: BlockquoteProps) {
         <blockquote
             {...props}
             className={cn(
-                "border-l-2 pl-3 italic flex flex-col justify-center sm:text-base text-sm",
+                "border-l-2 pl-3 font-semibold sm:text-base text-sm",
                 props.className
             )}
         >

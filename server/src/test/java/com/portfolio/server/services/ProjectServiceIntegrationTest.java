@@ -391,6 +391,7 @@ public class ProjectServiceIntegrationTest {
 		assertEquals(resp.getBody(), 10L);
 	}
 
+	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange

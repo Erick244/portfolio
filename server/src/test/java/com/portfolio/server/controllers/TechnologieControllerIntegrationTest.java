@@ -26,6 +26,7 @@ import com.portfolio.server.models.dto.technologie.SaveTechnologieDto;
 import com.portfolio.server.models.entities.Admin;
 import com.portfolio.server.models.entities.Technologie;
 import com.portfolio.server.models.enums.TechnologieCategory;
+import com.portfolio.server.models.enums.TechnologieKnowledge;
 import com.portfolio.server.models.repositories.AdminRepository;
 import com.portfolio.server.models.repositories.TechnologieRepository;
 import com.portfolio.server.services.JwtService;
@@ -59,7 +60,7 @@ public class TechnologieControllerIntegrationTest {
 	@Test
 	void testSave() throws Exception {
 		// Arrange
-		SaveTechnologieDto dto = new SaveTechnologieDto("name", "experience", "imageUrl",
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#ffff");
 		String jsonDto = mapper.writeValueAsString(dto);
 
@@ -83,7 +84,7 @@ public class TechnologieControllerIntegrationTest {
 		String adminUsername = "username0";
 
 		SaveTechnologieDto dto = new SaveTechnologieDto(
-				technologieName, "experience - edited", "imageUrl",
+				technologieName, TechnologieKnowledge.BASIC, "imageUrl",
 				TechnologieCategory.BACKEND, "about", "#ffff");
 		String jsonDto = mapper.writeValueAsString(dto);
 
@@ -100,7 +101,6 @@ public class TechnologieControllerIntegrationTest {
 	private void seedDataBase(int size) {
 		for (int i = 0; i < size; i++) {
 			String name = "name" + i;
-			String experience = "experience" + i;
 			String imageUrl = "imageUrl" + i;
 			String about = "about" + i;
 			String color = "color" + i;
@@ -108,7 +108,7 @@ public class TechnologieControllerIntegrationTest {
 
 			Technologie technologie = new Technologie(
 					name,
-					experience,
+					TechnologieKnowledge.EXPERT,
 					imageUrl,
 					TechnologieCategory.BACKEND,
 					about,
@@ -190,6 +190,7 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(responseTechnologiesSizeIsSame);
 	}
 
+	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange

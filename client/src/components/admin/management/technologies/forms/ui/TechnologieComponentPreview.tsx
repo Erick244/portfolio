@@ -19,10 +19,10 @@ export function TechnologieComponentPreview({
 }: TechnologieComponentPreviewProps) {
     const color = form.watch("color");
     const name = form.watch("name") || "Name";
-    const experience = form.watch("experience") || "XXX";
     const imageUrl = form.watch("imageUrl");
     const isValidUrl = imageUrl && imageUrl.match(httpsUrlRegex);
     const about = form.watch("about") || "About Description...";
+    const knowledge = form.watch("knowledge") || "BASIC";
 
     return (
         <div {...props}>
@@ -32,7 +32,21 @@ export function TechnologieComponentPreview({
                     {name}
                 </H3>
                 <div className="flex justify-between ">
-                    <Blockquote>Experience: {experience}</Blockquote>
+                    <Blockquote className="flex items-center gap-2">
+                        <span>Knowledge:</span>
+                        <TechnologieCard.Star fill toolTipText="Basic" />
+                        <TechnologieCard.Star
+                            fill={
+                                knowledge === "INTERMEDIATE" ||
+                                knowledge === "EXPERT"
+                            }
+                            toolTipText="Intermediate"
+                        />
+                        <TechnologieCard.Star
+                            fill={knowledge === "EXPERT"}
+                            toolTipText="Expert"
+                        />
+                    </Blockquote>
                     {isValidUrl ? (
                         <TechnologieCard.Image imageUrl={imageUrl} />
                     ) : (

@@ -39,7 +39,7 @@ public class TechnologieService {
 			} else {
 				Admin adminAuth = adminService.getAdminAuth();
 				Technologie newTechnologie = new Technologie(
-						name, dto.experience(), dto.imageUrl(), dto.category(),
+						name, dto.knowledge(), dto.imageUrl(), dto.category(),
 						dto.about(), dto.color(), adminAuth);
 
 				technologieRepository.save(newTechnologie);

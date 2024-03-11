@@ -169,6 +169,7 @@ public class ProjectControllerIntegrationTest {
 
 	}
 
+	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange

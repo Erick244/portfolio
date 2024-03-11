@@ -12,7 +12,7 @@ export function AboutIntroduction(props: HTMLAttributes<HTMLDivElement>) {
                 <strong>São José dos Campos, São Paulo, Brazil</strong>.
                 I&apos;m passionate about technology, especially web
                 programming. I love creating websites and applications that make
-                the online experience more dynamic and interactive.
+                the online knowledge more dynamic and interactive.
             </P>
             <P className="text-center">
                 I&apos;ve been on this journey for three years, studying and
