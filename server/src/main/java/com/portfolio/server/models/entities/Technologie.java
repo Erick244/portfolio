@@ -31,6 +31,7 @@ public class Technologie {
 	private TechnologieKnowledge knowledge;
 
 	@NotNull(message = "The imageUrl cannot be null.")
+	@Size(min = 0, max = 255, message = "The image URL cannot exceed 255 characters.")
 	private String imageUrl;
 
 	@NotNull(message = "The category cannot be null.")

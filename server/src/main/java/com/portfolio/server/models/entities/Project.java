@@ -25,6 +25,7 @@ public class Project {
 	private String name;
 
 	@Column(nullable = true)
+	@Size(min = 0, max = 255, message = "The image URL cannot exceed 255 characters.")
 	private String imageUrl;
 
 	@NotNull(message = "The repository URL cannot be null.")

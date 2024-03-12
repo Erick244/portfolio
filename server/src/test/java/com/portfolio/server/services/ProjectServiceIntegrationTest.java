@@ -145,6 +145,30 @@ public class ProjectServiceIntegrationTest {
 	}
 
 	@Test
+	void testSave_ImageMoreThan255Characters() {
+		// Arrange
+		authenticateAdmin();
+		String imageUrl256Characters = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		SaveProjectDto dto = new SaveProjectDto(
+				"name",
+				imageUrl256Characters,
+				"repoUrl",
+				"siteUrl",
+				"description",
+				"#fff");
+
+		// Act
+		ResponseEntity<?> resp = projectService.save(dto);
+
+		// Assert
+		String errorMessage = (String) resp.getBody();
+
+		assertEquals(resp.getStatusCode().value(), 400);
+		assertNotNull(errorMessage);
+		assertEquals(errorMessage, "The image URL cannot exceed 255 characters.");
+	}
+
+	@Test
 	void testSave_RepoUrlNull() {
 		// Arrange
 		authenticateAdmin();
@@ -236,13 +260,13 @@ public class ProjectServiceIntegrationTest {
 	void testSave_DescriptionMoreThan150Characters() {
 		// Arrange
 		authenticateAdmin();
-		String description = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		String description151Characters = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 		SaveProjectDto dto = new SaveProjectDto(
 				"name",
 				"imageUrl",
 				"repoUrl",
 				"siteUrl",
-				description,
+				description151Characters,
 				"#fff");
 
 		// Act

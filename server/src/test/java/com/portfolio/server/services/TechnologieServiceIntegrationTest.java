@@ -111,6 +111,26 @@ public class TechnologieServiceIntegrationTest {
 	}
 
 	@Test
+	void testSave_ImageMoreThan255Characters() {
+		// Arrange
+		authenticateAdmin();
+		String imageUrl256Characters = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT,
+				imageUrl256Characters,
+				TechnologieCategory.BACKEND, "about", "#FFFFFF");
+
+		// Act
+		ResponseEntity<?> resp = technologieService.save(dto);
+
+		// Assert
+		String errorMessage = (String) resp.getBody();
+
+		assertEquals(resp.getStatusCode().value(), 400);
+		assertNotNull(errorMessage);
+		assertEquals(errorMessage, "The image URL cannot exceed 255 characters.");
+	}
+
+	@Test
 	void testSave_CategoryNull() {
 		// Arrange
 		authenticateAdmin();
@@ -159,9 +179,9 @@ public class TechnologieServiceIntegrationTest {
 	void testSave_AboutMoreThan150Characters() {
 		// Arrange
 		authenticateAdmin();
-		String about = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+		String about151Characteres = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 		SaveTechnologieDto dto = new SaveTechnologieDto("name", TechnologieKnowledge.EXPERT, "imageUrl",
-				TechnologieCategory.BACKEND, about, "#FFFFFF");
+				TechnologieCategory.BACKEND, about151Characteres, "#FFFFFF");
 
 		// Act
 		ResponseEntity<?> resp = technologieService.save(dto);
