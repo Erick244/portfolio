@@ -26,7 +26,7 @@ export function ProjectImage({
             )}
         >
             {siteUrl && (
-                <span className="transition-all duration-200 flex justify-center items-center gap-2 py-2 z-10 absolute text-2xl font-bold group-hover/link:w-full w-0 opacity-0 group-hover/link:opacity-100  group-hover/link:bg-black/80 ">
+                <span className="transition-all duration-200 flex justify-center items-center gap-2 py-2 z-10 absolute text-2xl font-bold group-hover/link:w-full w-0 opacity-0 group-hover/link:opacity-100  group-hover/link:bg-background/80 ">
                     <span>PREVIEW</span>
                     <ExternalLink strokeWidth={3} />
                 </span>
