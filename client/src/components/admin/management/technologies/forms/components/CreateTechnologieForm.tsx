@@ -48,7 +48,7 @@ const createTechnologieSchema = z.object({
     knowledge: z.enum(["BASIC", "INTERMEDIATE", "EXPERT"]),
     category: z.enum(["FRONTEND", "BACKEND"]),
     about: z.string().min(1).max(150),
-    imageUrl: z.string(),
+    imageUrl: z.string().max(255),
     color: z.string(),
 });
 
@@ -194,6 +194,7 @@ export function CreateTechnologieForm() {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
+                                        maxLength={255}
                                         type="url"
                                         placeholder="Image URL..."
                                         {...field}

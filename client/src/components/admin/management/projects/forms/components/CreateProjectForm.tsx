@@ -38,7 +38,7 @@ import { ProjectComponentPreview } from "../ui/ProjectComponentPreview";
 const createProjectSchema = z.object({
     name: z.string().min(1).max(20),
     description: z.string().min(1).max(150),
-    imageUrl: z.string().min(0),
+    imageUrl: z.string().min(0).max(255),
     repoUrl: z.string(),
     siteUrl: z.string().min(0),
     color: z.string(),
@@ -124,6 +124,7 @@ export function CreateProjectForm() {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
+                                        maxLength={255}
                                         type="url"
                                         placeholder="Image URL..."
                                         {...field}
