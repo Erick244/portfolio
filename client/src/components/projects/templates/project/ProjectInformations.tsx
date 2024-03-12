@@ -17,12 +17,12 @@ export function ProjectInformations({
         <div
             {...props}
             className={cn(
-                "sm:w-1/2 w-full p-5 sm:self-center self-stretch",
+                "sm:w-1/2 w-full p-5 sm:self-center self-stretch flex flex-col justify-center items-center",
                 props.className
             )}
         >
-            <H2 className="sm:text-left text-center">{title}</H2>
-            <P className="sm:text-base text-sm sm:text-left text-center break-words max-w-sm w-full">
+            <H2 className="sm:text-left text-center self-stretch">{title}</H2>
+            <P className="sm:text-base text-sm sm:self-start sm:text-left text-center break-words max-w-sm">
                 {description}
             </P>
         </div>
