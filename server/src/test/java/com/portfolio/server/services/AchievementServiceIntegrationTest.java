@@ -256,20 +256,21 @@ public class AchievementServiceIntegrationTest {
 		assertEquals(resp.getBody(), 10L);
 	}
 
-	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange
-		seedDataBase(2);
-		int acheivementId = 1;
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		achievementRepository.save(new Achievement("title", "dateFormated", "color", admin));
+		int id = achievementRepository.findByTitle("title").get().getId();
 
 		// Act
-		ResponseEntity<?> resp = achievementService.delete(acheivementId);
+		ResponseEntity<?> resp = achievementService.delete(id);
 
 		// Assert
 		long count = achievementRepository.count();
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertEquals(count, 1l);
+		assertEquals(count, 0l);
 	}
 
 	@Test

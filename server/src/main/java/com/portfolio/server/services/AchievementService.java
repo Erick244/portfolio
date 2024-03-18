@@ -77,7 +77,7 @@ public class AchievementService {
 		Achievement achievement = achievementRepository.findById(id).orElse(null);
 
 		if (achievement == null) {
-			return ResponseEntity.notFound().build();
+			return ResponseEntity.status(404).body("Achievement not found");
 		}
 
 		achievementRepository.delete(achievement);

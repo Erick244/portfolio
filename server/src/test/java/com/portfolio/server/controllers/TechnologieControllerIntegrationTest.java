@@ -190,15 +190,28 @@ public class TechnologieControllerIntegrationTest {
 				.andExpect(responseTechnologiesSizeIsSame);
 	}
 
-	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange
-		seedDataBase(10);
-		String bearerToken = "Bearer " + jwtService.createToken("username1");
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		technologieRepository.save(
+				new Technologie(
+						"name",
+						TechnologieKnowledge.BASIC,
+						"imageUrl",
+						TechnologieCategory.BACKEND,
+						"about",
+						"color",
+						admin));
+
+		int id = technologieRepository.findByName("name").get().getId();
+
+		String bearerToken = "Bearer " + jwtService.createToken("username");
 
 		// Act
-		mvc.perform(delete("/technologies/{id}", 1)
+		mvc.perform(delete("/technologies/{id}",
+				id)
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());
 	}

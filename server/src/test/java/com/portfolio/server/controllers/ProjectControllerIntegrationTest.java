@@ -169,15 +169,20 @@ public class ProjectControllerIntegrationTest {
 
 	}
 
-	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange
-		seedDataBase(10);
-		String bearerToken = "Bearer " + jwtService.createToken("username1");
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		projectRepository.save(new Project("name", "imageUrl", "repoUrl", "siteUrl", "description", "color",
+				admin));
+		int id = projectRepository.findByName("name").get().getId();
+
+		String bearerToken = "Bearer " + jwtService.createToken("username");
 
 		// Act
-		mvc.perform(delete("/projects/{id}", 1)
+		mvc.perform(delete("/projects/{id}",
+				id)
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());
 	}

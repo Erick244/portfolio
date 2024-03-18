@@ -415,20 +415,22 @@ public class ProjectServiceIntegrationTest {
 		assertEquals(resp.getBody(), 10L);
 	}
 
-	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange
-		seedDataBase(2);
-		int technologieId = 1;
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		projectRepository.save(new Project("name", "imageUrl", "repoUrl", "siteUrl", "description", "color",
+				admin));
+		int id = projectRepository.findByName("name").get().getId();
 
 		// Act
-		ResponseEntity<?> resp = projectService.delete(technologieId);
+		ResponseEntity<?> resp = projectService.delete(id);
 
 		// Assert
 		long count = projectRepository.count();
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertEquals(count, 1l);
+		assertEquals(count, 0l);
 	}
 
 	@Test

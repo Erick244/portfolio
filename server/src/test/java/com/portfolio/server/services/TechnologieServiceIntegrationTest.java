@@ -348,20 +348,30 @@ public class TechnologieServiceIntegrationTest {
 		assertEquals(technologies.size(), 0);
 	}
 
-	// Run separately
 	@Test
 	void testDelete() {
 		// Arrange
-		seedDataBase(2);
-		int technologieId = 1;
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		technologieRepository.save(
+				new Technologie(
+						"name",
+						TechnologieKnowledge.BASIC,
+						"imageUrl",
+						TechnologieCategory.BACKEND,
+						"about",
+						"color",
+						admin));
+
+		int id = technologieRepository.findByName("name").get().getId();
 
 		// Act
-		ResponseEntity<?> resp = technologieService.delete(technologieId);
+		ResponseEntity<?> resp = technologieService.delete(id);
 
 		// Assert
 		long count = technologieRepository.count();
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertEquals(count, 1l);
+		assertEquals(count, 0l);
 	}
 
 	@Test

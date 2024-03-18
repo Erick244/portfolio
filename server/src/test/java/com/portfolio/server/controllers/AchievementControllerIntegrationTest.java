@@ -163,15 +163,19 @@ public class AchievementControllerIntegrationTest {
 
 	}
 
-	// Run separately
 	@Test
 	void testDelete() throws Exception {
 		// Arrange
-		seedDataBase(10);
-		String bearerToken = "Bearer " + jwtService.createToken("username1");
+		Admin admin = new Admin("username", "password");
+		adminRepository.save(admin);
+		achievementRepository.save(new Achievement("title", "dateFormated", "color", admin));
+		int id = achievementRepository.findByTitle("title").get().getId();
+
+		String bearerToken = "Bearer " + jwtService.createToken("username");
 
 		// Act
-		mvc.perform(delete("/jorney/{id}", 1)
+		mvc.perform(delete("/jorney/{id}",
+				id)
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());
 	}
