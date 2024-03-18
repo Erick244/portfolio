@@ -29,5 +29,5 @@ Send me a message or maybe a proposal! 👋
 #### Inquisitiveness
 
 This project has an admin panel, where I control the portfolio data. 🛡️
-| ![Portfolio admin table preview](https://media.discordapp.net/attachments/905481123172339722/1214990684709191761/portfolio-admin-table.png?ex=65fb1f40&is=65e8aa40&hm=ddbfac88f00cb489cfecf1a8b7aceea76fdf348363a171aea4478f353ab0c2d7&=&format=webp&quality=lossless&width=1248&height=701) | ![Portfolio admin form preview](https://media.discordapp.net/attachments/905481123172339722/1214990685099528353/portfolio-admin-form.png?ex=65fb1f40&is=65e8aa40&hm=7737b21f1d12195d8df887079989a747a91773810335c2ecf1cd3939a9574039&=&format=webp&quality=lossless&width=1248&height=701) |
+| ![Portfolio admin table preview](https://media.discordapp.net/attachments/905481123172339722/1217202098173776083/Captura_de_tela_2024-03-12_170455.png?ex=66032aca&is=65f0b5ca&hm=af1e479045ba45496a269d9b9d1277b39506d954b9b1b3c460b3483d419ca8fd&=&format=webp&quality=lossless&width=1248&height=701) | ![Portfolio admin form preview](https://media.discordapp.net/attachments/905481123172339722/1217202098530418718/Captura_de_tela_2024-03-12_170518.png?ex=66032aca&is=65f0b5ca&hm=161b50594de82081786457ea62168fc1c4601e66583f0152ca416bf297cec5ee&=&format=webp&quality=lossless&width=1248&height=701) |
 |:---:|:---:|
