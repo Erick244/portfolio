@@ -6,7 +6,9 @@ import { Achievement } from "../templates/achievement";
 export async function Jorney() {
     const jorney: AcheivementData[] = await fetchDataWithRetry(async () => {
         return await getData("/jorney", {
-            cache: "no-store",
+            next: {
+                revalidate: 3600, // 1h
+            },
         });
     });
 
