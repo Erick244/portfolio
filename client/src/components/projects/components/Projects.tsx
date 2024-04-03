@@ -20,7 +20,7 @@ export async function Projects(props: HTMLAttributes<HTMLDivElement>) {
             {projects &&
                 projects.map((project) => (
                     <Project.Root color={project.color} key={project.id}>
-                        <Project.Informations
+                        <Project.Information
                             title={project.name}
                             description={project.description}
                         />

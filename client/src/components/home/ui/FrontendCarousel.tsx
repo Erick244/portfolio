@@ -1,14 +1,14 @@
-import { Technologie } from "@/components/admin/management/technologies/table/TechnologiesTableColumns";
+import { Technology } from "@/components/admin/management/technologies/table/TechnologiesTableColumns";
 import { CarouselItem } from "@/components/shadcn-ui/carousel";
 import { Blockquote } from "@/components/shadcn-ui/typography/Blockquote";
 import { H3 } from "@/components/shadcn-ui/typography/H3";
 import { getData } from "@/functions/api";
 import { fetchDataWithRetry } from "@/functions/data";
-import { TechnologieCard } from "../templates/technologie-card";
-import { TechnologieCarousel } from "./TechnologieCarousel";
+import { TechnologyCard } from "../templates/technology-card";
+import { TechnologyCarousel } from "./TechnologyCarousel";
 
 export async function FrontendCarousel() {
-    const technologies: Technologie[] = await fetchDataWithRetry(async () => {
+    const technologies: Technology[] = await fetchDataWithRetry(async () => {
         return await getData("/technologies/findAllByCategory/FRONTEND", {
             next: {
                 revalidate: 3600, // 1h
@@ -17,43 +17,43 @@ export async function FrontendCarousel() {
     });
 
     return (
-        <TechnologieCarousel>
+        <TechnologyCarousel>
             {technologies &&
                 technologies.map((tech) => (
                     <CarouselItem key={tech.id}>
-                        <TechnologieCard.Root color={tech.color}>
+                        <TechnologyCard.Root color={tech.color}>
                             <H3 className="absolute -top-3 bg-background px-1 text-lg">
                                 {tech.name}
                             </H3>
                             <div className="flex justify-between ">
                                 <Blockquote className="flex items-center gap-2">
                                     <span>Knowledge:</span>
-                                    <TechnologieCard.Star
+                                    <TechnologyCard.Star
                                         fill
                                         toolTipText="Basic"
                                     />
-                                    <TechnologieCard.Star
+                                    <TechnologyCard.Star
                                         fill={
                                             tech.knowledge === "INTERMEDIATE" ||
                                             tech.knowledge === "EXPERT"
                                         }
                                         toolTipText="Intermediate"
                                     />
-                                    <TechnologieCard.Star
+                                    <TechnologyCard.Star
                                         fill={tech.knowledge === "EXPERT"}
                                         toolTipText="Expert"
                                     />
                                 </Blockquote>
-                                <TechnologieCard.Image
+                                <TechnologyCard.Image
                                     imageUrl={tech.imageUrl}
                                 />
                             </div>
-                            <TechnologieCard.About>
+                            <TechnologyCard.About>
                                 {tech.about}
-                            </TechnologieCard.About>
-                        </TechnologieCard.Root>
+                            </TechnologyCard.About>
+                        </TechnologyCard.Root>
                     </CarouselItem>
                 ))}
-        </TechnologieCarousel>
+        </TechnologyCarousel>
     );
 }

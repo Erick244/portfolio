@@ -67,7 +67,7 @@ const config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
-                jorney: {
+                journey: {
                     from: { width: "0%" },
                     to: { width: "50%" },
                 },
@@ -82,8 +82,8 @@ const config = {
                     "100%": { opacity: "1" },
                 },
                 "text-focus-in": {
-                    "0%": { fitler: "blur(12px)", opacity: "0" },
-                    "100%": { filter: "blur(based)", opacity: "1" },
+                    "0%": { opacity: "0" },
+                    "100%": { opacity: "1" },
                 },
                 "slide-in-blurred-right": {
                     "0%": {
@@ -132,7 +132,7 @@ const config = {
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
-                jorney: "jorney 1s ease",
+                journey: "journey 1s ease",
                 "tracking-in-expand":
                     "tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both",
                 "text-focus-in":

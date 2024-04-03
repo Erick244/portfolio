@@ -2,13 +2,13 @@ import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
 interface AchievementDateProps extends HTMLAttributes<HTMLDivElement> {
-    dateFormated: string;
-    isRigthDirection?: boolean;
+    dateFormatted: string;
+    isRightDirection?: boolean;
 }
 
 export function AchievementDate({
-    dateFormated,
-    isRigthDirection,
+    dateFormatted,
+    isRightDirection: isRightDirection,
     ...props
 }: AchievementDateProps) {
     return (
@@ -16,11 +16,11 @@ export function AchievementDate({
             {...props}
             className={cn(
                 "text-sm px-2",
-                isRigthDirection ? "text-right" : "text-left",
+                isRightDirection ? "text-right" : "text-left",
                 props.className
             )}
         >
-            {dateFormated}
+            {dateFormatted}
         </div>
     );
 }

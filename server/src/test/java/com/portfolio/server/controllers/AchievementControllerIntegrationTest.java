@@ -54,7 +54,6 @@ public class AchievementControllerIntegrationTest {
 		achievementRepository.deleteAll();
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testSave() throws Exception {
 		// Arrange
@@ -65,14 +64,13 @@ public class AchievementControllerIntegrationTest {
 		String bearerToken = "Bearer " + jwtService.createToken("username");
 
 		// Act & Assert
-		mvc.perform(post("/jorney")
+		mvc.perform(post("/journey")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(jsonDto)
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testSave_Put() throws Exception {
 		// Arrange
@@ -86,7 +84,7 @@ public class AchievementControllerIntegrationTest {
 		String bearerToken = "Bearer " + jwtService.createToken(adminUsername);
 
 		// Act & Assert
-		mvc.perform(put("/jorney")
+		mvc.perform(put("/journey")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(jsonDto)
 				.header("Authorization", bearerToken))
@@ -96,13 +94,13 @@ public class AchievementControllerIntegrationTest {
 	private void seedDataBase(int size) {
 		for (int i = 0; i < size; i++) {
 			String title = "title" + i;
-			String dateFormated = "Month " + i + "th, Year";
+			String dateFormatted = "Month " + i + "th, Year";
 			String color = "color" + i;
 			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
 
 			Achievement achievement = new Achievement(
 					title,
-					dateFormated,
+					dateFormatted,
 					color,
 					admin);
 
@@ -110,42 +108,39 @@ public class AchievementControllerIntegrationTest {
 		}
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testFindAll() throws Exception {
 		// Arrange
 		seedDataBase(10);
 
 		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
-		ResultMatcher responseJorneyListSizeIsSame = jsonPath("$", hasSize(5));
+		ResultMatcher responseJourneyListSizeIsSame = jsonPath("$", hasSize(5));
 
 		// Act & Assert
-		mvc.perform(get("/jorney?page=0&take=5"))
+		mvc.perform(get("/journey?page=0&take=5"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
-				.andExpect(responseJorneyListSizeIsSame);
+				.andExpect(responseJourneyListSizeIsSame);
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testFindAll_NoPagination() throws Exception {
 		// Arrange
 		seedDataBase(10);
 
 		ResultMatcher responseContentIsNotNull = jsonPath("$").isNotEmpty();
-		ResultMatcher responseJorneyListSizeIsSame = jsonPath("$", hasSize(10));
+		ResultMatcher responseJourneyListSizeIsSame = jsonPath("$", hasSize(10));
 
 		// Act & Assert
-		mvc.perform(get("/jorney"))
+		mvc.perform(get("/journey"))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(responseContentIsNotNull)
-				.andExpect(responseJorneyListSizeIsSame);
+				.andExpect(responseJourneyListSizeIsSame);
 
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testCount() throws Exception {
 		// Arrange
@@ -155,7 +150,7 @@ public class AchievementControllerIntegrationTest {
 		ResultMatcher responseCountIsSame = jsonPath("$", is(10));
 
 		// Act & Arrange
-		mvc.perform(get("/jorney/count"))
+		mvc.perform(get("/journey/count"))
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(responseContentIsNotNull)
@@ -168,13 +163,13 @@ public class AchievementControllerIntegrationTest {
 		// Arrange
 		Admin admin = new Admin("username", "password");
 		adminRepository.save(admin);
-		achievementRepository.save(new Achievement("title", "dateFormated", "color", admin));
+		achievementRepository.save(new Achievement("title", "dateFormatted", "color", admin));
 		int id = achievementRepository.findByTitle("title").get().getId();
 
 		String bearerToken = "Bearer " + jwtService.createToken("username");
 
 		// Act
-		mvc.perform(delete("/jorney/{id}",
+		mvc.perform(delete("/journey/{id}",
 				id)
 				.header("Authorization", bearerToken))
 				.andExpect(status().isOk());

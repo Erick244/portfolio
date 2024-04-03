@@ -36,12 +36,10 @@ public class SecurityConfig {
 				.cors(Customizer.withDefaults())
 				.authorizeHttpRequests(a -> a.requestMatchers("/admin/login", "/admin/token/**")
 						.permitAll()
-						.requestMatchers(HttpMethod.GET, "/technologies/**", "/projects/**", "/jorney/**")
+						.requestMatchers(HttpMethod.GET, "/technologies/**", "/projects/**", "/journey/**")
 						.permitAll()
 						.anyRequest()
 						.authenticated())
-				// DefaultHandlerExceptionResolver try midify this resolver for handle
-				// exceptions
 				.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
 		return httpSecurity.build();
@@ -55,6 +53,7 @@ public class SecurityConfig {
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
+			@SuppressWarnings("null")
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**")

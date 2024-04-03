@@ -30,13 +30,13 @@ public class Admin implements UserDetails {
 	private String password;
 
 	@OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
-	private List<Technologie> technologies;
+	private List<Technology> technologies;
 
 	@OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
 	private List<Project> projects;
 
 	@OneToMany(mappedBy = "createdBy", cascade = CascadeType.ALL)
-	private List<Achievement> jorney;
+	private List<Achievement> journey;
 
 	public Admin() {
 	}
@@ -94,11 +94,11 @@ public class Admin implements UserDetails {
 	}
 
 	@JsonIgnore
-	public List<Technologie> getTechnologies() {
+	public List<Technology> getTechnologies() {
 		return technologies;
 	}
 
-	public void setTechnologies(List<Technologie> technologies) {
+	public void setTechnologies(List<Technology> technologies) {
 		this.technologies = technologies;
 	}
 

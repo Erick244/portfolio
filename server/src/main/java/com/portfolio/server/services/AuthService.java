@@ -39,7 +39,7 @@ public class AuthService {
 			Admin admin = adminRepository.findByUsername(username).orElse(null);
 
 			if (admin == null) {
-				return ResponseEntity.badRequest().body("Admin not registred.");
+				return ResponseEntity.badRequest().body("Admin not registered.");
 			}
 
 			String password = dto.password();

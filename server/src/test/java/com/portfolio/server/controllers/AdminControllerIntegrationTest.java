@@ -53,7 +53,6 @@ public class AdminControllerIntegrationTest {
 		adminRepository.deleteAll();
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testLogin() throws Exception {
 		// Arrange
@@ -79,7 +78,6 @@ public class AdminControllerIntegrationTest {
 				.andExpect(responseTokenIsNotEmpty);
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testSignUp() throws Exception {
 		// Arrange
@@ -100,7 +98,6 @@ public class AdminControllerIntegrationTest {
 				.andExpect(status().isNoContent());
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testAdminByToken() throws Exception {
 		// Arrange

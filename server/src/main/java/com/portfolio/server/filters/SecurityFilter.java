@@ -27,6 +27,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 	@Autowired
 	private AdminRepository adminRepository;
 
+	@SuppressWarnings("null")
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
@@ -49,6 +50,7 @@ public class SecurityFilter extends OncePerRequestFilter {
 		filterChain.doFilter(request, response);
 	}
 
+	@SuppressWarnings("null")
 	public String extractBearerToken(HttpServletRequest req) {
 		String bearerToken = req.getHeader("Authorization");
 		boolean isBearerToken = bearerToken != null && bearerToken.startsWith("Bearer");

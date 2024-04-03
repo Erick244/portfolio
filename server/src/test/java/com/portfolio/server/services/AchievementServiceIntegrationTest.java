@@ -90,7 +90,7 @@ public class AchievementServiceIntegrationTest {
 
 		assertEquals(resp.getStatusCode().value(), 200);
 		assertNotNull(achievementEdited);
-		assertEquals(achievementEdited.getDateFormated(), dto.dateFormated());
+		assertEquals(achievementEdited.getDateFormatted(), dto.dateFormatted());
 	}
 
 	@Test
@@ -182,24 +182,24 @@ public class AchievementServiceIntegrationTest {
 
 		// Act
 		ResponseEntity<?> resp = achievementService.findAll(take, page);
-		List<Achievement> jorney = (List<Achievement>) resp.getBody();
+		List<Achievement> journey = (List<Achievement>) resp.getBody();
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertNotNull(jorney);
-		assertEquals(jorney.size(), take);
+		assertNotNull(journey);
+		assertEquals(journey.size(), take);
 	}
 
 	private void seedDataBase(int size) {
 		for (int i = 0; i < size; i++) {
 			String title = "title" + i;
-			String dateFormated = "Month " + i + "th, Year";
+			String dateFormatted = "Month " + i + "th, Year";
 			String color = "color" + i;
 			Admin admin = adminRepository.save(new Admin("username" + i, "password" + i));
 
 			Achievement achievement = new Achievement(
 					title,
-					dateFormated,
+					dateFormatted,
 					color,
 					admin);
 
@@ -217,12 +217,12 @@ public class AchievementServiceIntegrationTest {
 
 		// Act
 		ResponseEntity<?> resp = achievementService.findAll(take, page);
-		List<Achievement> jorney = (List<Achievement>) resp.getBody();
+		List<Achievement> journey = (List<Achievement>) resp.getBody();
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertNotNull(jorney);
-		assertEquals(jorney.size(), take);
+		assertNotNull(journey);
+		assertEquals(journey.size(), take);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -235,12 +235,12 @@ public class AchievementServiceIntegrationTest {
 
 		// Act
 		ResponseEntity<?> resp = achievementService.findAll(take, page);
-		List<Achievement> jorney = (List<Achievement>) resp.getBody();
+		List<Achievement> journey = (List<Achievement>) resp.getBody();
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 200);
-		assertNotNull(jorney);
-		assertEquals(jorney.size(), 10);
+		assertNotNull(journey);
+		assertEquals(journey.size(), 10);
 	}
 
 	@Test
@@ -261,7 +261,7 @@ public class AchievementServiceIntegrationTest {
 		// Arrange
 		Admin admin = new Admin("username", "password");
 		adminRepository.save(admin);
-		achievementRepository.save(new Achievement("title", "dateFormated", "color", admin));
+		achievementRepository.save(new Achievement("title", "dateFormatted", "color", admin));
 		int id = achievementRepository.findByTitle("title").get().getId();
 
 		// Act
@@ -277,10 +277,10 @@ public class AchievementServiceIntegrationTest {
 	void testDelete_NotFound() {
 		// Arrange
 		seedDataBase(10);
-		int acheivementId = 99;
+		int achievementId = 99;
 
 		// Act
-		ResponseEntity<?> resp = achievementService.delete(acheivementId);
+		ResponseEntity<?> resp = achievementService.delete(achievementId);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 404);

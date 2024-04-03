@@ -2,21 +2,21 @@ import { Skeleton } from "@/components/shadcn-ui/skeleton";
 import { Achievement } from "../templates/achievement";
 
 interface AchievementSkeletonProps {
-    isRigthDirection?: boolean;
+    isRightDirection?: boolean;
 }
 
 export function AchievementSkeleton({
-    isRigthDirection,
+    isRightDirection,
 }: AchievementSkeletonProps) {
     return (
         <div className="w-full">
             <Achievement.Date
                 className="text-secondary animate-pulse"
-                isRigthDirection={isRigthDirection}
-                dateFormated={"Month day, year"}
+                isRightDirection={isRightDirection}
+                dateFormatted={"Month day, year"}
             />
 
-            <Achievement.Line isRigthDirection={isRigthDirection}>
+            <Achievement.Line isRightDirection={isRightDirection}>
                 <Skeleton className="h-5 w-10 rounded" />
             </Achievement.Line>
         </div>

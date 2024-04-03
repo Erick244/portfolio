@@ -71,7 +71,7 @@ export function EditProjectForm({ project }: EditProjectFormProps) {
 
             toast({
                 title: "Success",
-                description: `Technologie "${editProjectFormData.name}" edited!`,
+                description: `Technology "${editProjectFormData.name}" edited!`,
             });
 
             router.refresh();

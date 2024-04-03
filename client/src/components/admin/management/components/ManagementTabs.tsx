@@ -4,7 +4,7 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/shadcn-ui/tabs";
-import { JorneyTab } from "../jorney/components/JorneyTab";
+import { JourneyTab } from "../journey/components/JourneyTab";
 import { ProjectsTab } from "../projects/components/ProjectsTab";
 import { TechnologiesTab } from "../technologies/components/TechnologiesTab";
 
@@ -18,7 +18,7 @@ export function ManagementTabs({ pageParam = "1" }: ManagementTabsProps) {
             <TabsList>
                 <TabsTrigger value="technologies">Technologies</TabsTrigger>
                 <TabsTrigger value="projects">Projects</TabsTrigger>
-                <TabsTrigger value="jorney">Jorney</TabsTrigger>
+                <TabsTrigger value="journey">Journey</TabsTrigger>
             </TabsList>
             <TabsContent value="technologies">
                 <TechnologiesTab pageParam={pageParam} />
@@ -26,8 +26,8 @@ export function ManagementTabs({ pageParam = "1" }: ManagementTabsProps) {
             <TabsContent value="projects">
                 <ProjectsTab pageParam={pageParam} />
             </TabsContent>
-            <TabsContent value="jorney">
-                <JorneyTab pageParam={pageParam} />
+            <TabsContent value="journey">
+                <JourneyTab pageParam={pageParam} />
             </TabsContent>
         </Tabs>
     );

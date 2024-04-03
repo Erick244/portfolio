@@ -22,7 +22,7 @@ public class AdminService implements UserDetailsService {
 		Admin admin = adminRepository.findByUsername(username).orElse(null);
 
 		if (admin == null) {
-			throw new UsernameNotFoundException("Admin not registred");
+			throw new UsernameNotFoundException("Admin not registered");
 		}
 
 		return admin;

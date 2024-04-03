@@ -42,7 +42,7 @@ public class AchievementService {
 			Admin adminAuth = adminService.getAdminAuth();
 			Achievement newAchievement = new Achievement(
 					title,
-					dto.dateFormated(),
+					dto.dateFormatted(),
 					dto.color(),
 					adminAuth);
 

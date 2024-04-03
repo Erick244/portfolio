@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
     return (
         <div className="my-10 ">
-            <H1 className="text-center">Contatct</H1>
+            <H1 className="text-center">Contact</H1>
             <P className="text-center mb-10">
                 Send me a message or maybe a proposal! 👋
             </P>

@@ -54,7 +54,6 @@ public class ProjectControllerIntegrationTest {
 		projectRepository.deleteAll();
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testSave() throws Exception {
 		// Arrange
@@ -72,7 +71,6 @@ public class ProjectControllerIntegrationTest {
 				.andExpect(status().isOk());
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testSave_Put() throws Exception {
 		// Arrange
@@ -116,7 +114,6 @@ public class ProjectControllerIntegrationTest {
 		}
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testFindAll() throws Exception {
 		// Arrange
@@ -133,7 +130,6 @@ public class ProjectControllerIntegrationTest {
 				.andExpect(responseProjectsListSizeIsSame);
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testFindAll_NoPagination() throws Exception {
 		// Arrange
@@ -151,7 +147,6 @@ public class ProjectControllerIntegrationTest {
 
 	}
 
-	@SuppressWarnings("null")
 	@Test
 	void testCount() throws Exception {
 		// Arrange

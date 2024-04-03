@@ -27,7 +27,7 @@ export function DeleteProjectForm({ project }: DeleteProjectFormProps) {
 
             toast({
                 title: "Success",
-                description: `Technologie "${project.name}" deleted!`,
+                description: `Technology "${project.name}" deleted!`,
             });
 
             router.refresh();

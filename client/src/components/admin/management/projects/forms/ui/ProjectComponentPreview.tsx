@@ -26,7 +26,7 @@ export function ProjectComponentPreview({
         <div {...props}>
             <H2 className="my-5 text-xl text-center">Component Preview</H2>
             <Project.Root color={color}>
-                <Project.Informations title={name} description={description} />
+                <Project.Information title={name} description={description} />
                 <Project.Image imageUrl={isValidImageUrl ? imageUrl : null} />
                 <Project.Links>
                     <Project.Link Icon={Github} href={repoUrl} />

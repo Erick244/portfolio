@@ -69,7 +69,7 @@ export function CreateProjectForm() {
 
             toast({
                 title: "Success",
-                description: `Technologie "${createProjectFormData.name}" created!`,
+                description: `Technology "${createProjectFormData.name}" created!`,
             });
 
             router.refresh();

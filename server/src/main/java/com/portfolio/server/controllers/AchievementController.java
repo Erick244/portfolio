@@ -15,7 +15,7 @@ import com.portfolio.server.models.dto.achievement.SaveAchievementDto;
 import com.portfolio.server.services.AchievementService;
 
 @RestController
-@RequestMapping("/jorney")
+@RequestMapping("/journey")
 public class AchievementController {
 
 	@Autowired

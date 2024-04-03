@@ -437,10 +437,10 @@ public class ProjectServiceIntegrationTest {
 	void testDelete_NotFound() {
 		// Arrange
 		seedDataBase(10);
-		int technologieId = 99;
+		int technologyId = 99;
 
 		// Act
-		ResponseEntity<?> resp = projectService.delete(technologieId);
+		ResponseEntity<?> resp = projectService.delete(technologyId);
 
 		// Assert
 		assertEquals(resp.getStatusCode().value(), 404);

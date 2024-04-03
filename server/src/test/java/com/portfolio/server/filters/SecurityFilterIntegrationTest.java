@@ -52,7 +52,7 @@ public class SecurityFilterIntegrationTest {
 		adminRepository.save(admin);
 
 		String token = jwtService.createToken(subject);
-		MockHttpServletRequest req = createRequestWhithAuthToken("Bearer " + token);
+		MockHttpServletRequest req = createRequestWithAuthToken("Bearer " + token);
 
 		MockHttpServletResponse res = new MockHttpServletResponse();
 		FilterChain filterChain = getFilterChainImpl();
@@ -66,8 +66,7 @@ public class SecurityFilterIntegrationTest {
 		assertEquals(admin.toString(), adminAuth.toString());
 	}
 
-	@SuppressWarnings("null")
-	private MockHttpServletRequest createRequestWhithAuthToken(String bearerToken) {
+	private MockHttpServletRequest createRequestWithAuthToken(String bearerToken) {
 		MockHttpServletRequest req = new MockHttpServletRequest();
 		req.addHeader("Authorization", bearerToken);
 
@@ -90,13 +89,13 @@ public class SecurityFilterIntegrationTest {
 	}
 
 	@Test
-	void testDoFilterInternal_WhithAdminInTokenNotExist() throws ServletException, IOException {
+	void testDoFilterInternal_WithAdminInTokenNotExist() throws ServletException, IOException {
 		// Arrange
 		Admin admin = new Admin("username", "password");
 		adminRepository.save(admin);
 
 		String token = jwtService.createToken("other subject");
-		MockHttpServletRequest req = createRequestWhithAuthToken("Bearer " + token);
+		MockHttpServletRequest req = createRequestWithAuthToken("Bearer " + token);
 
 		MockHttpServletResponse res = new MockHttpServletResponse();
 		FilterChain filterChain = getFilterChainImpl();
@@ -114,7 +113,7 @@ public class SecurityFilterIntegrationTest {
 	void testExtractBearerToken() {
 		// Arrange
 		String mockToken = "token";
-		MockHttpServletRequest req = createRequestWhithAuthToken("Bearer " + mockToken);
+		MockHttpServletRequest req = createRequestWithAuthToken("Bearer " + mockToken);
 
 		// Act
 		String token = securityFilter.extractBearerToken(req);
@@ -128,7 +127,7 @@ public class SecurityFilterIntegrationTest {
 	void testExtractBearerToken_ButNotIsBearerToken() {
 		// Arrange
 		String mockToken = "token";
-		MockHttpServletRequest req = createRequestWhithAuthToken("InvalidFormat " + mockToken);
+		MockHttpServletRequest req = createRequestWithAuthToken("InvalidFormat " + mockToken);
 
 		// Act
 		String token = securityFilter.extractBearerToken(req);

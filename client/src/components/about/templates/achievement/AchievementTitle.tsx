@@ -4,13 +4,13 @@ import { CSSProperties, HTMLAttributes } from "react";
 interface AchievementTitleProps extends HTMLAttributes<HTMLSpanElement> {
     children: React.ReactNode;
     color: string;
-    isRigthDirection?: boolean;
+    isRightDirection?: boolean;
 }
 
 export function AchievementTitle({
     children,
     color,
-    isRigthDirection,
+    isRightDirection,
     ...props
 }: AchievementTitleProps) {
     return (
@@ -18,7 +18,7 @@ export function AchievementTitle({
             {...props}
             className={cn(
                 "py-1 px-2 rounded border-border font-mono text-sm",
-                isRigthDirection ? "border-r" : "border-l",
+                isRightDirection ? "border-r" : "border-l",
                 props.className
             )}
             style={achievementColorStyles(color)}

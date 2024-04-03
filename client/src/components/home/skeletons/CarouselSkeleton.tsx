@@ -1,13 +1,13 @@
 import { CarouselItem } from "@/components/shadcn-ui/carousel";
-import { TechnologieCarousel } from "../ui/TechnologieCarousel";
-import { TechnologieCardSkeleton } from "./TechnologieCardSkeleton";
+import { TechnologyCarousel } from "../ui/TechnologyCarousel";
+import { TechnologyCardSkeleton } from "./TechnologyCardSkeleton";
 
 export function CarouselSkeleton() {
     return (
-        <TechnologieCarousel>
+        <TechnologyCarousel>
             <CarouselItem>
-                <TechnologieCardSkeleton />
+                <TechnologyCardSkeleton />
             </CarouselItem>
-        </TechnologieCarousel>
+        </TechnologyCarousel>
     );
 }

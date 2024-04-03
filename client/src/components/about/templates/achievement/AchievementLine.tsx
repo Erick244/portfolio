@@ -3,12 +3,12 @@ import { HTMLAttributes } from "react";
 
 interface AchievementLineProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
-    isRigthDirection?: boolean;
+    isRightDirection?: boolean;
 }
 
 export function AchievementLine({
     children,
-    isRigthDirection,
+    isRightDirection,
     ...props
 }: AchievementLineProps) {
     return (
@@ -16,14 +16,14 @@ export function AchievementLine({
             {...props}
             className={cn(
                 "flex items-center ",
-                isRigthDirection ? "flex-row-reverse" : "flex-row",
+                isRightDirection ? "flex-row-reverse" : "flex-row",
                 props.className
             )}
         >
             <div
                 className={cn(
-                    "w-1/2 animate-jorney bg-border h-[1px] flex items-center",
-                    isRigthDirection ? "justify-end" : "justify-start"
+                    "w-1/2 animate-journey bg-border h-[1px] flex items-center",
+                    isRightDirection ? "justify-end" : "justify-start"
                 )}
             >
                 <div className="bg-border h-4 w-[1px]"></div>

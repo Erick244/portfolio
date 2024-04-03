@@ -9,7 +9,7 @@ import { AdminAndToken } from "@/models/AdminAndToken.model";
 import { AUTH_TOKEN_COOKIE_NAME } from "@/utils/constants";
 import { useCookies } from "next-client-cookies";
 import { useRouter } from "next/navigation";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
 
 interface AdminAuthContextProps {
     login: (data: AdminFormData) => Promise<void>;
@@ -24,9 +24,8 @@ export default function AdminAuthContextProvider({
 }) {
     const router = useRouter();
     const cookies = useCookies();
-    const [admin, setAdmin] = useState<Admin | null>(null);
 
-    async function retriveAdmin() {
+    async function retrieveAdmin() {
         try {
             const token = cookies.get(AUTH_TOKEN_COOKIE_NAME);
             if (!token) return;
@@ -34,8 +33,6 @@ export default function AdminAuthContextProvider({
             const data = await postData("/admin/token", { token });
 
             const admin = checkForErrorInResponseData<Admin>(data);
-
-            setAdmin(admin);
         } catch (error: any) {
             toast({
                 title: "Admin - Error",
@@ -51,13 +48,13 @@ export default function AdminAuthContextProvider({
     }
 
     useEffect(() => {
-        retriveAdmin();
+        retrieveAdmin();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    async function login(aaminFormData: AdminFormData) {
+    async function login(adminFormData: AdminFormData) {
         try {
-            const data = await postData("/admin/login", aaminFormData);
+            const data = await postData("/admin/login", adminFormData);
 
             const adminAndToken =
                 checkForErrorInResponseData<AdminAndToken>(data);
@@ -67,8 +64,6 @@ export default function AdminAuthContextProvider({
                 path: "/admin",
                 expires: oneMonthInSeconds,
             });
-
-            setAdmin(adminAndToken.admin);
 
             router.push("/admin/management");
         } catch (error: any) {

@@ -2,15 +2,15 @@
 
 import { ActionFormDialog } from "@/components/admin/ui/ActionFormDialog";
 import { ActionsTableDropDown } from "@/components/admin/ui/ActionsTableDropDown";
-import { technologieColorStyles } from "@/components/home/templates/technologie-card/TechnologieCardRoot";
+import { technologyColorStyles } from "@/components/home/templates/technology-card/TechnologyCardRoot";
 import { ColorsTableDemonstration } from "@/components/shadcn-ui/colors-table-demonstration";
 import { SortingButton } from "@/components/shadcn-ui/sorting-button";
 import { ColumnDef } from "@tanstack/react-table";
 import { DeleteIcon, EditIcon } from "lucide-react";
-import { DeleteTechnologieForm } from "../forms/components/DeleteTechnologieForm";
-import { EditTechnologieForm } from "../forms/components/EditTechnologieForm";
+import { DeleteTechnologyForm } from "../forms/components/DeleteTechnologyForm";
+import { EditTechnologyForm } from "../forms/components/EditTechnologyForm";
 
-export type Technologie = {
+export type Technology = {
     id: number;
     name: string;
     knowledge: "BASIC" | "INTERMEDIATE" | "EXPERT";
@@ -20,7 +20,7 @@ export type Technologie = {
     color: string;
 };
 
-export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
+export const TechnologiesTableColumns: ColumnDef<Technology>[] = [
     {
         accessorKey: "id",
         header: ({ column }) => <SortingButton column={column} label="ID" />,
@@ -49,7 +49,7 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
 
             return (
                 <ColorsTableDemonstration
-                    style={technologieColorStyles(color)}
+                    style={technologyColorStyles(color)}
                 />
             );
         },
@@ -59,13 +59,13 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
         header: "Actions",
 
         cell: ({ row }) => {
-            const technologie = row.original;
+            const technology = row.original;
 
             return (
-                <ActionsTableDropDown title={`Actions - ${technologie.id}`}>
+                <ActionsTableDropDown title={`Actions - ${technology.id}`}>
                     <ActionFormDialog
                         FormComponent={
-                            <EditTechnologieForm technologie={technologie} />
+                            <EditTechnologyForm technology={technology} />
                         }
                         className="flex justify-between"
                     >
@@ -74,7 +74,7 @@ export const TechnologiesTableColumns: ColumnDef<Technologie>[] = [
                     <ActionFormDialog
                         contentClasses="max-w-lg"
                         FormComponent={
-                            <DeleteTechnologieForm technologie={technologie} />
+                            <DeleteTechnologyForm technology={technology} />
                         }
                         className="flex justify-between"
                     >

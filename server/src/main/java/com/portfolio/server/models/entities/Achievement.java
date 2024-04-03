@@ -12,7 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 
-@Entity(name = "jorney")
+@Entity(name = "journey")
 public class Achievement {
 
 	@Id
@@ -24,7 +24,7 @@ public class Achievement {
 	private String title;
 
 	@NotNull(message = "The date cannot be null.")
-	private String dateFormated;
+	private String dateFormatted;
 
 	@NotNull(message = "The color cannot be null.")
 	private String color;
@@ -35,9 +35,9 @@ public class Achievement {
 	public Achievement() {
 	}
 
-	public Achievement(String title, String dateFormated, String color, Admin createdBy) {
+	public Achievement(String title, String dateFormatted, String color, Admin createdBy) {
 		this.title = title;
-		this.dateFormated = dateFormated;
+		this.dateFormatted = dateFormatted;
 		this.color = color;
 		this.createdBy = createdBy;
 	}
@@ -45,7 +45,7 @@ public class Achievement {
 	public Achievement(SaveAchievementDto dto, int id) {
 		this.id = id;
 		setColor(dto.color());
-		setDateFormated(dto.dateFormated());
+		setDateFormatted(dto.dateFormatted());
 		setTitle(dto.title());
 	}
 
@@ -57,12 +57,12 @@ public class Achievement {
 		this.title = title;
 	}
 
-	public String getDateFormated() {
-		return dateFormated;
+	public String getDateFormatted() {
+		return dateFormatted;
 	}
 
-	public void setDateFormated(String dateFormated) {
-		this.dateFormated = dateFormated;
+	public void setDateFormatted(String dateFormatted) {
+		this.dateFormatted = dateFormatted;
 	}
 
 	public String getColor() {

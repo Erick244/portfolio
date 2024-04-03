@@ -62,7 +62,7 @@ public class AuthServiceIntegrationTest {
 	}
 
 	@Test
-	void testLogin_WhithAdminNotRegistred() {
+	void testLogin_WithAdminNotRegistered() {
 		// Arrange
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String password = "password";
@@ -82,11 +82,11 @@ public class AuthServiceIntegrationTest {
 
 		assertEquals(res.getStatusCode().value(), 400);
 		assertNotNull(body);
-		assertEquals(body, "Admin not registred.");
+		assertEquals(body, "Admin not registered.");
 	}
 
 	@Test
-	void testLogin_WhithPasswordIncorrect() {
+	void testLogin_WithPasswordIncorrect() {
 		// Arrange
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncrypted = passwordEncoder.encode("password");
@@ -120,7 +120,7 @@ public class AuthServiceIntegrationTest {
 	}
 
 	@Test
-	void testSignUp_WhithNotSecret() {
+	void testSignUp_WithNotSecret() {
 		// Arrange
 		SignUpDto dto = new SignUpDto("username", "password", "secret");
 
