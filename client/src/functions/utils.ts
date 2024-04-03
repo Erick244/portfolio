@@ -1,4 +1,4 @@
-export async function fakeComponentLoad(timeInSeconds: number) {
+export async function sleep(timeInSeconds: number) {
     return new Promise((res) => {
         setTimeout(() => {
             res("OK");

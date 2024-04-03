@@ -1,4 +1,5 @@
 import { DefaultException } from "@/models/DefaultException";
+import { sleep } from "./utils";
 
 export function getApiPageValue(pageParam: string, pagesCount: number) {
     const numberPageParam = +pageParam;
@@ -28,5 +29,17 @@ export function checkForErrorInResponseData<R>(data: any): R {
         );
     } else {
         return data;
+    }
+}
+
+export async function fetchDataWithRetry<R>(
+    fetchCallBack: () => Promise<any>
+): Promise<R> {
+    while (true) {
+        try {
+            return await fetchCallBack();
+        } catch (e: any) {
+            await sleep(3000);
+        }
     }
 }

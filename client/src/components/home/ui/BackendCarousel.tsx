@@ -3,14 +3,18 @@ import { CarouselItem } from "@/components/shadcn-ui/carousel";
 import { Blockquote } from "@/components/shadcn-ui/typography/Blockquote";
 import { H3 } from "@/components/shadcn-ui/typography/H3";
 import { getData } from "@/functions/api";
+import { fetchDataWithRetry } from "@/functions/data";
 import { TechnologieCard } from "../templates/technologie-card";
 import { TechnologieCarousel } from "./TechnologieCarousel";
 
 export async function BackendCarousel() {
-    const technologies: Technologie[] = await getData(
-        "/technologies/findAllByCategory/BACKEND",
-        { cache: "no-store" }
-    );
+    const technologies: Technologie[] = await fetchDataWithRetry(async () => {
+        return await getData("/technologies/findAllByCategory/BACKEND", {
+            next: {
+                revalidate: 3600, // 1h
+            },
+        });
+    });
 
     return (
         <TechnologieCarousel>

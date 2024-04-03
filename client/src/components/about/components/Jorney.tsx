@@ -1,11 +1,13 @@
 import { Achievement as AcheivementData } from "@/components/admin/management/jorney/table/JorneyTableColumns";
 import { getData } from "@/functions/api";
-import { HTMLAttributes } from "react";
+import { fetchDataWithRetry } from "@/functions/data";
 import { Achievement } from "../templates/achievement";
 
-export async function Jorney(props: HTMLAttributes<HTMLDivElement>) {
-    const jorney: AcheivementData[] = await getData("/jorney", {
-        cache: "no-store",
+export async function Jorney() {
+    const jorney: AcheivementData[] = await fetchDataWithRetry(async () => {
+        return await getData("/jorney", {
+            cache: "no-store",
+        });
     });
 
     return (
