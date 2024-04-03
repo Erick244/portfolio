@@ -1,2 +1,4 @@
 application.properties
 application-dev.properties
+
+.env
