@@ -133,4 +133,8 @@ public class Technology {
 		this.createdBy = createdBy;
 	}
 
+	public TechnologyKnowledge getKnowledge() {
+		return knowledge;
+	}
+
 }
