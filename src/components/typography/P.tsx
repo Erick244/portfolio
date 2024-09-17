@@ -9,8 +9,11 @@ export function P({ children, ...props }: PProps) {
     return (
         <p
             {...props}
+            style={{
+                color: "hsl(var(--background))",
+            }}
             className={cn(
-                "leading-7 [&:not(:first-child)]:mt-6 font-medium text-xs text-shadow-md shadow-black/50",
+                "leading-7 [&:not(:first-child)]:mt-6 font-medium text-xs text-shadow-sm shadow-black/50 ",
                 props.className
             )}
         >

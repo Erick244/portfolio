@@ -25,12 +25,12 @@ export function Introduction() {
                     <MailIcon />
                 </ContactButton>
                 <div>
-                    <P className="text-background">
+                    <P>
                         <span>
                             Turning ideas into digital solutions with clean and
                             efficient code.
+                            <SettingsIcon className="inline w-4 h-4 text-foreground ml-1" />
                         </span>
-                        <SettingsIcon className="inline w-4 h-4 text-foreground" />
                     </P>
                 </div>
             </div>
