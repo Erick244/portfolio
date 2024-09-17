@@ -6,7 +6,7 @@ import { Logo } from "../utils/Logo";
 
 export function Introduction() {
     return (
-        <div className="p-5 space-y-2">
+        <section className="p-5 space-y-2">
             <div className="flex items-center gap-2">
                 <H1>WEB</H1>
                 <Logo />
@@ -34,6 +34,6 @@ export function Introduction() {
                     </P>
                 </div>
             </div>
-        </div>
+        </section>
     );
 }
