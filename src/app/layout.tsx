@@ -20,7 +20,7 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen w-screen antialiased bg-gradient-to-tr from-foreground from-0% to-background to-100%",
+                    "h-screen antialiased bg-gradient-to-tr from-foreground from-0% to-background to-100% ",
                     font.className
                 )}
             >
