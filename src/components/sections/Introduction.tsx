@@ -7,7 +7,7 @@ import { Logo } from "../utils/Logo";
 export function Introduction() {
     return (
         <section className="p-5 space-y-2">
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
                 <H1>WEB</H1>
                 <Logo />
             </div>
@@ -25,12 +25,10 @@ export function Introduction() {
                     <MailIcon />
                 </ContactButton>
                 <div>
-                    <P>
-                        <span>
-                            Turning ideas into digital solutions with clean and
-                            efficient code.
-                            <SettingsIcon className="inline w-4 h-4 text-foreground ml-1" />
-                        </span>
+                    <P className="max-w-[200px] sm:max-w-[400px] ">
+                        Turning ideas into digital solutions with clean and
+                        efficient code.
+                        <SettingsIcon className="inline w-4 h-4 text-foreground ml-1" />
                     </P>
                 </div>
             </div>
