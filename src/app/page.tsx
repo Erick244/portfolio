@@ -1,4 +1,5 @@
 import { Introduction } from "@/components/sections/Introduction";
+import { Projects } from "@/components/sections/Projects";
 import { H2 } from "@/components/typography/H2";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
         <main className="h-full w-full flex flex-col items-center my-10 ">
             <Introduction />
             <H2>PROJECTS</H2>
+            <Projects />
         </main>
     );
 }
