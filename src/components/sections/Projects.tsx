@@ -73,7 +73,7 @@ const projectsTemp: Project[] = [
         name: "Project 3",
         description:
             "Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 Description 3 ",
-        color: "#19f04b",
+        color: "#ccc",
         githubUrl: "https://github.com/Erick244",
         websiteUrl: "https://github.com/Erick244",
         desktopImageUrl:
@@ -109,7 +109,11 @@ export function Projects() {
     return (
         <section className="space-y-10">
             {projectsTemp.map((project, i) => (
-                <ProjectCard.Root key={i} className="even:md:flex-row-reverse">
+                <ProjectCard.Root
+                    key={i}
+                    isEven={i % 2 !== 0}
+                    color={project.color}
+                >
                     <ProjectCard.Links
                         githubUrl={project.githubUrl}
                         websiteUrl={project.websiteUrl}
