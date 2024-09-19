@@ -21,8 +21,6 @@ export function ProjectCardRoot({
         setIsHover(!isHover);
     }
 
-    console.log(isHover);
-
     return (
         <div
             {...props}
