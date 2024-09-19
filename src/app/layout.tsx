@@ -1,4 +1,3 @@
-import { BackgroundImage } from "@/components/layout/BackgroundImage";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -20,11 +19,10 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen antialiased bg-gradient-to-tr from-foreground from-0% to-background to-100%",
+                    "min-h-screen antialiased background-grid overflow-x-hidden",
                     font.className
                 )}
             >
-                <BackgroundImage />
                 {children}
             </body>
         </html>
