@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { Button, ButtonProps } from "../ui/button";
 
-export function ContactButton({ children, ...props }: ButtonProps) {
+export function ChromaButton({ children, ...props }: ButtonProps) {
     return (
         <Button
             {...props}
