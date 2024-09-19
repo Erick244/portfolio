@@ -4,7 +4,7 @@ import { H2 } from "@/components/typography/H2";
 
 export default function Home() {
     return (
-        <main className="h-full w-full flex flex-col items-center my-10 ">
+        <main className="h-auto w-full flex flex-col items-center pt-10">
             <Introduction />
             <H2>PROJECTS</H2>
             <Projects />
