@@ -13,7 +13,7 @@ export function H2({ children, ...props }: H2Props) {
                     color: "hsl(var(--background))",
                 }}
                 className={cn(
-                    "absolute scroll-m-20 text-3xl font-black text-shadow-md shadow-black/50 ",
+                    "absolute scroll-m-20 text-3xl md:text-4xl font-black text-shadow-md shadow-black/50 ",
                     props.className
                 )}
                 {...props}

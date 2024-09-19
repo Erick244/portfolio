@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
-interface H3Props extends HTMLAttributes<HTMLHeadingElement> {
+export interface H3Props extends HTMLAttributes<HTMLHeadingElement> {
     children: React.ReactNode;
 }
 
