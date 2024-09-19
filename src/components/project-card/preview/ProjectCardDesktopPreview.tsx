@@ -10,7 +10,7 @@ export function ProjectCardDesktopPreview({
     alt,
 }: ProjectCardDesktopPreviewProps) {
     return (
-        <div className="relative flex justify-center border-4 border-foreground rounded w-[200px] h-[120px]">
+        <div className="relative flex justify-center border-4 border-foreground rounded w-[200px] h-[120px] sm:w-[300px] sm:h-[180px] md:w-[400px] md:h-[240px]">
             <div className="absolute bg-foreground w-6 h-1 rounded-t-none rounded" />
             <Image
                 className="aspect-video"

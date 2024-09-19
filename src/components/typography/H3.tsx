@@ -10,7 +10,7 @@ export function H3({ children, ...props }: H3Props) {
         <h3
             {...props}
             className={cn(
-                "font-black text-shadow-md shadow-black/60 text-xl",
+                "font-black text-shadow-md shadow-black/60 text-xl sm:text-2xl md:text-3xl",
                 props.className
             )}
             style={{
