@@ -1,11 +1,12 @@
 import { ExternalLinkIcon, GithubIcon } from "lucide-react";
 import Image from "next/image";
+import { ChromaButton } from "../buttons/ChromaButton";
 import { H3 } from "../typography/H3";
 import { P } from "../typography/P";
 
 export function Projects() {
     return (
-        <section>
+        <section className="space-y-10">
             <Project />
             <Project />
         </section>
@@ -14,10 +15,14 @@ export function Projects() {
 
 function Project() {
     return (
-        <div className="chroma-border transition-all duration-300 before:opacity-0 hover:before:opacity-100 after:opacity-0 hover:after:opacity-100 flex flex-col hover:bg-foreground/50 items-center rounded-lg p-2 group">
-            <div className="invisible group-hover:visible transition-all duration-300 z-10 absolute inset-0 w-full h-full group-hover:bg-foreground/90 group-hover:backdrop-blur-sm rounded-lg flex justify-center items-center">
-                <GithubIcon className="text-background invisible group-hover:visible" />
-                <ExternalLinkIcon className="text-background invisible group-hover:visible" />
+        <div className="relative flex flex-col items-center p-2 transition-all saturate-200 hover:scale-105 border border-background/10 rounded-lg shadow-[0_0_10px] shadow-black/20 group">
+            <div className="space-x-5 invisible group-hover:visible transition-all duration-200 z-10 absolute inset-0 w-full h-full group-hover:bg-background/20 group-hover:backdrop-blur-sm rounded-lg flex justify-center items-center">
+                <ChromaButton className="text-background invisible group-hover:visible h-10 w-16">
+                    <GithubIcon />
+                </ChromaButton>
+                <ChromaButton className="text-background invisible group-hover:visible h-10 w-16">
+                    <ExternalLinkIcon />
+                </ChromaButton>
             </div>
 
             <H3 className="text-center my-2">PROJECT NAME</H3>
