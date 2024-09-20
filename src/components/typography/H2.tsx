@@ -7,7 +7,7 @@ interface H2Props extends HTMLAttributes<HTMLHeadingElement> {
 
 export function H2({ children, ...props }: H2Props) {
     return (
-        <div className="relative w-full h-0.5 bg-foreground flex items-center justify-center my-10">
+        <div className="relative z-10 w-full h-0.5 bg-foreground flex items-center justify-center my-10">
             <h2
                 style={{
                     color: "hsl(var(--background))",

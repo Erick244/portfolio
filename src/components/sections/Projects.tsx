@@ -107,7 +107,7 @@ const projectsTemp: Project[] = [
 
 export function Projects() {
     return (
-        <section className="space-y-10">
+        <section className="space-y-10 py-10">
             {projectsTemp.map((project, i) => (
                 <ProjectCard.Root
                     key={i}

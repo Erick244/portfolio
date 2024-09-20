@@ -23,7 +23,7 @@ export function ProjectCardRoot({
 
     const customGradient = `linear-gradient(${
         isEven ? "-30deg" : "30deg"
-    }, ${color} 0%, ${color} 40%, #000 40%,  ${color} 200%)`;
+    }, ${color} 0%, ${color} 40%, #0000007c 40%,  #0000007c 200%)`;
 
     return (
         <div

@@ -1,5 +1,6 @@
 import { Introduction } from "@/components/sections/Introduction";
 import { Projects } from "@/components/sections/Projects";
+import { Skills } from "@/components/sections/Skills";
 import { H2 } from "@/components/typography/H2";
 
 export default function Home() {
@@ -8,6 +9,8 @@ export default function Home() {
             <Introduction />
             <H2>PROJECTS</H2>
             <Projects />
+            <H2>SKILLS</H2>
+            <Skills />
         </main>
     );
 }
