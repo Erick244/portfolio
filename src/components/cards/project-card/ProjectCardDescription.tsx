@@ -1,4 +1,4 @@
-import { P } from "../typography/P";
+import { P } from "@/components/typography/P";
 import { ProjectCardTitle } from "./ProjectCardTitle";
 
 interface ProjectCardDescriptionProps {

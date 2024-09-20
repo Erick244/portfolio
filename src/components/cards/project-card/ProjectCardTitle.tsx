@@ -1,5 +1,5 @@
+import { H3, H3Props } from "@/components/typography/H3";
 import { cn } from "@/lib/utils";
-import { H3, H3Props } from "../typography/H3";
 
 export function ProjectCardTitle({ children, ...props }: H3Props) {
     return (

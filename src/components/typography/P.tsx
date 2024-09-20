@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
-interface PProps extends HTMLAttributes<HTMLParagraphElement> {
+export interface PProps extends HTMLAttributes<HTMLParagraphElement> {
     children: React.ReactNode;
 }
 

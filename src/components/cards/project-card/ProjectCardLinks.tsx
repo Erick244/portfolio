@@ -1,6 +1,6 @@
+import { ChromaButton } from "@/components/buttons/ChromaButton";
 import { ExternalLinkIcon, GithubIcon } from "lucide-react";
 import Link from "next/link";
-import { ChromaButton } from "../buttons/ChromaButton";
 
 interface ProjectCardLinksProps {
     githubUrl: string;
