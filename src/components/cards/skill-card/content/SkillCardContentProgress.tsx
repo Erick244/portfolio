@@ -4,23 +4,44 @@ import {
     TooltipProvider,
     TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { SkillKnowledge } from "@/types/skill.type";
 import { NotebookPenIcon, TrophyIcon } from "lucide-react";
 
-export function SkillCardContentProgress() {
+interface SkillCardContentProgressProps {
+    knowledge: SkillKnowledge;
+    color: string;
+}
+
+export function SkillCardContentProgress({
+    knowledge,
+    color,
+}: SkillCardContentProgressProps) {
+    const progressLevels = {
+        BASIC: 50,
+        INTERMEDIATE: 75,
+        ADVANCED: 100,
+    };
+
     return (
-        <TooltipProvider>
+        <TooltipProvider delayDuration={0}>
             <Tooltip>
                 <TooltipTrigger>
                     <div className="flex items-center justify-center gap-2">
                         <NotebookPenIcon className="text-background w-4 h-4" />
                         <div className="h-3.5 border border-background rounded-lg grow max-w-[400px]">
-                            <div className="h-full rounded bg-gradient-to-r from-background to-rose-500 w-[50%]" />
+                            <div
+                                style={{
+                                    width: `${progressLevels[knowledge]}%`,
+                                    background: `linear-gradient(to right,  hsl(var(--background)) 0%, ${color} 100%)`,
+                                }}
+                                className="transition-all duration-500 h-full rounded"
+                            />
                         </div>
                         <TrophyIcon className="text-background w-4 h-4" />
                     </div>
                 </TooltipTrigger>
                 <TooltipContent>
-                    <p>Add to library</p>
+                    <p>{knowledge}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>
