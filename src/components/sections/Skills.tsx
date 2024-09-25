@@ -1,8 +1,12 @@
-import { Skill } from "@/types/skill.type";
+import { Skill, SkillCategory } from "@/types/skill.type";
 import { DynamicSkillCard } from "../client-components/DynamicSkillCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 export function Skills() {
+    function filterByCategory(skills: Skill[], category: SkillCategory) {
+        return skills.filter((skill) => skill.category === category);
+    }
+
     return (
         <section className="py-10">
             <Tabs defaultValue="FULLSTACK">
@@ -12,13 +16,22 @@ export function Skills() {
                     <TabsTrigger value="BACKEND">Backend</TabsTrigger>
                 </TabsList>
                 <TabsContent value="FULLSTACK">
-                    <DynamicSkillCard skills={skills} title="FULLSTACK" />
+                    <DynamicSkillCard
+                        skills={filterByCategory(skills, "FULLSTACK")}
+                        title="FULLSTACK"
+                    />
                 </TabsContent>
                 <TabsContent value="FRONTEND">
-                    <DynamicSkillCard skills={skills} title="FRONTEND" />
+                    <DynamicSkillCard
+                        skills={filterByCategory(skills, "FRONTEND")}
+                        title="FRONTEND"
+                    />
                 </TabsContent>
                 <TabsContent value="BACKEND">
-                    <DynamicSkillCard skills={skills} title="BACKEND" />
+                    <DynamicSkillCard
+                        skills={filterByCategory(skills, "BACKEND")}
+                        title="BACKEND"
+                    />
                 </TabsContent>
             </Tabs>
         </section>
