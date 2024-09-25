@@ -19,12 +19,14 @@ export function SkillCardCarouselRoot({
         <Carousel
             opts={{
                 align: "start",
+                loop: true,
             }}
             plugins={[
                 Autoplay({
                     delay: 2000,
                 }),
             ]}
+            className="mt-3"
         >
             <CarouselContent>{children}</CarouselContent>
             <CarouselPrevious className="sm:scale-150" />

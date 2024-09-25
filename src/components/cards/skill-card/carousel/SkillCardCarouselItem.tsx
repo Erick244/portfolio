@@ -18,7 +18,7 @@ export function SkillCardItem({
     return (
         <CarouselItem
             {...props}
-            className=" select-none basis-1/4 transition-all duration-200 cursor-pointer"
+            className="select-none basis-1/4 cursor-pointer"
         >
             <Image
                 className={cn(
