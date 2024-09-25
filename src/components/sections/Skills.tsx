@@ -1,10 +1,26 @@
 import { Skill } from "@/types/skill.type";
 import { DynamicSkillCard } from "../client-components/DynamicSkillCard";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 export function Skills() {
     return (
-        <section className="space-y-10 py-10">
-            <DynamicSkillCard skills={skills} title="FRONTEND" />
+        <section className="py-10">
+            <Tabs defaultValue="FULLSTACK">
+                <TabsList className="bg-transparent flex justify-center items-center">
+                    <TabsTrigger value="FRONTEND">Frontend</TabsTrigger>
+                    <TabsTrigger value="FULLSTACK">Fullstack</TabsTrigger>
+                    <TabsTrigger value="BACKEND">Backend</TabsTrigger>
+                </TabsList>
+                <TabsContent value="FULLSTACK">
+                    <DynamicSkillCard skills={skills} title="FULLSTACK" />
+                </TabsContent>
+                <TabsContent value="FRONTEND">
+                    <DynamicSkillCard skills={skills} title="FRONTEND" />
+                </TabsContent>
+                <TabsContent value="BACKEND">
+                    <DynamicSkillCard skills={skills} title="BACKEND" />
+                </TabsContent>
+            </Tabs>
         </section>
     );
 }
