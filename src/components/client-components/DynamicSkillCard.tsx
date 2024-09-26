@@ -1,10 +1,10 @@
 "use client";
 
 import { Skill } from "@/types/skill.type";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { SkillCard } from "../cards/skill-card";
 import { H3 } from "../typography/H3";
-import { CarouselItem } from "../ui/carousel";
+import { CarouselApi, CarouselItem } from "../ui/carousel";
 
 interface DynamicSkillCardProps {
     skills: Skill[];
@@ -12,31 +12,20 @@ interface DynamicSkillCardProps {
 }
 
 export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
+    const [carouselApi, setCarouselApi] = useState<CarouselApi>();
     const [currentSkill, setCurrentSkill] = useState<Skill>(skills[0]);
-    const [stopAutoChanging, setStopAutoChanging] = useState<boolean>(false);
-
-    const nextCurrentSkillIndex = useCallback(() => {
-        const currentIndex = skills.findIndex(
-            (skill) => skill === currentSkill
-        );
-
-        return currentIndex === skills.length - 1 ? 0 : currentIndex + 1;
-    }, [currentSkill, skills]);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setCurrentSkill(skills[nextCurrentSkillIndex()]);
-        }, 2000);
+        if (!carouselApi) return;
 
-        if (stopAutoChanging) {
-            clearTimeout(timer);
-        }
-    }, [nextCurrentSkillIndex, skills, stopAutoChanging]);
+        carouselApi.on("select", () => {
+            setCurrentSkill(() => {
+                const nextSkill = skills[carouselApi.previousScrollSnap() + 1];
 
-    function onClickSkill(skill: Skill) {
-        setCurrentSkill(skill);
-        setStopAutoChanging(true);
-    }
+                return nextSkill ? nextSkill : skills[0];
+            });
+        });
+    }, [carouselApi, skills]);
 
     return (
         <SkillCard.Root color={currentSkill.color}>
@@ -46,8 +35,8 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                     <div className="flex justify-center gap-5 flex-wrap max-h-[260px] overflow-y-scroll">
                         {skills.map((skill, i) => (
                             <SkillCard.Carousel.Item
+                                onClick={() => setCurrentSkill(skill)}
                                 key={i}
-                                onClick={() => onClickSkill(skill)}
                                 active={skill === currentSkill}
                                 imageUrl={skill.imageUrl}
                                 alt={`${skill.name} logo image`}
@@ -68,14 +57,14 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                     </SkillCard.Content.Root>
                 </SkillCard.ViewAll>
             </SkillCard.Header>
-            <SkillCard.Carousel.Root>
+            <SkillCard.Carousel.Root setApi={setCarouselApi}>
                 {skills.map((skill, i) => (
                     <CarouselItem
                         key={i}
                         className="select-none basis-1/4 cursor-pointer"
                     >
                         <SkillCard.Carousel.Item
-                            onClick={() => onClickSkill(skill)}
+                            onClick={() => setCurrentSkill(skill)}
                             active={skill === currentSkill}
                             imageUrl={skill.imageUrl}
                             alt={`${skill.name} logo image`}
