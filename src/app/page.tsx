@@ -1,3 +1,4 @@
+import { AboutMe } from "@/components/sections/AboutMe";
 import { Introduction } from "@/components/sections/Introduction";
 import { Projects } from "@/components/sections/Projects";
 import { Skills } from "@/components/sections/Skills";
@@ -11,6 +12,8 @@ export default function Home() {
             <Projects />
             <H2>SKILLS</H2>
             <Skills />
+            <H2>ABOUT-ME</H2>
+            <AboutMe />
         </main>
     );
 }

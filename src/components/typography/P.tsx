@@ -11,6 +11,7 @@ export function P({ children, ...props }: PProps) {
             {...props}
             style={{
                 color: "hsl(var(--background))",
+                ...props.style,
             }}
             className={cn(
                 "leading-7 [&:not(:first-child)]:mt-6 font-medium text-xs sm:text-sm md:text-base text-shadow-md shadow-black/50",

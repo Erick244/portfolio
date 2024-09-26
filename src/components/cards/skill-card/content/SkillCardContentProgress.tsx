@@ -17,7 +17,7 @@ export function SkillCardContentProgress({
     color,
 }: SkillCardContentProgressProps) {
     const progressLevels = {
-        BASIC: 50,
+        BEGINNER: 50,
         INTERMEDIATE: 75,
         ADVANCED: 100,
     };
@@ -28,7 +28,7 @@ export function SkillCardContentProgress({
                 <TooltipTrigger>
                     <div className="flex items-center justify-center gap-2">
                         <NotebookPenIcon className="text-background w-4 h-4" />
-                        <div className="h-3.5 border border-background rounded-lg grow max-w-[400px] overflow-hidden">
+                        <div className="h-3.5 bg-background/20 rounded-lg grow max-w-[400px] overflow-hidden">
                             <div
                                 style={{
                                     width: `${progressLevels[knowledge]}%`,

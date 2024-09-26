@@ -7,5 +7,5 @@ export type Skill = {
     color: string;
 };
 
-export type SkillKnowledge = "BASIC" | "INTERMEDIATE" | "ADVANCED";
+export type SkillKnowledge = "BEGINNER" | "INTERMEDIATE" | "ADVANCED";
 export type SkillCategory = "FRONTEND" | "BACKEND" | "FULLSTACK";
