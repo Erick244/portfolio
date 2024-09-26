@@ -27,6 +27,13 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
         });
     }, [carouselApi, skills]);
 
+    function clickOnSkill(skill: Skill) {
+        if (!carouselApi) return;
+
+        setCurrentSkill(skill);
+        carouselApi.plugins().autoplay.stop();
+    }
+
     return (
         <SkillCard.Root color={currentSkill.color}>
             <SkillCard.Header>
@@ -35,7 +42,7 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                     <div className="flex justify-center gap-5 flex-wrap max-h-[260px] overflow-y-scroll">
                         {skills.map((skill, i) => (
                             <SkillCard.Carousel.Item
-                                onClick={() => setCurrentSkill(skill)}
+                                onClick={() => clickOnSkill(skill)}
                                 key={i}
                                 active={skill === currentSkill}
                                 imageUrl={skill.imageUrl}
@@ -64,7 +71,7 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                         className="select-none basis-1/4 cursor-pointer"
                     >
                         <SkillCard.Carousel.Item
-                            onClick={() => setCurrentSkill(skill)}
+                            onClick={() => clickOnSkill(skill)}
                             active={skill === currentSkill}
                             imageUrl={skill.imageUrl}
                             alt={`${skill.name} logo image`}
