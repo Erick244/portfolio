@@ -4,8 +4,6 @@ import { P } from "../typography/P";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 
-// TODO: COMPONENTIZATION
-
 export function AboutMe() {
     return (
         <section className="mb-20 space-y-20">
