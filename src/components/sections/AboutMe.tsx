@@ -1,55 +1,45 @@
+import { SendIcon } from "lucide-react";
+import { Message } from "../message";
 import { P } from "../typography/P";
+import { Button } from "../ui/button";
+import { Textarea } from "../ui/textarea";
 
 // TODO: COMPONENTIZATION
 
 export function AboutMe() {
     return (
         <section className="mb-20 space-y-20">
-            <div className="max-w-2xl relative p-5">
-                <P
-                    style={{
-                        color: "#000",
-                    }}
-                    className="bg-background p-5 md:text-sm rounded-xl rounded-br-none shadow-md shadow-black/30"
-                >
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Eligendi voluptatibus quo praesentium ipsam ipsa quibusdam
-                    ratione quam officia nesciunt? Ad necessitatibus mollitia
-                    pariatur sequi, laboriosam ea beatae veritatis sunt
-                    voluptate. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Eos eius dignissimos, saepe non quo
-                    distinctio fuga perspiciatis accusamus omnis, voluptatem
-                    repellendus illum nobis quaerat rem! Earum hic maxime
-                    inventore id.
-                </P>
-                <div className="flex items-center gap-2 absolute -right-2 mt-5">
-                    <span>Erick Henrique</span>
-                    <div className="h-10 w-10 rounded-full bg-background" />
-                </div>
-            </div>
+            <Message.Root>
+                <Message.Content>
+                    <P className="leading-relaxed md:text-sm">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing
+                        elit. Eligendi voluptatibus quo praesentium ipsam ipsa
+                        quibusdam ratione quam officia nesciunt? Ad
+                        necessitatibus mollitia pariatur sequi, laboriosam ea
+                        beatae veritatis sunt voluptate. Lorem ipsum dolor sit
+                        amet consectetur adipisicing elit. Eos eius dignissimos,
+                        saepe non quo distinctio fuga perspiciatis accusamus
+                        omnis, voluptatem repellendus illum nobis quaerat rem!
+                        Earum hic maxime inventore id.
+                    </P>
+                </Message.Content>
 
-            <div className="max-w-2xl relative p-5">
-                <P
-                    style={{
-                        color: "#000",
-                    }}
-                    className="bg-background p-5 md:text-sm rounded-xl rounded-bl-none shadow-md shadow-black/30"
-                >
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Eligendi voluptatibus quo praesentium ipsam ipsa quibusdam
-                    ratione quam officia nesciunt? Ad necessitatibus mollitia
-                    pariatur sequi, laboriosam ea beatae veritatis sunt
-                    voluptate. Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Eos eius dignissimos, saepe non quo
-                    distinctio fuga perspiciatis accusamus omnis, voluptatem
-                    repellendus illum nobis quaerat rem! Earum hic maxime
-                    inventore id.
-                </P>
-                <div className="flex flex-row-reverse items-center gap-2 absolute -left-2 mt-5">
-                    <span>Erick Henrique</span>
-                    <div className="h-10 w-10 rounded-full bg-background" />
-                </div>
-            </div>
+                <Message.User>ERICK HENRIQUE</Message.User>
+            </Message.Root>
+
+            <Message.Root>
+                <Message.Content isSender>
+                    <Textarea
+                        placeholder="Send a message..."
+                        className="resize-none min-h-[100px]"
+                    />
+                    <Button size="icon" className="absolute right-14 bottom-11">
+                        <SendIcon className="w-4 h-4" />
+                    </Button>
+                </Message.Content>
+
+                <Message.User isSender>You</Message.User>
+            </Message.Root>
         </section>
     );
 }
