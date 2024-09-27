@@ -16,7 +16,7 @@ export function SkillCardViewAll({ children, title }: SkillCardViewAllProps) {
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <ChromaButton className="h-6 w-24 font-semibold">
+                <ChromaButton className="h-6 w-24 font-semibold text-xs">
                     VIEW ALL
                 </ChromaButton>
             </DialogTrigger>

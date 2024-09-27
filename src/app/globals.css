@@ -118,7 +118,7 @@
 
     background-image: linear-gradient(#00000037 1.5px, transparent 1.5px),
         linear-gradient(to right, #00000037 1.5px, transparent 1.5px),
-        linear-gradient(45deg, #000000, hsl(var(--background)));
+        linear-gradient(45deg, #828282, hsl(var(--background)));
 
     background-size: 30px 50px, 50px 30px, 100% 100%;
     background-position: 0px 0px, 0px 0px, 0px 0px;
