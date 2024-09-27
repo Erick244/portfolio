@@ -9,13 +9,13 @@ export default function Home() {
     return (
         <main className="h-auto w-full flex flex-col items-center pt-10 px-5 md:px-0">
             <Introduction />
-            <H2>PROJECTS</H2>
+            <H2 id="projects">PROJECTS</H2>
             <Projects />
-            <H2>SKILLS</H2>
+            <H2 id="skills">SKILLS</H2>
             <Skills />
-            <H2>ABOUT-ME</H2>
+            <H2 id="about-me">ABOUT-ME</H2>
             <AboutMe />
-            <H2>CONTACT</H2>
+            <H2 id="contact">CONTACT</H2>
             <Contact />
         </main>
     );

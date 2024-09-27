@@ -1,3 +1,4 @@
+import { NavMenu } from "@/components/layout/NavMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
@@ -20,12 +21,13 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen antialiased background-grid overflow-x-hidden",
+                    "min-h-screen antialiased background-grid overflow-x-hidden scroll-smooth",
                     font.className
                 )}
             >
                 <Toaster />
                 {children}
+                <NavMenu />
             </body>
         </html>
     );
