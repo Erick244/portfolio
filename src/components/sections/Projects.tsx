@@ -3,15 +3,14 @@ import { ProjectCard } from "../cards/project-card";
 
 const projectsTemp: Project[] = [
     {
-        name: "Project 1",
-        description:
-            "Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 Description 1 ",
-        color: "#ff0000",
+        name: "Crypto File",
+        description: "A website for encrypting and decrypting files {📄}.",
+        color: "#222",
         githubUrl: "https://github.com/Erick244",
         desktopImageUrl:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkfZINyTKhajKNn4gHCazn7p7D7rXTMOC2PQ&s",
+            "https://media.discordapp.net/attachments/905481123172339722/1290356574908321822/Captura_de_tela_2024-09-30_135447.png?ex=66fc29b5&is=66fad835&hm=561a93bba4bea2769cf8ea047e81869986a0a4bb7dbf796c44dec13b851bc258&=&format=webp&quality=lossless&width=1246&height=700",
         mobileImageUrl:
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkfZINyTKhajKNn4gHCazn7p7D7rXTMOC2PQ&s",
+            "https://media.discordapp.net/attachments/905481123172339722/1290357760298455162/crypto-file.vercel.app_iPhone_SE.png?ex=66fc2acf&is=66fad94f&hm=d0cc4d7230cd86c4d4190d1cb79d857c690c58e1300524ce2a28450b792ccd06&=&format=webp&quality=lossless&width=393&height=700",
         technologies: [
             {
                 name: "HTML5",

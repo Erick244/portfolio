@@ -9,7 +9,7 @@ import { Logo } from "../utils/Logo";
 
 export function Introduction() {
     return (
-        <section className="p-5 space-y-2 flex flex-col justify-center md:min-h-[768px]">
+        <section className="p-5 space-y-2 flex flex-col justify-center md:min-h-[850px]">
             <div className="flex items-center gap-4">
                 <H1>WEB</H1>
                 <Logo className="md:text-[2.65rem]" />
