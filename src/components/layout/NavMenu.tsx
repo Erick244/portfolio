@@ -27,6 +27,7 @@ export function NavMenu() {
                     key={i}
                     href={item.href}
                     active={hash === item.href}
+                    label={item.label}
                     className={cn(
                         "hover:text-background peer/item",
                         item.twClasses

@@ -2,6 +2,7 @@
     "conventionalCommits.scopes": [
         "DynamicSkillCard",
         "SkillCardRoot",
-        "ProjectCard"
+        "ProjectCard",
+        "NavMenu"
     ]
 }
