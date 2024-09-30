@@ -68,7 +68,7 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                 {skills.map((skill, i) => (
                     <CarouselItem
                         key={i}
-                        className="select-none basis-1/4 cursor-pointer"
+                        className="select-none md:basis-1/5 basis-1/4 cursor-pointer"
                     >
                         <SkillCard.Carousel.Item
                             onClick={() => clickOnSkill(skill)}
