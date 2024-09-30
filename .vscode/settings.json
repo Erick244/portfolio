@@ -1,3 +1,7 @@
 {
-    "conventionalCommits.scopes": ["DynamicSkillCard", "SkillCardRoot"]
+    "conventionalCommits.scopes": [
+        "DynamicSkillCard",
+        "SkillCardRoot",
+        "ProjectCard"
+    ]
 }
