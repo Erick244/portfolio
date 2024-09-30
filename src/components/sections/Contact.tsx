@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 
 export function Contact() {
     return (
-        <section className="mb-10 w-full max-w-lg">
+        <section className="mb-32 w-full max-w-lg">
             <div className="bg-foreground text-background flex justify-between items-center gap-4 p-3 rounded-lg">
                 <MailIcon />
                 <span className="font-mono bg-background/20 p-1 rounded">
