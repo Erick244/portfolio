@@ -5,6 +5,7 @@ interface ProjectCardRootProps extends HTMLAttributes<HTMLDivElement> {
     children: React.ReactNode;
     color: string;
     isEven: boolean;
+    className?: string;
 }
 
 export function ProjectCardRoot({

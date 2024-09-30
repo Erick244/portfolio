@@ -24,7 +24,6 @@ export function AboutMe() {
 
                 <Message.User>ERICK HENRIQUE</Message.User>
             </Message.Root>
-
             <Message.Root>
                 <Message.Content isSender>
                     <Textarea

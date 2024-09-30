@@ -1,5 +1,6 @@
 import { Skill, SkillCategory } from "@/types/skill.type";
 import { DynamicSkillCard } from "../client-components/DynamicSkillCard";
+import { ServerMotion } from "../framer-motion-server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 export function Skills() {
@@ -16,22 +17,43 @@ export function Skills() {
                     <TabsTrigger value="BACKEND">Backend</TabsTrigger>
                 </TabsList>
                 <TabsContent value="FULLSTACK">
-                    <DynamicSkillCard
-                        skills={filterByCategory(skills, "FULLSTACK")}
-                        title="FULLSTACK"
-                    />
+                    <ServerMotion.div
+                        className="backdrop-blur-lg"
+                        initial={{ opacity: 0, y: "10px" }}
+                        animate={{ opacity: 1, y: "0px" }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                        <DynamicSkillCard
+                            skills={filterByCategory(skills, "FULLSTACK")}
+                            title="FULLSTACK"
+                        />
+                    </ServerMotion.div>
                 </TabsContent>
                 <TabsContent value="FRONTEND">
-                    <DynamicSkillCard
-                        skills={filterByCategory(skills, "FRONTEND")}
-                        title="FRONTEND"
-                    />
+                    <ServerMotion.div
+                        className="backdrop-blur-lg"
+                        initial={{ opacity: 0, y: "10px" }}
+                        animate={{ opacity: 1, y: "0px" }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                        <DynamicSkillCard
+                            skills={filterByCategory(skills, "FRONTEND")}
+                            title="FRONTEND"
+                        />
+                    </ServerMotion.div>
                 </TabsContent>
                 <TabsContent value="BACKEND">
-                    <DynamicSkillCard
-                        skills={filterByCategory(skills, "BACKEND")}
-                        title="BACKEND"
-                    />
+                    <ServerMotion.div
+                        className="backdrop-blur-lg"
+                        initial={{ opacity: 0, y: "10px" }}
+                        animate={{ opacity: 1, y: "0px" }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                    >
+                        <DynamicSkillCard
+                            skills={filterByCategory(skills, "BACKEND")}
+                            title="BACKEND"
+                        />
+                    </ServerMotion.div>
                 </TabsContent>
             </Tabs>
         </section>

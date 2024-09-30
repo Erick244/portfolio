@@ -3,13 +3,19 @@ import { GithubIcon, LinkedinIcon, MailIcon, SettingsIcon } from "lucide-react";
 import Link from "next/link";
 import { ChromaButton } from "../buttons/ChromaButton";
 import { CopyButton } from "../buttons/CopyButton";
+import { ServerMotion } from "../framer-motion-server";
 import { H1 } from "../typography/H1";
 import { P } from "../typography/P";
 import { Logo } from "../utils/Logo";
 
 export function Introduction() {
     return (
-        <section className="p-5 space-y-2 flex flex-col justify-center md:min-h-[850px]">
+        <ServerMotion.section
+            initial={{ opacity: 0, y: "10px" }}
+            animate={{ opacity: 1, y: "0" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="p-5 space-y-2 flex flex-col justify-center md:min-h-[850px]"
+        >
             <div className="flex items-center gap-4">
                 <H1>WEB</H1>
                 <Logo className="md:text-[2.65rem]" />
@@ -42,6 +48,6 @@ export function Introduction() {
                     </P>
                 </div>
             </div>
-        </section>
+        </ServerMotion.section>
     );
 }
