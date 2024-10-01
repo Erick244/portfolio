@@ -1,24 +1,30 @@
 import { SendIcon } from "lucide-react";
+import { ServerMotion } from "../framer-motion-server";
 import { Message } from "../message";
+import { H3 } from "../typography/H3";
 import { P } from "../typography/P";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 
 export function AboutMe() {
     return (
-        <section className="mb-20 space-y-20">
+        <ServerMotion.section
+            initial={{ opacity: 0, y: "10px" }}
+            whileInView={{ opacity: 1, y: "0" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="mb-20 space-y-20"
+        >
             <Message.Root>
                 <Message.Content>
-                    <P className="leading-relaxed md:text-sm">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Eligendi voluptatibus quo praesentium ipsam ipsa
-                        quibusdam ratione quam officia nesciunt? Ad
-                        necessitatibus mollitia pariatur sequi, laboriosam ea
-                        beatae veritatis sunt voluptate. Lorem ipsum dolor sit
-                        amet consectetur adipisicing elit. Eos eius dignissimos,
-                        saepe non quo distinctio fuga perspiciatis accusamus
-                        omnis, voluptatem repellendus illum nobis quaerat rem!
-                        Earum hic maxime inventore id.
+                    <H3 className="font-mono">Hello World!</H3>
+                    <P className="md:text-sm leading-relaxed font-mono">
+                        My name is Erick, I&apos;m 19 years old, and I&apos;ve
+                        been studying programming for 4 years. During this time,
+                        I have fully dedicated myself to web development, both
+                        Frontend and Backend. My current goal is to continue
+                        improving my skills as a developer, gaining experience,
+                        and remaining open to new opportunities in the market.
                     </P>
                 </Message.Content>
 
@@ -42,6 +48,6 @@ export function AboutMe() {
 
                 <Message.User isSender>You</Message.User>
             </Message.Root>
-        </section>
+        </ServerMotion.section>
     );
 }

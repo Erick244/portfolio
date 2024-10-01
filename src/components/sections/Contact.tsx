@@ -2,12 +2,19 @@ import { discordTag, email, githubLink, linkedinLink } from "@/utils/my";
 import { GithubIcon, LinkedinIcon, MailIcon } from "lucide-react";
 import Link from "next/link";
 import { CopyButton } from "../buttons/CopyButton";
+import { ServerMotion } from "../framer-motion-server";
 import { DiscordLogo } from "../svgs/DiscordLogo";
 import { Button } from "../ui/button";
 
 export function Contact() {
     return (
-        <section className="mb-32 w-full max-w-lg">
+        <ServerMotion.section
+            initial={{ opacity: 0, y: "10px" }}
+            whileInView={{ opacity: 1, y: "0" }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            viewport={{ once: true }}
+            className="mb-32 w-full max-w-lg"
+        >
             <div className="bg-foreground text-background flex justify-between items-center gap-4 p-3 rounded-lg">
                 <MailIcon />
                 <span className="font-mono bg-background/20 p-1 rounded">
@@ -40,6 +47,6 @@ export function Contact() {
                     <DiscordLogo />
                 </CopyButton>
             </div>
-        </section>
+        </ServerMotion.section>
     );
 }
