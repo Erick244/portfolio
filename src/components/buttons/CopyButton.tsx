@@ -14,7 +14,22 @@ export function CopyButton({ copyText, children, ...props }: CopyButtonProps) {
     const [isCopied, setIsCopied] = useState<boolean>(false);
 
     async function copyToClipboard() {
-        await navigator.clipboard.writeText(copyText);
+        if (!navigator.clipboard) {
+            // For not support to clipboard devices
+            const copyArea = document.createElement("textarea");
+            copyArea.value = copyText;
+            copyArea.style.position = "fixed";
+            copyArea.style.opacity = "0";
+
+            document.body.appendChild(copyArea);
+            copyArea.select();
+            document.execCommand("copy");
+
+            document.body.removeChild(copyArea);
+        } else {
+            await navigator.clipboard.writeText(copyText);
+        }
+
         setIsCopied(true);
 
         toast({

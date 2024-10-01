@@ -3,6 +3,7 @@
         "DynamicSkillCard",
         "SkillCardRoot",
         "ProjectCard",
-        "NavMenu"
+        "NavMenu",
+        "CopyButton"
     ]
 }
