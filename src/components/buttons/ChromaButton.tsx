@@ -10,7 +10,7 @@ export const ChromaButton = forwardRef<HTMLButtonElement, ButtonProps>(
                 ref={ref}
                 size="icon"
                 className={cn(
-                    "flex-shrink-0 shadow-md shadow-black/50 h-9 w-9 before:opacity-0 after:opacity-0 chroma-border hover:before:opacity-100 hover:after:opacity-100 ",
+                    "flex-shrink-0 shadow-md shadow-black/50 before:opacity-0 after:opacity-0 chroma-border hover:before:opacity-100 hover:after:opacity-100 ",
 
                     props.className
                 )}
