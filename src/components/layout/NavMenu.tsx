@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+import { atom, useAtom } from "jotai";
 import {
     Code2Icon,
     HomeIcon,
@@ -9,16 +10,18 @@ import {
     UserIcon,
 } from "lucide-react";
 import { useParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Menu } from "../menu";
 
+export const hashAtom = atom<string>("/");
+
 export function NavMenu() {
-    const [hash, setHash] = useState<string>("/");
+    const [hash, setHash] = useAtom(hashAtom);
     const params = useParams();
 
     useEffect(() => {
         setHash(window.location.hash);
-    }, [params]);
+    }, [params, setHash]);
 
     return (
         <Menu.Root>

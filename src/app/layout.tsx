@@ -1,6 +1,7 @@
 import { NavMenu } from "@/components/layout/NavMenu";
 import { Toaster } from "@/components/ui/toaster";
 import { cn } from "@/lib/utils";
+import { Provider } from "jotai";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Image from "next/image";
@@ -27,8 +28,10 @@ export default function RootLayout({
                 )}
             >
                 <Toaster />
-                {children}
-                <NavMenu />
+                <Provider>
+                    {children}
+                    <NavMenu />
+                </Provider>
                 <Image
                     priority
                     className="fixed -z-20 min-h-screen inset-0 object-cover opacity-30"
