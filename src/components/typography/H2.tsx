@@ -27,8 +27,8 @@ export function H2({ children, ...props }: H2Props) {
     return (
         <ServerMotion.div
             onViewportEnter={() => setHash(`#${props.id}`)}
-            initial={{ width: "0%" }}
-            whileInView={{ width: "100%" }}
+            initial={{ width: "0%", opacity: 0 }}
+            whileInView={{ width: "100%", opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
             className="relative z-10 w-full h-0.5 bg-foreground flex items-center justify-center my-10"
         >

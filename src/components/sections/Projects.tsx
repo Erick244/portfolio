@@ -108,7 +108,7 @@ const projectsTemp: Project[] = [
 
 export function Projects() {
     return (
-        <section className="space-y-10 py-10">
+        <section className="space-y-10 py-10 overflow-hidden">
             {projectsTemp.map((project, i) => (
                 <ServerMotion.div
                     initial={{
