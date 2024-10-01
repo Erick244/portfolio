@@ -27,10 +27,15 @@ export function AboutMe() {
             <Message.Root>
                 <Message.Content isSender>
                     <Textarea
-                        placeholder="Send a message..."
+                        disabled
+                        placeholder="In working..."
                         className="resize-none min-h-[100px]"
                     />
-                    <Button size="icon" className="absolute right-14 bottom-11">
+                    <Button
+                        disabled
+                        size="icon"
+                        className="absolute right-14 bottom-11"
+                    >
                         <SendIcon className="w-4 h-4" />
                     </Button>
                 </Message.Content>

@@ -1,12 +1,15 @@
-import { Skill, SkillCategory } from "@/types/skill.type";
+import { ApiConsume } from "@/functions/api-consume";
+import { Skill } from "@/types/skill.type";
 import { DynamicSkillCard } from "../client-components/DynamicSkillCard";
 import { ServerMotion } from "../framer-motion-server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
-export function Skills() {
-    function filterByCategory(skills: Skill[], category: SkillCategory) {
-        return skills.filter((skill) => skill.category === category);
-    }
+export async function Skills() {
+    const [fullstackSkills, frontendSkills, backendSkills] = await Promise.all([
+        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/FULLSTACK"),
+        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/FRONTEND"),
+        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/BACKEND"),
+    ]);
 
     return (
         <section className="py-10">
@@ -24,7 +27,7 @@ export function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={filterByCategory(skills, "FULLSTACK")}
+                            skills={fullstackSkills}
                             title="FULLSTACK"
                         />
                     </ServerMotion.div>
@@ -37,7 +40,7 @@ export function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={filterByCategory(skills, "FRONTEND")}
+                            skills={frontendSkills}
                             title="FRONTEND"
                         />
                     </ServerMotion.div>
@@ -50,7 +53,7 @@ export function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={filterByCategory(skills, "BACKEND")}
+                            skills={backendSkills}
                             title="BACKEND"
                         />
                     </ServerMotion.div>

@@ -5,6 +5,7 @@
         "ProjectCard",
         "NavMenu",
         "CopyButton",
-        "H2"
+        "H2",
+        "api"
     ]
 }
