@@ -11,22 +11,32 @@ interface H2Props extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 export function H2({ children, ...props }: H2Props) {
-    const ref = useRef(null);
+    const ref = useRef<HTMLHeadingElement | null>(null);
     const setHash = useSetAtom(hashAtom);
 
     useEffect(() => {
-        window.onscroll = () => {
-            if (window.scrollY <= 10) {
-                setHash("");
-            } else if (window.scrollY <= 200) {
-                setHash("#projects");
+        const handleScroll = () => {
+            if (ref.current) {
+                const elementTop = ref.current.getBoundingClientRect().top;
+                const scrollTop = window.scrollY;
+
+                if (scrollTop <= 10) {
+                    setHash("");
+                } else if (scrollTop >= elementTop) {
+                    setHash(`#${props.id}`);
+                }
             }
         };
-    }, [props.id, setHash]);
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [setHash, props.id]);
 
     return (
         <ServerMotion.div
-            onViewportEnter={() => setHash(`#${props.id}`)}
             initial={{ width: "0%", opacity: 0 }}
             whileInView={{ width: "100%", opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeInOut" }}

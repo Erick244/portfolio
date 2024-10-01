@@ -13,8 +13,8 @@ export function MenuItem({ children, active, label, ...props }: MenuItemProps) {
         <Link
             {...props}
             className={cn(
-                "h-10 w-14 lg:h-14 flex justify-center items-center rounded lg:rounded-xl cursor-pointer transition-all duration-300 group",
-                active && "bg-foreground text-background",
+                "h-10 w-14 lg:h-14 flex justify-center items-center scale-90 rounded lg:rounded-xl cursor-pointer transition-all duration-300 group",
+                active && "bg-foreground text-background scale-100",
                 props.className
             )}
         >

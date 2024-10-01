@@ -4,6 +4,7 @@
         "SkillCardRoot",
         "ProjectCard",
         "NavMenu",
-        "CopyButton"
+        "CopyButton",
+        "H2"
     ]
 }
