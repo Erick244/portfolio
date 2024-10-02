@@ -36,8 +36,8 @@ export const SkillCardCarouselRoot = forwardRef<
             className="mt-3"
         >
             <CarouselContent>{children}</CarouselContent>
-            <CarouselPrevious className="sm:scale-150" />
-            <CarouselNext className="sm:scale-150" />
+            <CarouselPrevious className="scale-150" />
+            <CarouselNext className="scale-150" />
         </Carousel>
     );
 });
