@@ -23,7 +23,7 @@ export default function RootLayout({
         <html lang="en">
             <body
                 className={cn(
-                    "min-h-screen antialiased bg-gradient-to-tr to-background from-foreground overflow-x-hidden scroll-smooth",
+                    " min-h-screen antialiased bg-gradient-to-tr to-background from-foreground overflow-x-hidden scroll-smooth",
                     font.className
                 )}
             >

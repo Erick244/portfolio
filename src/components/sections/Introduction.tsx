@@ -1,5 +1,11 @@
 import { email, githubLink, linkedinLink } from "@/utils/my";
-import { GithubIcon, LinkedinIcon, MailIcon, SettingsIcon } from "lucide-react";
+import {
+    ChevronDown,
+    GithubIcon,
+    LinkedinIcon,
+    MailIcon,
+    SettingsIcon,
+} from "lucide-react";
 import Link from "next/link";
 import { ChromaButton } from "../buttons/ChromaButton";
 import { CopyButton } from "../buttons/CopyButton";
@@ -14,7 +20,7 @@ export function Introduction() {
             initial={{ opacity: 0, y: "10px" }}
             animate={{ opacity: 1, y: "0" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="p-5 space-y-2 flex flex-col justify-center md:min-h-[850px]"
+            className="relative px-5 space-y-2 flex flex-col justify-center md:h-screen"
         >
             <div className="flex items-center gap-4">
                 <H1>WEB</H1>
@@ -48,6 +54,7 @@ export function Introduction() {
                     </P>
                 </div>
             </div>
+            <ChevronDown className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white w-12 h-12" />
         </ServerMotion.section>
     );
 }
