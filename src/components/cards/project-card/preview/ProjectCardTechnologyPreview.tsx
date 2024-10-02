@@ -10,13 +10,13 @@ export function ProjectCardTechnologyPreview({
     alt,
 }: ProjectCardTechnologyPreviewProps) {
     return (
-        <div className="border rounded shadow-lg w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] md:w-[40px] md:h-[40px] ">
+        <div className="border rounded shadow-lg w-[30px] h-[30px] sm:w-[35px] sm:h-[35px] md:w-[40px] md:h-[40px] overflow-hidden p-0.5">
             <Image
-                className="w-full h-full rounded aspect-square"
+                className="w-full h-full aspect-square backdrop-blur-sm rounded"
                 alt={alt}
                 src={imageUrl}
-                width={30}
-                height={30}
+                width={50}
+                height={50}
             />
         </div>
     );
