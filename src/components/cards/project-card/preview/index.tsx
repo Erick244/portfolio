@@ -1,6 +1,6 @@
 import { ProjectCardDesktopPreview } from "./ProjectCardDesktopPreview";
 import { ProjectCardMobilePreview } from "./ProjectCardMobilePreview";
-import { ProjectCardPreviewRoot } from "./ProjectCardPReviewRoot";
+import { ProjectCardPreviewRoot } from "./ProjectCardPreviewRoot";
 import { ProjectCardTechnologiesPreview } from "./ProjectCardTechnologiesPreview";
 import { ProjectCardTechnologyPreview } from "./ProjectCardTechnologyPreview";
 
