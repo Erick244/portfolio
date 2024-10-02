@@ -11,6 +11,7 @@
         "AboutMe",
         "ProjectCardMobilePreview",
         "Introduction",
-        "SkillCard"
+        "SkillCard",
+        "dependencies"
     ]
 }
