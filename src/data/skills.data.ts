@@ -25,7 +25,7 @@ export const skills: Skill[] = [
         about: "JavaScript is an interpreted, structured, high-level scripting language with weak dynamic typing and multi-paradigm.",
         color: "#EFD91F",
         imageUrl:
-            "https://cdn.iconscout.com/icon/free/png-512/free-javascript-3521515-2945018.png?f=webp&w=256",
+            "https://devkico.itexto.com.br/wp-content/uploads/2017/08/logotipo.png",
         knowledge: "ADVANCED",
     },
     {
@@ -34,7 +34,7 @@ export const skills: Skill[] = [
         about: "TypeScript is a strict syntactical superset of JavaScript, adding static types and making it easier to develop large-scale applications.",
         color: "#3178C6",
         imageUrl:
-            "https://cdn.iconscout.com/icon/free/png-512/free-typescript-1174965.png?f=webp&w=256",
+            "https://sdtimes.com/wp-content/uploads/2020/06/ts-logo-256.png",
         knowledge: "ADVANCED",
     },
     {
@@ -334,6 +334,14 @@ export const skills: Skill[] = [
         color: "#FA91A9",
         imageUrl:
             "https://cdn.iconscout.com/icon/premium/png-512-thumb/arquitetura-3-d-5728047-4838411.png?f=webp&w=256",
+        knowledge: "BEGINNER",
+    },
+    {
+        name: "Kubernetes",
+        category: "FULLSTACK",
+        about: "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications.",
+        color: "#326CE5",
+        imageUrl: "https://avatars.githubusercontent.com/u/49082977?s=280&v=4",
         knowledge: "BEGINNER",
     },
 ];

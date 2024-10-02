@@ -25,7 +25,7 @@ export function SkillCardContentProgress({
     return (
         <TooltipProvider delayDuration={0}>
             <Tooltip>
-                <TooltipTrigger>
+                <TooltipTrigger asChild>
                     <div className="flex items-center justify-center gap-2">
                         <NotebookPenIcon className="text-background w-4 h-4" />
                         <div className="h-3.5 bg-background/20 rounded-lg grow max-w-[400px] overflow-hidden">

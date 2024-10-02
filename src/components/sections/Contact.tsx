@@ -21,12 +21,14 @@ export function Contact() {
                     {email}
                 </span>
                 <CopyButton
+                    aria-label="Copy Email"
                     copyText={email}
                     className="border-x-2 border-muted-foreground"
                 />
             </div>
             <div className="flex justify-between gap-4 mt-2">
                 <Button
+                    aria-label="Github Link"
                     className="sm:h-12 w-full shadow-md shadow-black/30"
                     asChild
                 >
@@ -34,12 +36,16 @@ export function Contact() {
                         <GithubIcon />
                     </Link>
                 </Button>
-                <Button className="sm:h-12 w-full shadow-md shadow-black/30">
+                <Button
+                    aria-label="Linkedin Link"
+                    className="sm:h-12 w-full shadow-md shadow-black/30"
+                >
                     <Link href={linkedinLink} target="_blank">
                         <LinkedinIcon />
                     </Link>
                 </Button>
                 <CopyButton
+                    aria-label="Copy Discord Tag"
                     size="default"
                     className="sm:h-12 w-full shadow-md shadow-black/30"
                     copyText={discordTag}

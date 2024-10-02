@@ -38,6 +38,7 @@ export function AboutMe() {
                         className="resize-none min-h-[100px]"
                     />
                     <Button
+                        aria-label="Send Message"
                         disabled
                         size="icon"
                         className="absolute right-14 bottom-11"

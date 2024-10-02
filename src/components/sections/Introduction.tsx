@@ -30,17 +30,24 @@ export function Introduction() {
                 <H1>DEVELOPER</H1>
             </div>
             <div className="flex items-center gap-2">
-                <ChromaButton className="md:h-12 md:w-12">
+                <ChromaButton
+                    aria-label="Github Link"
+                    className="md:h-12 md:w-12"
+                >
                     <Link href={githubLink} target="_blank">
                         <GithubIcon />
                     </Link>
                 </ChromaButton>
-                <ChromaButton className="md:h-12 md:w-12">
+                <ChromaButton
+                    aria-label="Linkedin Link"
+                    className="md:h-12 md:w-12"
+                >
                     <Link href={linkedinLink} target="_blank">
                         <LinkedinIcon />
                     </Link>
                 </ChromaButton>
                 <CopyButton
+                    aria-label="Copy Email"
                     copyText={email}
                     className="md:h-12 md:w-12 shadow-md shadow-black/50"
                 >
@@ -54,7 +61,7 @@ export function Introduction() {
                     </P>
                 </div>
             </div>
-            <ChevronDown className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white w-12 h-12" />
+            <ChevronDown className="hidden md:block absolute bottom-20 left-1/2 -translate-x-1/2 text-white w-12 h-12" />
         </ServerMotion.section>
     );
 }
