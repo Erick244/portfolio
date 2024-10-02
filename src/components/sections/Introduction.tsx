@@ -30,19 +30,21 @@ export function Introduction() {
                 <H1>DEVELOPER</H1>
             </div>
             <div className="flex items-center gap-2">
-                <ChromaButton
-                    aria-label="Github Link"
-                    className="md:h-12 md:w-12"
-                >
-                    <Link href={githubLink} target="_blank">
+                <ChromaButton asChild className="md:h-12 md:w-12">
+                    <Link
+                        aria-label="Github Link"
+                        href={githubLink}
+                        target="_blank"
+                    >
                         <GithubIcon />
                     </Link>
                 </ChromaButton>
-                <ChromaButton
-                    aria-label="Linkedin Link"
-                    className="md:h-12 md:w-12"
-                >
-                    <Link href={linkedinLink} target="_blank">
+                <ChromaButton asChild className="md:h-12 md:w-12">
+                    <Link
+                        aria-label="Linkedin Link"
+                        href={linkedinLink}
+                        target="_blank"
+                    >
                         <LinkedinIcon />
                     </Link>
                 </ChromaButton>

@@ -28,19 +28,26 @@ export function Contact() {
             </div>
             <div className="flex justify-between gap-4 mt-2">
                 <Button
-                    aria-label="Github Link"
                     className="sm:h-12 w-full shadow-md shadow-black/30"
                     asChild
                 >
-                    <Link href={githubLink} target="_blank">
+                    <Link
+                        aria-label="Github Link"
+                        href={githubLink}
+                        target="_blank"
+                    >
                         <GithubIcon />
                     </Link>
                 </Button>
                 <Button
-                    aria-label="Linkedin Link"
+                    asChild
                     className="sm:h-12 w-full shadow-md shadow-black/30"
                 >
-                    <Link href={linkedinLink} target="_blank">
+                    <Link
+                        aria-label="Linkedin Link"
+                        href={linkedinLink}
+                        target="_blank"
+                    >
                         <LinkedinIcon />
                     </Link>
                 </Button>

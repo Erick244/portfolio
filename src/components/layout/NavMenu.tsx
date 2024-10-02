@@ -28,6 +28,7 @@ export function NavMenu() {
             {items.map((item, i) => (
                 <Menu.Item
                     key={i}
+                    aria-label={`Navigate to ${item.label} section`}
                     href={item.href}
                     active={hash === item.href}
                     label={item.label}
