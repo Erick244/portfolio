@@ -1,15 +1,13 @@
-import { ApiConsume } from "@/functions/api-consume";
-import { Skill } from "@/types/skill.type";
+import { skills } from "@/data/skills.data";
+import { SkillCategory } from "@/types/skill.type";
 import { DynamicSkillCard } from "../client-components/DynamicSkillCard";
 import { ServerMotion } from "../framer-motion-server";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
-export async function Skills() {
-    const [fullstackSkills, frontendSkills, backendSkills] = await Promise.all([
-        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/FULLSTACK"),
-        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/FRONTEND"),
-        ApiConsume.get<Skill[]>("http:localhost:3000/api/skills/BACKEND"),
-    ]);
+export function Skills() {
+    const filterSkillsByCategory = (category: SkillCategory) => {
+        return skills.filter((skill) => skill.category === category);
+    };
 
     return (
         <section className="py-10">
@@ -27,7 +25,7 @@ export async function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={fullstackSkills}
+                            skills={filterSkillsByCategory("FULLSTACK")}
                             title="FULLSTACK"
                         />
                     </ServerMotion.div>
@@ -40,7 +38,7 @@ export async function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={frontendSkills}
+                            skills={filterSkillsByCategory("FRONTEND")}
                             title="FRONTEND"
                         />
                     </ServerMotion.div>
@@ -53,7 +51,7 @@ export async function Skills() {
                         transition={{ duration: 0.5, ease: "easeInOut" }}
                     >
                         <DynamicSkillCard
-                            skills={backendSkills}
+                            skills={filterSkillsByCategory("BACKEND")}
                             title="BACKEND"
                         />
                     </ServerMotion.div>
