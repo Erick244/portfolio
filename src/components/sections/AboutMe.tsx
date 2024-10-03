@@ -1,3 +1,4 @@
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { SendIcon } from "lucide-react";
 import { ServerMotion } from "../framer-motion-server";
 import { Message } from "../message";
@@ -6,7 +7,11 @@ import { P } from "../typography/P";
 import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 
-export function AboutMe() {
+interface AboutMeProps {
+    dict: Awaited<ReturnType<typeof getDictionary>>["sections"]["aboutMe"];
+}
+
+export function AboutMe({ dict }: AboutMeProps) {
     return (
         <ServerMotion.section
             initial={{ opacity: 0, y: "10px" }}
@@ -17,14 +22,9 @@ export function AboutMe() {
         >
             <Message.Root>
                 <Message.Content>
-                    <H3 className="font-mono">Hello World!</H3>
+                    <H3 className="font-mono">{dict.messageContentTitle}</H3>
                     <P className="md:text-sm leading-relaxed font-mono">
-                        My name is Erick, I&apos;m 19 years old, and I&apos;ve
-                        been studying programming for 4 years. During this time,
-                        I have fully dedicated myself to web development, both
-                        Frontend and Backend. My current goal is to continue
-                        improving my skills as a developer, gaining experience,
-                        and remaining open to new opportunities in the market.
+                        {dict.messageContentDescription}
                     </P>
                 </Message.Content>
 
@@ -47,7 +47,7 @@ export function AboutMe() {
                     </Button>
                 </Message.Content>
 
-                <Message.User isSender>You</Message.User>
+                <Message.User isSender>{dict.MessageUserSender}</Message.User>
             </Message.Root>
         </ServerMotion.section>
     );

@@ -3,8 +3,12 @@ import { Project } from "@/types/project.type";
 export const projects: Project[] = [
     {
         name: "Crypto File",
-        description:
-            "Crypto File is an application that encrypts/decrypts files securely and efficiently, directly from your browser. {📄}",
+        description: {
+            "en-us":
+                "Crypto File is an application that encrypts/decrypts files securely and efficiently, directly from your browser. {📄}",
+            "pt-br":
+                "Crypto File é um aplicativo que criptografa/descriptografa arquivos de forma segura e eficiente, diretamente do seu navegador. {📄}",
+        },
         color: "#222",
         githubUrl: "https://github.com/Erick244/crypto-file",
         websiteUrl: "https://crypto-file.vercel.app/",
@@ -34,8 +38,12 @@ export const projects: Project[] = [
     },
     {
         name: "Coinmyte",
-        description:
-            "A modern landing page showcasing the importance of cryptocurrency in today's world. Explore how digital currencies are revolutionizing global finance, offering security. 🪙",
+        description: {
+            "en-us":
+                "A modern landing page showcasing the importance of cryptocurrency in today's world. Explore how digital currencies are revolutionizing global finance, offering security. 🪙",
+            "pt-br":
+                "Uma moderna landing-page que destaca a importância da criptomoeda no mundo atual. Explore como as criptomoedas estão revolucionando o financeiro global e oferecendo segurança. 🪙",
+        },
         color: "#710c87",
         githubUrl: "https://github.com/Erick244/coinmyte-landing-page",
         websiteUrl: "https://coinmyte-landing-page.vercel.app/",
@@ -66,8 +74,12 @@ export const projects: Project[] = [
     },
     {
         name: "Fin App",
-        description:
-            "A financial management website where you can track your expenses and achieve better future results. 📈",
+        description: {
+            "en-us":
+                "A financial management website where you can track your expenses and achieve better future results. 📈",
+            "pt-br":
+                "Um site de gerenciamento financeiro onde você pode gerenciar seus gastos e alcançar resultados melhores no futuro. 📈",
+        },
         color: "#fff",
         githubUrl: "https://github.com/Erick244/fin-app",
         websiteUrl: "https://finapp-project.vercel.app",

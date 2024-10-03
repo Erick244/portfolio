@@ -1,5 +1,6 @@
 "use client";
 
+import { useDictionary } from "@/contexts/DictionaryContext";
 import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { CopyCheckIcon, CopyIcon } from "lucide-react";
@@ -18,6 +19,7 @@ interface CopyButtonProps extends ButtonProps {
 
 export function CopyButton({ copyText, children, ...props }: CopyButtonProps) {
     const [isCopied, setIsCopied] = useState<boolean>(false);
+    const dict = useDictionary();
 
     async function copyToClipboard() {
         if (!navigator.clipboard) {
@@ -39,7 +41,7 @@ export function CopyButton({ copyText, children, ...props }: CopyButtonProps) {
         setIsCopied(true);
 
         toast({
-            title: "Copied to Clipboard!",
+            title: dict.components.copyButton.toastSuccessMessage,
         });
     }
 
@@ -78,7 +80,7 @@ export function CopyButton({ copyText, children, ...props }: CopyButtonProps) {
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                    <p>Copy</p>
+                    <p>{dict.components.copyButton.tooltipContent}</p>
                 </TooltipContent>
             </Tooltip>
         </TooltipProvider>

@@ -1,6 +1,8 @@
 "use client";
 
+import { Locales } from "@/enums/locales.enum";
 import { Skill } from "@/types/skill.type";
+import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SkillCard } from "../cards/skill-card";
 import { H3 } from "../typography/H3";
@@ -14,6 +16,7 @@ interface DynamicSkillCardProps {
 export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
     const [carouselApi, setCarouselApi] = useState<CarouselApi>();
     const [currentSkill, setCurrentSkill] = useState<Skill>(skills[0]);
+    const params = useParams<{ lang: Locales }>();
 
     useEffect(() => {
         if (!carouselApi) return;
@@ -59,7 +62,7 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                             color={currentSkill.color}
                         />
                         <SkillCard.Content.Description>
-                            {currentSkill.about}
+                            {currentSkill.about[params.lang]}
                         </SkillCard.Content.Description>
                     </SkillCard.Content.Root>
                 </SkillCard.ViewAll>
@@ -88,7 +91,7 @@ export function DynamicSkillCard({ skills, title }: DynamicSkillCardProps) {
                     color={currentSkill.color}
                 />
                 <SkillCard.Content.Description>
-                    {currentSkill.about}
+                    {currentSkill.about[params.lang]}
                 </SkillCard.Content.Description>
             </SkillCard.Content.Root>
         </SkillCard.Root>

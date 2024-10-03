@@ -1,0 +1,34 @@
+{
+    "sections": {
+        "introduction": {
+            "standoutPhrase": "Turning ideas into digital solutions with clean and efficient code."
+        },
+        "projects": {
+            "title": "PROJECTS"
+        },
+        "aboutMe": {
+            "title": "ABOUT-ME",
+            "messageContentTitle": "Hello World!",
+            "messageContentDescription": "My name is Erick, I&apos;m 19 years old, and I&apos;ve been studying programming for 4 years. During this time, I have fully dedicated myself to web development, both Frontend and Backend. My current goal is to continue improving my skills as a developer, gaining experience, and remaining open to new opportunities in the market.",
+            "MessageUserSender": "You"
+        },
+        "contact": {
+            "title": "CONTACT"
+        }
+    },
+    "components": {
+        "copyButton": {
+            "tooltipContent": "Copy",
+            "toastSuccessMessage": "Copied to clipboard!"
+        },
+        "skillCardViewAll": {
+            "buttonLabel": "VIEW ALL"
+        },
+        "navMenu": {
+            "home": "Home",
+            "projects": "Projects",
+            "aboutMe": "About-Me",
+            "contact": "Contact"
+        }
+    }
+}

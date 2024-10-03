@@ -1,9 +1,13 @@
+import { Locales } from "@/enums/locales.enum";
+
 export type Skill = {
     name: string;
     knowledge: SkillKnowledge;
     category: SkillCategory;
     imageUrl: string;
-    about: string;
+    about: {
+        [key in Locales]: string;
+    };
     color: string;
 };
 

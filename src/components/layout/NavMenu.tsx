@@ -1,5 +1,6 @@
 "use client";
 
+import { useDictionary } from "@/contexts/DictionaryContext";
 import { cn } from "@/lib/utils";
 import { atom, useAtom } from "jotai";
 import {
@@ -22,6 +23,41 @@ export function NavMenu() {
     useEffect(() => {
         setHash(window.location.hash);
     }, [params, setHash]);
+
+    const dict = useDictionary();
+
+    const items = [
+        {
+            href: "",
+            label: dict.components.navMenu.home,
+            icon: <HomeIcon />,
+            twClasses: "peer/item0",
+        },
+        {
+            href: "#projects",
+            label: dict.components.navMenu.projects,
+            icon: <MonitorIcon />,
+            twClasses: "peer/item1",
+        },
+        {
+            href: "#skills",
+            label: "Skills",
+            icon: <Code2Icon />,
+            twClasses: "peer/item2",
+        },
+        {
+            href: "#about-me",
+            label: dict.components.navMenu.aboutMe,
+            icon: <UserIcon />,
+            twClasses: "peer/item3",
+        },
+        {
+            href: "#contact",
+            label: dict.components.navMenu.contact,
+            icon: <PhoneIcon />,
+            twClasses: "peer/item4",
+        },
+    ];
 
     return (
         <Menu.Root>
@@ -49,39 +85,6 @@ export function NavMenu() {
         </Menu.Root>
     );
 }
-
-const items = [
-    {
-        href: "",
-        label: "Home",
-        icon: <HomeIcon />,
-        twClasses: "peer/item0",
-    },
-    {
-        href: "#projects",
-        label: "Projects",
-        icon: <MonitorIcon />,
-        twClasses: "peer/item1",
-    },
-    {
-        href: "#skills",
-        label: "Skills",
-        icon: <Code2Icon />,
-        twClasses: "peer/item2",
-    },
-    {
-        href: "#about-me",
-        label: "About Me",
-        icon: <UserIcon />,
-        twClasses: "peer/item3",
-    },
-    {
-        href: "#contact",
-        label: "Contact",
-        icon: <PhoneIcon />,
-        twClasses: "peer/item4",
-    },
-];
 
 const itemsAnimationTwClasses = [
     "peer-hover/item0:translate-x-0 peer-hover/item0:translate-y-0",

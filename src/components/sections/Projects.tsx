@@ -1,9 +1,15 @@
 import { ProjectCard } from "../cards/project-card";
 
+import {} from "@/app/[lang]/dictionaries";
 import { projects } from "@/data/projects.data";
+import { Locales } from "@/enums/locales.enum";
 import { ServerMotion } from "../framer-motion-server";
 
-export function Projects() {
+interface ProjectsProps {
+    lang: Locales;
+}
+
+export function Projects({ lang }: ProjectsProps) {
     return (
         <section className="space-y-10 py-10 overflow-hidden">
             {projects.map((project, i) => {
@@ -63,7 +69,7 @@ export function Projects() {
                                 </ProjectCard.Preview.Technologies>
                             </ProjectCard.Preview.Root>
                             <ProjectCard.Description title={project.name}>
-                                {project.description}
+                                {project.description[lang]}
                             </ProjectCard.Description>
                         </ProjectCard.Root>
                     </ServerMotion.div>

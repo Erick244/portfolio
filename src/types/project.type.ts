@@ -1,6 +1,10 @@
+import { Locales } from "@/enums/locales.enum";
+
 export type Project = {
     name: string;
-    description: string;
+    description: {
+        [key in Locales]: string;
+    };
     desktopImageUrl: string;
     mobileImageUrl: string;
     color: string;

@@ -1,3 +1,4 @@
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import { email, githubLink, linkedinLink } from "@/utils/my";
 import {
     ChevronDown,
@@ -14,13 +15,17 @@ import { H1 } from "../typography/H1";
 import { P } from "../typography/P";
 import { Logo } from "../utils/Logo";
 
-export function Introduction() {
+interface IntroductionProps {
+    dict: Awaited<ReturnType<typeof getDictionary>>["sections"]["introduction"];
+}
+
+export function Introduction({ dict }: IntroductionProps) {
     return (
         <ServerMotion.section
             initial={{ opacity: 0, y: "10px" }}
             animate={{ opacity: 1, y: "0" }}
             transition={{ duration: 0.5, ease: "easeInOut" }}
-            className="relative px-5 space-y-2 flex flex-col justify-center md:h-screen"
+            className="relative p-5 lg:p-0 space-y-2 flex flex-col justify-center lg:h-screen"
         >
             <div className="flex items-center gap-4">
                 <H1>WEB</H1>
@@ -57,13 +62,12 @@ export function Introduction() {
                 </CopyButton>
                 <div>
                     <P className="max-w-[200px] sm:max-w-[400px] md:max-w-[600px] md:font-semibold">
-                        Turning ideas into digital solutions with clean and
-                        efficient code.
+                        {dict.standoutPhrase}
                         <SettingsIcon className="inline w-4 h-4 text-foreground ml-1" />
                     </P>
                 </div>
             </div>
-            <ChevronDown className="hidden md:block absolute bottom-20 left-1/2 -translate-x-1/2 text-white w-12 h-12" />
+            <ChevronDown className="hidden lg:block absolute bottom-20 left-1/2 -translate-x-1/2 text-white w-12 h-12" />
         </ServerMotion.section>
     );
 }

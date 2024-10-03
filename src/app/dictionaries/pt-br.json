@@ -1,0 +1,34 @@
+{
+    "sections": {
+        "introduction": {
+            "standoutPhrase": "Transformando ideias em soluções digitais com código limpo e eficiente."
+        },
+        "projects": {
+            "title": "PROJETOS"
+        },
+        "aboutMe": {
+            "title": "SOBRE-MIM",
+            "messageContentTitle": "Olá Mundo!",
+            "messageContentDescription": "Meu nome é Erick, tenho 19 anos e estudo programação há 4 anos. Durante esse tempo, me dediquei totalmente ao desenvolvimento web, tanto no Frontend quanto no Backend. Meu objetivo atual é continuar aprimorando minhas habilidades como desenvolvedor, ganhar experiência e estar aberto a novas oportunidades no mercado.",
+            "MessageUserSender": "Você"
+        },
+        "contact": {
+            "title": "CONTATO"
+        }
+    },
+    "components": {
+        "copyButton": {
+            "tooltipContent": "Copiar",
+            "toastSuccessMessage": "Copiado para área de transferência!"
+        },
+        "skillCardViewAll": {
+            "buttonLabel": "TODOS"
+        },
+        "navMenu": {
+            "home": "Inicio",
+            "projects": "Projetos",
+            "aboutMe": "Sobre-Mim",
+            "contact": "Contato"
+        }
+    }
+}
