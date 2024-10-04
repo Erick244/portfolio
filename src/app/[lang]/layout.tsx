@@ -27,8 +27,12 @@ export default function RootLayout({ children, params }: LayoutProps) {
     return (
         <html lang={params.lang}>
             <body
+                style={{
+                    backgroundImage:
+                        "radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(21,21,21,1) 100%, rgba(169,169,169,1) 100%)",
+                }}
                 className={cn(
-                    " min-h-screen antialiased bg-gradient-to-tr to-background from-foreground overflow-x-hidden scroll-smooth",
+                    "min-h-screen bg-fixed antialiased overflow-x-hidden scroll-smooth",
                     font.className
                 )}
             >

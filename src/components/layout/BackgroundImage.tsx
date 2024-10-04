@@ -4,7 +4,7 @@ export function BackgroundImage() {
     return (
         <Image
             priority
-            className="fixed -z-20 min-h-screen inset-0 object-cover opacity-30"
+            className="fixed -z-20 min-h-screen inset-0 object-cover opacity-40 w-full"
             alt="Background Image"
             width={1920}
             height={1080}
