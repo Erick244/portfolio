@@ -12,10 +12,16 @@ export function Skills() {
     return (
         <section className="py-10">
             <Tabs defaultValue="FULLSTACK">
-                <TabsList className="bg-transparent flex justify-center items-center backdrop-blur-sm">
-                    <TabsTrigger value="FRONTEND">Frontend</TabsTrigger>
-                    <TabsTrigger value="FULLSTACK">Fullstack</TabsTrigger>
-                    <TabsTrigger value="BACKEND">Backend</TabsTrigger>
+                <TabsList className="bg-transparent flex justify-center items-center">
+                    <TabsTrigger className="backdrop-blur-sm" value="FRONTEND">
+                        Frontend
+                    </TabsTrigger>
+                    <TabsTrigger className="backdrop-blur-sm" value="FULLSTACK">
+                        Fullstack
+                    </TabsTrigger>
+                    <TabsTrigger className="backdrop-blur-sm" value="BACKEND">
+                        Backend
+                    </TabsTrigger>
                 </TabsList>
                 <TabsContent value="FULLSTACK">
                     <ServerMotion.div

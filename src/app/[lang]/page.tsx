@@ -12,7 +12,7 @@ export default async function Home({ params }: { params: { lang: Locales } }) {
     const dict = await getDictionary(params.lang);
 
     return (
-        <main className="h-auto w-full flex flex-col items-center pt-10 px-5 md:px-0">
+        <main className="h-auto w-full flex flex-col items-center pt-10 px-5 md:px-0 overflow-x-hidden">
             <Introduction dict={dict.sections.introduction} />
             <H2 id="projects">{dict.sections.projects.title}</H2>
             <Projects lang={params.lang} />

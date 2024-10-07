@@ -11,7 +11,7 @@ export function SkillCardRoot({ children, color }: SkillCardRootProps) {
                 backgroundImage: `linear-gradient(${color} 1.5px, transparent 1.5px)`,
                 backgroundSize: "110px 110px, 100% 100%",
             }}
-            className="transition-all duration-500 bg-foreground/10 backdrop-blur-lg shadow-lg py-5 px-10 rounded-lg w-full max-w-md sm:w-[500px] md:w-full md:max-w-3xl"
+            className="transition-all duration-500 bg-foreground/10 backdrop-blur-lg shadow-lg py-5 px-10 rounded-lg w-full max-w-sm sm:w-[500px] md:w-full md:max-w-3xl"
         >
             {children}
         </div>
